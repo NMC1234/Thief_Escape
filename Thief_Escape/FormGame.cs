@@ -2,6 +2,9 @@
 //User Interface file for group Phiv project
 //Created by: Keegon Cabinaw
 //Created on 02/15/2015
+//Reformed/modified/refined by: Zachary T. Vig
+//Date 02/18/2015
+//Combined map and game ui forms
 
 using System;
 using System.Collections.Generic;
@@ -15,16 +18,13 @@ using System.Windows.Forms;
 
 namespace Thief_Escape
 {
-	//-----------------------------------------------------------------------------------------------------
-	
-
-	//-----------------------------------------------------------------------------------------------------
 	public partial class FormGame : Form
 	{
-		//-----------------------------------------------------------------------------------------------------
 		#region [ Globals ]
 		//-----------------------------------------------------------------------------------------------------
-		Grid map;
+
+		//Declaration of Cell objects & Misc. vars
+		Grid mapCells;
 		Player player;
 		string name;
 
@@ -33,7 +33,6 @@ namespace Thief_Escape
 		//-----------------------------------------------------------------------------------------------------
 
 		//-----------------------------------------------------------------------------------------------------
-
 		#region [ Constructors ]
 		// Overloaded FormGame constructor to pass in name from name form
 		public FormGame(string playername)
@@ -43,13 +42,16 @@ namespace Thief_Escape
 			//Change the player name
 			name = playername;
 		}
+		//-----------------------------------------------------------------------------------------------------
 
+		//Default constructor
 		public FormGame()
 		{
 			// TODO: Complete member initialization
 			InitializeComponent();
 		}
 		#endregion
+		//-----------------------------------------------------------------------------------------------------
 
 		//-----------------------------------------------------------------------------------------------------
 		#region [ LoadEvent ]
@@ -58,24 +60,36 @@ namespace Thief_Escape
 		//-----------------------------------------------------------------------------------------------------
 		private void FormGamePlay_Load(object sender, EventArgs e)
 		{
-			//Make the grid
-			map = new Grid();
-			map.CreateTestGrid();
+			//Instantiation of the grid object
+			//mapCells = new Grid();
+			//Passing in arg to make cutom map size
+			mapCells = new Grid(16);
 
-			//make the map
-			CreateTestMap();
+			//Call various mapCell creation methods here
+			//method call that Creates the structure of the grid of cell object
+			//mapCells.CreateTestGrid();
+			//Creation of bigger test map
+			mapCells.CreateTestGridBig();
 
-			//Propigate Image Map
-			CreateTestMap();
+			//make the image map grid
+			//CreateTestMap();
+			CreateTestMapBig();
+
 			//Make the player
-			player = new Player(name);
-			player.SetCurrentCell(map.WhatIsStartingCellX, map.WhatIsStartingCellY);
+			//uncomment when the get of the player name is implimented
+			//player = new Player(name);
+			player = new Player();
+
+			//Sets the first starting point by asking the grid for it's preset,
+			//by array creation method
+			player.SetCurrentCell(mapCells.WhatIsStartingCellX, mapCells.WhatIsStartingCellY);
 
 			//Get the initial valid movements
 			CheckMovement(player.CurrentCellX, player.CurrentCellY);
 
 			//Output initial prompt
 			InitalPrompt();
+
 			//Output information about surrounding tiles
 			OutputAroundPlayer(false);
 		}
@@ -101,13 +115,16 @@ namespace Thief_Escape
 			CheckMovement(player.CurrentCellX, player.CurrentCellY);
 
 			//Change map image possition
+			// X and Y is the moved to cell
+			//prevcolor function returns the color that should be left in the moved from cell
+			//Direction of button passed as arg
 			MoveCurrentPos(
 			player.CurrentCellX,
 			player.CurrentCellY,
 			WhatIsPrevCellColor(Direction.NORTH),
 			Direction.NORTH);
 
-			//Output surrounding cells
+			//Output surrounding cell types in text output
 			OutputAroundPlayer(true);
 		}
 
@@ -123,7 +140,10 @@ namespace Thief_Escape
 			//Check new movements
 			CheckMovement(player.CurrentCellX, player.CurrentCellY);
 
-			//Change map possition
+			//Change map image possition
+			// X and Y is the moved to cell
+			//prevcolor function returns the color that should be left in the moved from cell
+			//Direction of button passed as arg
 			MoveCurrentPos(
 			player.CurrentCellX,
 			player.CurrentCellY,
@@ -146,7 +166,10 @@ namespace Thief_Escape
 			//Check new movements
 			CheckMovement(player.CurrentCellX, player.CurrentCellY);
 
-			//Change map possition
+			//Change map image possition
+			// X and Y is the moved to cell
+			//prevcolor function returns the color that should be left in the moved from cell
+			//Direction of button passed as arg
 			MoveCurrentPos(
 			player.CurrentCellX,
 			player.CurrentCellY,
@@ -169,7 +192,10 @@ namespace Thief_Escape
 			//Check new movements
 			CheckMovement(player.CurrentCellX, player.CurrentCellY);
 
-			//Change map possition
+			//Change map image possition
+			// X and Y is the moved to cell
+			//prevcolor function returns the color that should be left in the moved from cell
+			//Direction of button passed as arg
 			MoveCurrentPos(
 			player.CurrentCellX,
 			player.CurrentCellY,
@@ -191,6 +217,7 @@ namespace Thief_Escape
 		//-----------------------------------------------------------------------------------------------------
 		private Color WhatIsPrevCellColor(Direction direction)
 		{
+			//method scoped variables needed for the logic statements
 			Color color = Color.Brown;
 			CellType cell = CellType.Generic;
 			DoorType door = DoorType.Generic;
@@ -200,79 +227,92 @@ namespace Thief_Escape
 			bool isBejeweledKitten = false;
 
 			//Switch statement to find previous cell's type
+			//first checks direction
+			//Uses reverse of next cell math to pull previous cell properties
+			//Then checks if it's a door, stairs, etc.
+			//and gets it's respective type
 			switch(direction) {
+
+
 				case Direction.NORTH:
-
 					//get previous cell's type
-					cell = map.GetCellType(player.CurrentCellX, (player.CurrentCellY + 1));
+					cell = mapCells.GetCellType(player.CurrentCellX, (player.CurrentCellY + 1));
 					//Check is previous cell is starting cell
-					IsStartingCell = map.IsStartingCell(player.CurrentCellX, (player.CurrentCellY + 1));
-					
+					IsStartingCell = mapCells.IsStartingCell(player.CurrentCellX, (player.CurrentCellY + 1));
 
 					//check if in fact door celltype and if so save door type
 					if(cell == CellType.Door) {
-						door = map.GetDoorType(player.CurrentCellX, (player.CurrentCellY + 1));
+						door = mapCells.GetDoorType(player.CurrentCellX, (player.CurrentCellY + 1));
 					}
 					//check if in fact stairs celltype and if so save stairs type
 					else if(cell == CellType.Stairs) {
-						stairs = map.GetStairsType(player.CurrentCellX, (player.CurrentCellY + 1));
+						stairs = mapCells.GetStairsType(player.CurrentCellX, (player.CurrentCellY + 1));
 					}
 					break;
+
+
+
 				case Direction.SOUTH:
-
 					//get previous cell's type
-					cell = map.GetCellType(player.CurrentCellX, (player.CurrentCellY - 1));
+					cell = mapCells.GetCellType(player.CurrentCellX, (player.CurrentCellY - 1));
 					//Check is previous cell is starting cell
-					IsStartingCell = map.IsStartingCell(player.CurrentCellX, (player.CurrentCellY - 1));
+					IsStartingCell = mapCells.IsStartingCell(player.CurrentCellX, (player.CurrentCellY - 1));
 
 					//check if in fact door celltype and if so save door type
 					if(cell == CellType.Door) {
-						door = map.GetDoorType(player.CurrentCellX, (player.CurrentCellY - 1));
+						door = mapCells.GetDoorType(player.CurrentCellX, (player.CurrentCellY - 1));
 					}
 					//check if in fact stairs celltype and if so save stairs type
 					else if(cell == CellType.Stairs) {
-						stairs = map.GetStairsType(player.CurrentCellX, (player.CurrentCellY - 1));
+						stairs = mapCells.GetStairsType(player.CurrentCellX, (player.CurrentCellY - 1));
 					}
 					break;
+
+
+
 				case Direction.EAST:
-
 					//get previous cell's type
-					cell = map.GetCellType((player.CurrentCellX - 1), player.CurrentCellY);
+					cell = mapCells.GetCellType((player.CurrentCellX - 1), player.CurrentCellY);
 					//Check is previous cell is starting cell
-					IsStartingCell = map.IsStartingCell((player.CurrentCellX - 1), player.CurrentCellY);
+					IsStartingCell = mapCells.IsStartingCell((player.CurrentCellX - 1), player.CurrentCellY);
 
 					//check if in fact door celltype and if so save door type
 					if(cell == CellType.Door) {
-						door = map.GetDoorType((player.CurrentCellX - 1), player.CurrentCellY);
+						door = mapCells.GetDoorType((player.CurrentCellX - 1), player.CurrentCellY);
 					}
 					//check if in fact stairs celltype and if so save stairs type
 					else if(cell == CellType.Stairs) {
-						stairs = map.GetStairsType((player.CurrentCellX - 1), player.CurrentCellY);
+						stairs = mapCells.GetStairsType((player.CurrentCellX - 1), player.CurrentCellY);
 					}
 					break;
-				case Direction.WEST:
 
+
+
+				case Direction.WEST:
 					//get previous cell's type
-					cell = map.GetCellType((player.CurrentCellX + 1), player.CurrentCellY);
-					//Check is previous cell is starting cell
-					IsStartingCell = map.IsStartingCell((player.CurrentCellX + 1), player.CurrentCellY);
+					cell = mapCells.GetCellType((player.CurrentCellX + 1), player.CurrentCellY);
+					//Check if previous cell is starting cell
+					IsStartingCell = mapCells.IsStartingCell((player.CurrentCellX + 1), player.CurrentCellY);
 
 					//check if in fact door celltype and if so save door type
 					if(cell == CellType.Door) {
-						door = map.GetDoorType((player.CurrentCellX + 1), player.CurrentCellY);
+						door = mapCells.GetDoorType((player.CurrentCellX + 1), player.CurrentCellY);
 					}
 					//check if in fact stairs celltype and if so save stairs type
 					else if(cell == CellType.Stairs) {
-						stairs = map.GetStairsType((player.CurrentCellX + 1), player.CurrentCellY);
+						stairs = mapCells.GetStairsType((player.CurrentCellX + 1), player.CurrentCellY);
 					}
 					break;
 
 				//default:
 				//	break;
 			}
+			//-----------------------------------------------------------------------------------------------------
+
+			//-----------------------------------------------------------------------------------------------------
 
 			//Switch statement to select color based on previous cell type
-			//Initial if-else statement to week out the starting cell
+			//Initial if-else statement to weed out the starting cell
 			//Will need to be expanded to handle other floor and wall types.
 			if(IsStartingCell) {
 				color = Color.DarkGreen;
@@ -307,12 +347,13 @@ namespace Thief_Escape
 						isBejeweledKitten = true;
 						color = Color.Purple;
 						break;
+
 					//default:
 					//	break;
 				}
 			}
 		
-				
+			//returns the decided upon color for the previous cell	
 			return color;
 
 		}
@@ -328,22 +369,31 @@ namespace Thief_Escape
 
 			//Switch statement to change back previous current cell's color to default
 			switch(direction) {
+
 				case Direction.NORTH:
 					//set previous current cell with correct color
 					grdconMap[(y + 1), x].BackColor = color;
 					break;
+
+
 				case Direction.SOUTH:
 					//set previous current cell with correct color
 					grdconMap[(y - 1), x].BackColor = color;
 					break;
+
+
 				case Direction.EAST:
 					//set previous current cell with correct color
 					grdconMap[y, (x - 1)].BackColor = color;
 					break;
+
+
 				case Direction.WEST:
 					//set previous current cell with correct color
 					grdconMap[y, (x + 1)].BackColor = color;
 					break;
+
+
 				//default:
 				//	break;
 			}
@@ -359,6 +409,7 @@ namespace Thief_Escape
 		//-----------------------------------------------------------------------------------------------------
 
 		//-----------------------------------------------------------------------------------------------------
+		//starting dialog
 		public void InitalPrompt()
 		{
 			lstDialog.Items.Add(string.Format("Hello, {0}, welcome to the game", name));
@@ -375,8 +426,19 @@ namespace Thief_Escape
 		//-----------------------------------------------------------------------------------------------------
 		public void CheckMovement(int currentX, int currentY)
 		{
+			//Movement validation checks the bounds of the passed x and y
+			//Checks if cell type is a floor or a DoorType.Unlocked
+			//if not that button is disabled
+
 			//Check for Northern Movement
-			if(currentY - 1 < map.MapSize && (map.GetCellType(currentX, currentY - 1) == CellType.Floor)) {
+			if(currentY - 1 < mapCells.MapSize
+				&& (mapCells.GetCellType(currentX, currentY - 1)
+				== (CellType.Floor))) {
+				btnMoveNorth.Enabled = true;
+			}
+			else if(currentY - 1 < mapCells.MapSize
+				&& (mapCells.GetDoorType(currentX, currentY - 1)
+				== (DoorType.DoorUnlocked))) {
 				btnMoveNorth.Enabled = true;
 			}
 			else {
@@ -384,7 +446,14 @@ namespace Thief_Escape
 			}
 
 			//Check for Southern Movement
-			if(currentY + 1 < map.MapSize && (map.GetCellType(currentX, currentY + 1) == CellType.Floor)) {
+			if(currentY + 1 < mapCells.MapSize
+				&& (mapCells.GetCellType(currentX, currentY + 1) 
+				== CellType.Floor)) {
+				btnMoveSouth.Enabled = true;
+			}
+			else if(currentY + 1 < mapCells.MapSize
+				&& (mapCells.GetDoorType(currentX, currentY + 1)
+				== DoorType.DoorUnlocked)) {
 				btnMoveSouth.Enabled = true;
 			}
 			else {
@@ -392,7 +461,14 @@ namespace Thief_Escape
 			}
 
 			//Check for Western Movement
-			if(currentX - 1 < map.MapSize && (map.GetCellType(currentX - 1, currentY) == CellType.Floor)) {
+			if(currentX - 1 < mapCells.MapSize 
+				&& (mapCells.GetCellType(currentX - 1, currentY) 
+				== CellType.Floor)) {
+				btnMoveWest.Enabled = true;
+			}
+			else if(currentX - 1 < mapCells.MapSize
+				&& (mapCells.GetDoorType(currentX - 1, currentY)
+				== DoorType.DoorUnlocked)) {
 				btnMoveWest.Enabled = true;
 			}
 			else {
@@ -400,7 +476,14 @@ namespace Thief_Escape
 			}
 
 			//Check for Eastern Movement
-			if(currentX + 1 < map.MapSize && (map.GetCellType(currentX + 1, currentY) == CellType.Floor)) {
+			if(currentX + 1 < mapCells.MapSize 
+				&& (mapCells.GetCellType(currentX + 1, currentY) 
+				== CellType.Floor)) {
+				btnMoveEast.Enabled = true;
+			}
+			else if(currentX + 1 < mapCells.MapSize
+				&& (mapCells.GetDoorType(currentX + 1, currentY)
+				== DoorType.DoorUnlocked)) {
 				btnMoveEast.Enabled = true;
 			}
 			else {
@@ -409,6 +492,8 @@ namespace Thief_Escape
 		}
 
 		//-----------------------------------------------------------------------------------------------------
+
+		//This method outputs the types of the 4 cells surrounding the current cell
 		public void OutputAroundPlayer(bool clear)
 		{
 			if(clear)
@@ -427,41 +512,50 @@ namespace Thief_Escape
 		}
 
 		//-----------------------------------------------------------------------------------------------------
-		public void Surroundings(int targetX, int targetY, Direction direction)
+		public void Surroundings(int currentX, int currentY, Direction direction)
 		{
 			CellType cell = CellType.Generic;
 
 			switch(direction) {
+
 				case Direction.NORTH:
-					//North is Y + 1
-					if(targetY + 1 < map.MapSize) {
-						cell = map.GetCellType(targetX, targetY + 1);
-					}
-					break;
-				case Direction.SOUTH:
 					//North is Y - 1
-					if(targetY + 1 < map.MapSize) {
-						cell = map.GetCellType(targetX, targetY - 1);
+					if(currentY - 1 < mapCells.MapSize) {
+						cell = mapCells.GetCellType(currentX, currentY - 1);
 					}
 					break;
+
+
+				case Direction.SOUTH:
+					//North is Y + 1
+					if(currentY + 1 < mapCells.MapSize) {
+						cell = mapCells.GetCellType(currentX, currentY + 1);
+					}
+					break;
+
+
 				case Direction.EAST:
 					//North is X + 1
-					if(targetY + 1 < map.MapSize) {
-						cell = map.GetCellType(targetX + 1, targetY);
+					if(currentY + 1 < mapCells.MapSize) {
+						cell = mapCells.GetCellType(currentX + 1, currentY);
 					}
 					break;
+
+
 				case Direction.WEST:
 					//North is X - 1
-					if(targetY + 1 < map.MapSize) {
-						cell = map.GetCellType(targetX - 1, targetY);
+					if(currentY - 1 < mapCells.MapSize) {
+						cell = mapCells.GetCellType(currentX - 1, currentY);
 					}
 					break;
+
+				//default:
+				//	break;
 			}
-			//Add the the output to the listbox
-			lstOutput.Items.Add
-			(
-			String.Format("There is a {0} {1} of you.", cell.ToString().ToLower(), direction.ToString().ToLower())
-			);
+
+			//Add the output to the listbox
+			lstOutput.Items.Add(String.Format("There is a {0} {1} of you.",
+				cell.ToString().ToLower(), direction.ToString().ToLower()));
 		}
 
 		//-----------------------------------------------------------------------------------------------------
@@ -507,8 +601,6 @@ namespace Thief_Escape
 		private void btnAction6_Click(object sender, EventArgs e)
 		{
 			PardonDust();
-
-			
 		}
 
 		//-----------------------------------------------------------------------------------------------------
@@ -545,6 +637,7 @@ namespace Thief_Escape
 		}
 
 		# endregion
+		//-----------------------------------------------------------------------------------------------------
 
 		//-----------------------------------------------------------------------------------------------------
 		#region [ Menu Buttons Hover ]
@@ -590,6 +683,7 @@ namespace Thief_Escape
 		#endregion
 		//-----------------------------------------------------------------------------------------------------
 
+		//-----------------------------------------------------------------------------------------------------
 		#region [ Creation of Image Map]
 
 		public void CreateTestMap()
@@ -642,20 +736,270 @@ namespace Thief_Escape
 			//Doors
 			grdconMap[3, 2].BackColor = doorColorLocked;
 
-			//Loops that will fill all unused cell back
-			for(int x = 1; x <= maxX; x++) {
-				for(int y = 6; y <= maxY; y++) {
-					grdconMap[x, y].BackColor = Color.Black;
-				}
+			//Loops that will fill all unused cells black
+			//No longer required since default cell backcolor is black
+			//Hold onto this, might need it later
+			//for(int x = 1; x <= maxX; x++) {
+			//	for(int y = 6; y <= maxY; y++) {
+			//		grdconMap[y, x].BackColor = Color.Black;
+			//	}
 
-			}
-			for(int x = 6; x <= maxX; x++) {
-				for(int y = 1; y <= maxY; y++) {
-					grdconMap[x, y].BackColor = Color.Black;
-				}
+			//}
 
-			}
+			//for(int x = 6; x <= maxX; x++) {
+			//	for(int y = 1; y <= maxY; y++) {
+			//		grdconMap[y, x].BackColor = Color.Black;
+			//	}
+
+			//}
 			//************************************************
+		}
+
+		public void CreateTestMapBig()
+		{
+			
+			//Get column and row count
+			int maxX = grdconMap.ColCount;
+			int maxY = grdconMap.RowCount;
+
+			//Map cell type colors
+			Color wallColor = Color.DarkGray;
+			Color floorColor = Color.White;
+			Color startingCellColor = Color.DarkGreen;
+			Color doorColorLocked = Color.Red;
+			Color doorColorUnlocked = Color.Blue;
+			Color stairsUpColor = Color.Cyan;
+			Color stairsDownColor = Color.Salmon;
+			Color bejeweledKittenColor = Color.Purple;
+
+			//starting Cell
+			grdconMap[2, 2].BackColor = startingCellColor;
+
+			#region walls
+			//The four far sides of walls
+
+			//top wall
+			for(int i = 1; i < 17; i++) {
+				grdconMap[1, i].BackColor = wallColor;
+			}
+
+			//bottom wall
+			for(int i = 1; i < 17; i++) {
+				grdconMap[16, i].BackColor = wallColor;
+			}
+
+			//Left wall
+			for(int i = 1; i < 17; i++) {
+				grdconMap[i, 1].BackColor = wallColor;
+			}
+
+			//right wall
+			for(int i = 1; i < 17; i++) {
+				grdconMap[i, 16].BackColor = wallColor;
+			}
+
+			//Rest of the walls
+			grdconMap[4, 3].BackColor = wallColor;
+			grdconMap[2, 4].BackColor = wallColor;
+			grdconMap[3, 4].BackColor = wallColor;
+			grdconMap[4, 4].BackColor = wallColor;
+			grdconMap[4, 5].BackColor = wallColor;
+			grdconMap[4, 6].BackColor = wallColor;
+			grdconMap[2, 8].BackColor = wallColor;
+			grdconMap[3, 8].BackColor = wallColor;
+			grdconMap[4, 8].BackColor = wallColor;
+			grdconMap[2, 9].BackColor = wallColor;
+			grdconMap[3, 9].BackColor = wallColor;
+			grdconMap[4, 9].BackColor = wallColor;
+			grdconMap[3, 11].BackColor = wallColor;
+			grdconMap[4, 11].BackColor = wallColor;
+			grdconMap[2, 13].BackColor = wallColor;
+			grdconMap[3, 13].BackColor = wallColor;
+			grdconMap[4, 13].BackColor = wallColor;
+			grdconMap[5, 8].BackColor = wallColor;
+			grdconMap[5, 9].BackColor = wallColor;
+			grdconMap[5, 11].BackColor = wallColor;
+			for(int i = 2; i < 7; i++) {
+				grdconMap[6, i].BackColor = wallColor;
+
+			}
+			grdconMap[6, 8].BackColor = wallColor;
+			grdconMap[6, 9].BackColor = wallColor;
+			grdconMap[6, 11].BackColor = wallColor;
+			grdconMap[6, 13].BackColor = wallColor;
+			grdconMap[7, 6].BackColor = wallColor;
+			grdconMap[7, 8].BackColor = wallColor;
+			grdconMap[7, 9].BackColor = wallColor;
+			grdconMap[7, 10].BackColor = wallColor;
+			grdconMap[7, 11].BackColor = wallColor;
+			grdconMap[7, 13].BackColor = wallColor;
+			grdconMap[7, 14].BackColor = wallColor;
+			grdconMap[7, 15].BackColor = wallColor;
+			grdconMap[8, 3].BackColor = wallColor;
+			grdconMap[8, 4].BackColor = wallColor;
+			grdconMap[8, 5].BackColor = wallColor;
+			grdconMap[8, 6].BackColor = wallColor;
+			grdconMap[8, 8].BackColor = wallColor;
+			grdconMap[8, 11].BackColor = wallColor;
+			grdconMap[9, 3].BackColor = wallColor;
+			grdconMap[9, 4].BackColor = wallColor;
+			grdconMap[9, 8].BackColor = wallColor;
+			grdconMap[9, 11].BackColor = wallColor;
+			grdconMap[10, 4].BackColor = wallColor;
+			grdconMap[10, 8].BackColor = wallColor;
+			grdconMap[10, 10].BackColor = wallColor;
+			grdconMap[10, 11].BackColor = wallColor;
+			grdconMap[10, 12].BackColor = wallColor;
+			grdconMap[10, 13].BackColor = wallColor;
+			grdconMap[10, 14].BackColor = wallColor;
+			grdconMap[11, 8].BackColor = wallColor;
+			grdconMap[12, 4].BackColor = wallColor;
+			grdconMap[12, 5].BackColor = wallColor;
+			grdconMap[12, 7].BackColor = wallColor;
+			grdconMap[12, 8].BackColor = wallColor;
+			grdconMap[12, 9].BackColor = wallColor;
+			grdconMap[12, 10].BackColor = wallColor;
+			grdconMap[12, 12].BackColor = wallColor;
+			grdconMap[12, 13].BackColor = wallColor;
+			grdconMap[13, 2].BackColor = wallColor;
+			grdconMap[13, 3].BackColor = wallColor;
+			grdconMap[13, 4].BackColor = wallColor;
+			grdconMap[13, 5].BackColor = wallColor;
+			grdconMap[13, 7].BackColor = wallColor;
+			grdconMap[13, 8].BackColor = wallColor;
+			grdconMap[13, 9].BackColor = wallColor;
+			grdconMap[13, 10].BackColor = wallColor;
+			grdconMap[13, 12].BackColor = wallColor;
+			grdconMap[13, 13].BackColor = wallColor;
+			grdconMap[13, 14].BackColor = wallColor;
+			grdconMap[13, 15].BackColor = wallColor;
+			grdconMap[14, 5].BackColor = wallColor;
+			grdconMap[14, 12].BackColor = wallColor;
+
+			#endregion
+
+			#region doors
+			//Doors
+			grdconMap[4, 2].BackColor = doorColorUnlocked;
+			grdconMap[2, 11].BackColor = doorColorUnlocked;
+			grdconMap[10, 9].BackColor = doorColorUnlocked;
+			grdconMap[10, 15].BackColor = doorColorUnlocked;
+			grdconMap[11, 4].BackColor = doorColorUnlocked;
+			grdconMap[4, 7].BackColor = doorColorLocked;
+			grdconMap[5, 13].BackColor = doorColorLocked;
+			grdconMap[9, 2].BackColor = doorColorLocked;
+			grdconMap[15, 5].BackColor = doorColorLocked;
+			grdconMap[15, 12].BackColor = doorColorLocked;
+
+			#endregion
+
+			#region Stairs
+			grdconMap[14, 2].BackColor = stairsUpColor;
+			grdconMap[14, 15].BackColor = stairsDownColor;
+
+			#endregion
+
+			#region floors
+			//Floors
+			grdconMap[2, 3].BackColor = floorColor;
+			grdconMap[2, 5].BackColor = floorColor;
+			grdconMap[2, 6].BackColor = floorColor;
+			grdconMap[2, 7].BackColor = floorColor;
+			grdconMap[2, 10].BackColor = floorColor;
+			grdconMap[2, 12].BackColor = floorColor;
+			grdconMap[2, 14].BackColor = floorColor;
+			grdconMap[2, 15].BackColor = floorColor;
+			grdconMap[3, 2].BackColor = floorColor;
+			grdconMap[3, 3].BackColor = floorColor;
+			grdconMap[3, 5].BackColor = floorColor;
+			grdconMap[3, 6].BackColor = floorColor;
+			grdconMap[3, 7].BackColor = floorColor;
+			grdconMap[3, 10].BackColor = floorColor;
+			grdconMap[3, 12].BackColor = floorColor;
+			grdconMap[3, 14].BackColor = floorColor;
+			grdconMap[3, 15].BackColor = floorColor;
+			grdconMap[4, 10].BackColor = floorColor;
+			grdconMap[4, 12].BackColor = floorColor;
+			grdconMap[4, 14].BackColor = floorColor;
+			grdconMap[4, 15].BackColor = floorColor;
+			for(int i = 2; i < 8; i++) {
+				grdconMap[5, i].BackColor = floorColor;
+			}
+			grdconMap[5, 10].BackColor = floorColor;
+			grdconMap[5, 12].BackColor = floorColor;
+			grdconMap[5, 14].BackColor = floorColor;
+			grdconMap[5, 15].BackColor = floorColor;
+			grdconMap[6, 7].BackColor = floorColor;
+			grdconMap[6, 10].BackColor = floorColor;
+			grdconMap[6, 12].BackColor = floorColor;
+			grdconMap[6, 14].BackColor = floorColor;
+			grdconMap[6, 15].BackColor = floorColor;
+			grdconMap[7, 2].BackColor = floorColor;
+			grdconMap[7, 3].BackColor = floorColor;
+			grdconMap[7, 4].BackColor = floorColor;
+			grdconMap[7, 5].BackColor = floorColor;
+			grdconMap[7, 7].BackColor = floorColor;
+			grdconMap[7, 12].BackColor = floorColor;
+			grdconMap[8, 2].BackColor = floorColor;
+			grdconMap[8, 3].BackColor = floorColor;
+			grdconMap[8, 7].BackColor = floorColor;
+			grdconMap[8, 9].BackColor = floorColor;
+			grdconMap[8, 10].BackColor = floorColor;
+			grdconMap[8, 12].BackColor = floorColor;
+			grdconMap[8, 13].BackColor = floorColor;
+			grdconMap[8, 14].BackColor = floorColor;
+			grdconMap[8, 15].BackColor = floorColor;
+			grdconMap[9, 5].BackColor = floorColor;
+			grdconMap[9, 6].BackColor = floorColor;
+			grdconMap[9, 7].BackColor = floorColor;
+			grdconMap[9, 9].BackColor = floorColor;
+			grdconMap[9, 10].BackColor = floorColor;
+			grdconMap[9, 12].BackColor = floorColor;
+			grdconMap[9, 13].BackColor = floorColor;
+			grdconMap[9, 14].BackColor = floorColor;
+			grdconMap[9, 15].BackColor = floorColor;
+			grdconMap[10, 2].BackColor = floorColor;
+			grdconMap[10, 3].BackColor = floorColor;
+			grdconMap[10, 5].BackColor = floorColor;
+			grdconMap[10, 6].BackColor = floorColor;
+			grdconMap[10, 7].BackColor = floorColor;
+			grdconMap[11, 2].BackColor = floorColor;
+			grdconMap[11, 3].BackColor = floorColor;
+			grdconMap[11, 5].BackColor = floorColor;
+			grdconMap[11, 6].BackColor = floorColor;
+			grdconMap[11, 7].BackColor = floorColor;
+			for (int i = 9; i < 16; i++)
+			{
+			 grdconMap[11, i].BackColor = floorColor;
+			}
+			grdconMap[12, 2].BackColor = floorColor;
+			grdconMap[12, 3].BackColor = floorColor;
+			grdconMap[12, 6].BackColor = floorColor;
+			grdconMap[12, 11].BackColor = floorColor;
+			grdconMap[12, 14].BackColor = floorColor;
+			grdconMap[12, 15].BackColor = floorColor;
+			grdconMap[13, 6].BackColor = floorColor;
+			grdconMap[13, 11].BackColor = floorColor;
+			grdconMap[14, 3].BackColor = floorColor;
+			grdconMap[14, 4].BackColor = floorColor;
+			for (int i = 6; i < 12; i++)
+			{
+			 grdconMap[14, i].BackColor = floorColor;
+			}
+			grdconMap[14, 13].BackColor = floorColor;
+			grdconMap[14, 14].BackColor = floorColor;
+			grdconMap[15, 2].BackColor = floorColor;
+			grdconMap[15, 3].BackColor = floorColor;
+			grdconMap[15, 4].BackColor = floorColor;
+			for (int i = 6; i < 12; i++)
+			{
+			 grdconMap[15, i].BackColor = floorColor;
+			}
+			grdconMap[15, 13].BackColor = floorColor;
+			grdconMap[15, 14].BackColor = floorColor;
+			grdconMap[15, 15].BackColor = floorColor;
+
+			#endregion
 		}
 
 		#endregion

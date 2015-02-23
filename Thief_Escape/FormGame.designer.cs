@@ -50,6 +50,12 @@
 			this.lstDialog = new System.Windows.Forms.ListBox();
 			this.lblDialog = new System.Windows.Forms.Label();
 			this.grpboxLegend = new System.Windows.Forms.GroupBox();
+			this.label2 = new System.Windows.Forms.Label();
+			this.txtBejeweledKitten = new System.Windows.Forms.TextBox();
+			this.lblStairsDown = new System.Windows.Forms.Label();
+			this.txtStairsDown = new System.Windows.Forms.TextBox();
+			this.lblStairsUp = new System.Windows.Forms.Label();
+			this.txtStairsUp = new System.Windows.Forms.TextBox();
 			this.lblCurrentCell = new System.Windows.Forms.Label();
 			this.txtCurrentCell = new System.Windows.Forms.TextBox();
 			this.lblDoorOpen = new System.Windows.Forms.Label();
@@ -63,12 +69,6 @@
 			this.lblWall = new System.Windows.Forms.Label();
 			this.txtWalls = new System.Windows.Forms.TextBox();
 			this.grdconMap = new Syncfusion.Windows.Forms.Grid.GridControl();
-			this.lblStairsUp = new System.Windows.Forms.Label();
-			this.txtStairsUp = new System.Windows.Forms.TextBox();
-			this.lblStairsDown = new System.Windows.Forms.Label();
-			this.txtStairsDown = new System.Windows.Forms.TextBox();
-			this.label2 = new System.Windows.Forms.Label();
-			this.txtBejeweledKitten = new System.Windows.Forms.TextBox();
 			this.grpMovement.SuspendLayout();
 			this.grpActions.SuspendLayout();
 			this.grpboxLegend.SuspendLayout();
@@ -349,6 +349,60 @@
 			this.grpboxLegend.TabStop = false;
 			this.grpboxLegend.Text = "Legend";
 			// 
+			// label2
+			// 
+			this.label2.AutoSize = true;
+			this.label2.Location = new System.Drawing.Point(28, 229);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(92, 13);
+			this.label2.TabIndex = 17;
+			this.label2.Text = "- Bejeweled Kitten";
+			// 
+			// txtBejeweledKitten
+			// 
+			this.txtBejeweledKitten.BackColor = System.Drawing.Color.Purple;
+			this.txtBejeweledKitten.Location = new System.Drawing.Point(6, 226);
+			this.txtBejeweledKitten.Name = "txtBejeweledKitten";
+			this.txtBejeweledKitten.ReadOnly = true;
+			this.txtBejeweledKitten.Size = new System.Drawing.Size(21, 20);
+			this.txtBejeweledKitten.TabIndex = 16;
+			// 
+			// lblStairsDown
+			// 
+			this.lblStairsDown.AutoSize = true;
+			this.lblStairsDown.Location = new System.Drawing.Point(28, 203);
+			this.lblStairsDown.Name = "lblStairsDown";
+			this.lblStairsDown.Size = new System.Drawing.Size(70, 13);
+			this.lblStairsDown.TabIndex = 15;
+			this.lblStairsDown.Text = "- Stairs Down";
+			// 
+			// txtStairsDown
+			// 
+			this.txtStairsDown.BackColor = System.Drawing.Color.Salmon;
+			this.txtStairsDown.Location = new System.Drawing.Point(6, 200);
+			this.txtStairsDown.Name = "txtStairsDown";
+			this.txtStairsDown.ReadOnly = true;
+			this.txtStairsDown.Size = new System.Drawing.Size(21, 20);
+			this.txtStairsDown.TabIndex = 14;
+			// 
+			// lblStairsUp
+			// 
+			this.lblStairsUp.AutoSize = true;
+			this.lblStairsUp.Location = new System.Drawing.Point(28, 177);
+			this.lblStairsUp.Name = "lblStairsUp";
+			this.lblStairsUp.Size = new System.Drawing.Size(56, 13);
+			this.lblStairsUp.TabIndex = 13;
+			this.lblStairsUp.Text = "- Stairs Up";
+			// 
+			// txtStairsUp
+			// 
+			this.txtStairsUp.BackColor = System.Drawing.Color.Cyan;
+			this.txtStairsUp.Location = new System.Drawing.Point(6, 174);
+			this.txtStairsUp.Name = "txtStairsUp";
+			this.txtStairsUp.ReadOnly = true;
+			this.txtStairsUp.Size = new System.Drawing.Size(21, 20);
+			this.txtStairsUp.TabIndex = 12;
+			// 
 			// lblCurrentCell
 			// 
 			this.lblCurrentCell.AutoSize = true;
@@ -461,14 +515,17 @@
 			// 
 			this.grdconMap.ActivateCurrentCellBehavior = Syncfusion.Windows.Forms.Grid.GridCellActivateAction.None;
 			this.grdconMap.AllowIncreaseSmallChange = false;
+			this.grdconMap.AllowSelection = Syncfusion.Windows.Forms.Grid.GridSelectionFlags.None;
+			this.grdconMap.BackColor = System.Drawing.Color.Black;
 			this.grdconMap.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-			this.grdconMap.ColCount = 50;
+			this.grdconMap.ColCount = 34;
 			this.grdconMap.DefaultColWidth = 22;
 			this.grdconMap.DefaultGridBorderStyle = Syncfusion.Windows.Forms.Grid.GridBorderStyle.Solid;
 			this.grdconMap.DefaultRowHeight = 22;
 			this.grdconMap.DrawOrder = Syncfusion.Windows.Forms.Grid.GridDrawOrder.Columns;
 			this.grdconMap.EnterKeyBehavior = Syncfusion.Windows.Forms.Grid.GridDirectionType.None;
 			this.grdconMap.HorizontalThumbTrack = true;
+			this.grdconMap.HScrollBehavior = Syncfusion.Windows.Forms.Grid.GridScrollbarMode.Automatic;
 			this.grdconMap.HScrollPixel = true;
 			this.grdconMap.IsSpreadsheetFillSeries = false;
 			this.grdconMap.Location = new System.Drawing.Point(12, 12);
@@ -482,9 +539,12 @@
 			this.grdconMap.Properties.MarkColHeader = false;
 			this.grdconMap.Properties.MarkRowHeader = false;
 			this.grdconMap.Properties.RowHeaders = false;
-			this.grdconMap.RowCount = 50;
+			this.grdconMap.ResizeColsBehavior = Syncfusion.Windows.Forms.Grid.GridResizeCellsBehavior.None;
+			this.grdconMap.ResizeRowsBehavior = Syncfusion.Windows.Forms.Grid.GridResizeCellsBehavior.None;
+			this.grdconMap.RowCount = 21;
 			this.grdconMap.SerializeCellsBehavior = Syncfusion.Windows.Forms.Grid.GridSerializeCellsBehavior.SerializeAsRangeStylesIntoCode;
-			this.grdconMap.Size = new System.Drawing.Size(779, 501);
+			this.grdconMap.ShowCurrentCellBorderBehavior = Syncfusion.Windows.Forms.Grid.GridShowCurrentCellBorder.HideAlways;
+			this.grdconMap.Size = new System.Drawing.Size(756, 468);
 			this.grdconMap.SmartSizeBox = false;
 			this.grdconMap.SpreadsheetLikeSelection = false;
 			this.grdconMap.TabIndex = 12;
@@ -492,60 +552,6 @@
 			this.grdconMap.UseRightToLeftCompatibleTextBox = true;
 			this.grdconMap.VerticalThumbTrack = true;
 			this.grdconMap.VScrollPixel = true;
-			// 
-			// lblStairsUp
-			// 
-			this.lblStairsUp.AutoSize = true;
-			this.lblStairsUp.Location = new System.Drawing.Point(28, 177);
-			this.lblStairsUp.Name = "lblStairsUp";
-			this.lblStairsUp.Size = new System.Drawing.Size(56, 13);
-			this.lblStairsUp.TabIndex = 13;
-			this.lblStairsUp.Text = "- Stairs Up";
-			// 
-			// txtStairsUp
-			// 
-			this.txtStairsUp.BackColor = System.Drawing.Color.Cyan;
-			this.txtStairsUp.Location = new System.Drawing.Point(6, 174);
-			this.txtStairsUp.Name = "txtStairsUp";
-			this.txtStairsUp.ReadOnly = true;
-			this.txtStairsUp.Size = new System.Drawing.Size(21, 20);
-			this.txtStairsUp.TabIndex = 12;
-			// 
-			// lblStairsDown
-			// 
-			this.lblStairsDown.AutoSize = true;
-			this.lblStairsDown.Location = new System.Drawing.Point(28, 203);
-			this.lblStairsDown.Name = "lblStairsDown";
-			this.lblStairsDown.Size = new System.Drawing.Size(70, 13);
-			this.lblStairsDown.TabIndex = 15;
-			this.lblStairsDown.Text = "- Stairs Down";
-			// 
-			// txtStairsDown
-			// 
-			this.txtStairsDown.BackColor = System.Drawing.Color.Salmon;
-			this.txtStairsDown.Location = new System.Drawing.Point(6, 200);
-			this.txtStairsDown.Name = "txtStairsDown";
-			this.txtStairsDown.ReadOnly = true;
-			this.txtStairsDown.Size = new System.Drawing.Size(21, 20);
-			this.txtStairsDown.TabIndex = 14;
-			// 
-			// label2
-			// 
-			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(28, 229);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(92, 13);
-			this.label2.TabIndex = 17;
-			this.label2.Text = "- Bejeweled Kitten";
-			// 
-			// txtBejeweledKitten
-			// 
-			this.txtBejeweledKitten.BackColor = System.Drawing.Color.Purple;
-			this.txtBejeweledKitten.Location = new System.Drawing.Point(6, 226);
-			this.txtBejeweledKitten.Name = "txtBejeweledKitten";
-			this.txtBejeweledKitten.ReadOnly = true;
-			this.txtBejeweledKitten.Size = new System.Drawing.Size(21, 20);
-			this.txtBejeweledKitten.TabIndex = 16;
 			// 
 			// FormGame
 			// 

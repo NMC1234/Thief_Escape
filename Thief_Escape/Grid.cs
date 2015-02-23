@@ -14,9 +14,12 @@ using System.Threading.Tasks;
 
 namespace Thief_Escape
 {
+	//-----------------------------------------------------------------------------------------------------
 	#region [ Enums ]
+	//-----------------------------------------------------------------------------------------------------
 
 	//Moved here from FormGame because this Enum has more to do with the Grid than the game
+	//-----------------------------------------------------------------------------------------------------
 	public enum Direction
 	{
 		NORTH,
@@ -25,18 +28,20 @@ namespace Thief_Escape
 		WEST
 	}
 
+	//-----------------------------------------------------------------------------------------------------
 	#endregion
+	//-----------------------------------------------------------------------------------------------------
 	class Grid
 	{
 		//-----------------------------------------------------------------------------------------------------
 		#region [ Fields ]
 		//-----------------------------------------------------------------------------------------------------
-
-		//Need to find a way to move the array to the constructor
-		//if possible then there can be an override to construct with a different sized array
-		//to allow for different sized maps
+		//declaration of _map array
 		private Cell[,] _map;
-		private int _mapSize = 5;
+
+		//Map size used for the instantiation of the array
+		//Need to find a better way to set this
+		private int _mapSize = 0;
 
 		private int _startingCellX = 0;
 		private int _startingCellY = 0;
@@ -57,8 +62,7 @@ namespace Thief_Escape
 			set { }
 		}
 
-		//Not really sure how to handle grid get and set
-
+		
 		//Use this property to get asigned starting cell x value
 		//-----------------------------------------------------------------------------------------------------
 		public int WhatIsStartingCellX
@@ -84,10 +88,11 @@ namespace Thief_Escape
 		//-----------------------------------------------------------------------------------------------------
 
 		//Default constructor that propigates the _map array with cell objects
-		//x and y of array is set by _mapsize var
+		//max x and y of array is set by _mapsize var
 		//-----------------------------------------------------------------------------------------------------
 		public Grid()
 		{
+
 			//For loop that will instatiate the _map array with a specific number of cell objects
 			_map = new Cell[_mapSize, _mapSize];
 			for(int x = 0; x < _mapSize; x++) {
@@ -102,10 +107,11 @@ namespace Thief_Escape
 		//-----------------------------------------------------------------------------------------------------
 		public Grid(int mapSize)
 		{
-
-			_map = new Cell[mapSize, mapSize];
-			for(int x = 0; x < mapSize; x++) {
-				for(int y = 0; y < mapSize; y++) {
+			_mapSize = mapSize;
+			//For loop that will instatiate the _map array with a specific number of cell objects
+			_map = new Cell[_mapSize, _mapSize];
+			for(int x = 0; x < _mapSize; x++) {
+				for(int y = 0; y < _mapSize; y++) {
 					_map[x, y] = new Cell();
 				}
 			}
@@ -120,59 +126,348 @@ namespace Thief_Escape
 		//-----------------------------------------------------------------------------------------------------
 
 		//-----------------------------------------------------------------------------------------------------
-		public void CreateTestGrid()
+		//public void CreateTestGrid()
+		//{
+		//	//Creation of the surrounding general walls
+		//	_map[0, 0].CreateWall(WallType.WallGeneral);
+		//	_map[0, 1].CreateWall(WallType.WallGeneral);
+		//	_map[0, 2].CreateWall(WallType.WallGeneral);
+		//	_map[0, 3].CreateWall(WallType.WallGeneral);
+		//	_map[0, 4].CreateWall(WallType.WallGeneral);
+		//	_map[1, 0].CreateWall(WallType.WallGeneral);
+		//	_map[2, 0].CreateWall(WallType.WallGeneral);
+		//	_map[3, 0].CreateWall(WallType.WallGeneral);
+		//	_map[4, 0].CreateWall(WallType.WallGeneral);
+		//	_map[2, 2].CreateWall(WallType.WallGeneral);
+		//	_map[3, 2].CreateWall(WallType.WallGeneral);
+		//	_map[4, 1].CreateWall(WallType.WallGeneral);
+		//	_map[4, 2].CreateWall(WallType.WallGeneral);
+		//	_map[4, 3].CreateWall(WallType.WallGeneral);
+		//	_map[4, 4].CreateWall(WallType.WallGeneral);
+		//	_map[1, 4].CreateWall(WallType.WallGeneral);
+		//	_map[2, 4].CreateWall(WallType.WallGeneral);
+		//	_map[3, 4].CreateWall(WallType.WallGeneral);
+
+		//	//Creation of gernal Floors
+		//	_map[1, 1].CreateFloor(FloorType.FloorGeneral);
+		//	_map[2, 1].CreateFloor(FloorType.FloorGeneral);
+		//	_map[3, 1].CreateFloor(FloorType.FloorGeneral);
+		//	_map[1, 3].CreateFloor(FloorType.FloorGeneral);
+		//	_map[2, 3].CreateFloor(FloorType.FloorGeneral);
+		//	_map[3, 2].CreateFloor(FloorType.FloorGeneral);
+		//	_map[3, 3].CreateFloor(FloorType.FloorGeneral);
+
+		//	//Creation of locked door
+		//	_map[1, 2].CreateDoor(DoorType.DoorUnlocked);
+
+		//	//Asignment of starting Cell
+		//	_map[1, 1].SetStartingCell(true);
+		//	this.SetStartingCell(1, 1);
+
+		//	//This setup doesn't contribute
+		//	//_map[1, 1].SetStartingCell(true);
+
+		//}
+
+		//Creates a bigger test grid
+		//
+		//
+		public void CreateTestGridBig()
 		{
-			//Creation of the surrounding general walls
-			_map[0, 0].CreateWall(WallType.WallGeneral);
-			_map[0, 1].CreateWall(WallType.WallGeneral);
-			_map[0, 2].CreateWall(WallType.WallGeneral);
-			_map[0, 3].CreateWall(WallType.WallGeneral);
-			_map[0, 4].CreateWall(WallType.WallGeneral);
-			_map[1, 0].CreateWall(WallType.WallGeneral);
-			_map[2, 0].CreateWall(WallType.WallGeneral);
-			_map[3, 0].CreateWall(WallType.WallGeneral);
-			_map[4, 0].CreateWall(WallType.WallGeneral);
-			_map[2, 2].CreateWall(WallType.WallGeneral);
+
+			#region [Walls]
+			//Create walls
+			//
+			//-----------------------------------------------------------------
+			
+			//create top row of walls
+			for(int i = 0; i < 16; i++) {
+				_map[0, i].CreateWall(WallType.WallGeneral);
+			}
+			
+			//create bottom row of walls
+			for(int i = 0; i < 16; i++) {
+				_map[15, i].CreateWall(WallType.WallGeneral);
+			}
+
+			//create left column of walls
+			for(int i = 0; i < 15; i++) {
+				_map[i, 0].CreateWall(WallType.WallGeneral);
+			}
+
+			//create right column of walls
+			for(int i = 0; i < 15; i++) {
+				_map[i, 15].CreateWall(WallType.WallGeneral);
+			}
+
+			//create all other walls
+			_map[1, 5].CreateWall(WallType.WallGeneral);
+			_map[1, 12].CreateWall(WallType.WallGeneral);
+
+			_map[2, 3].CreateWall(WallType.WallGeneral);
+			_map[2, 5].CreateWall(WallType.WallGeneral);
+			_map[2, 8].CreateWall(WallType.WallGeneral);
+			_map[2, 12].CreateWall(WallType.WallGeneral);
+
+			_map[3, 1].CreateWall(WallType.WallGeneral);
 			_map[3, 2].CreateWall(WallType.WallGeneral);
-			_map[4, 1].CreateWall(WallType.WallGeneral);
-			_map[4, 2].CreateWall(WallType.WallGeneral);
+			_map[3, 3].CreateWall(WallType.WallGeneral);
+			_map[3, 5].CreateWall(WallType.WallGeneral);
+			_map[3, 7].CreateWall(WallType.WallGeneral);
+			_map[3, 8].CreateWall(WallType.WallGeneral);
+			_map[3, 9].CreateWall(WallType.WallGeneral);
+			_map[3, 11].CreateWall(WallType.WallGeneral);
+			_map[3, 12].CreateWall(WallType.WallGeneral);
+
 			_map[4, 3].CreateWall(WallType.WallGeneral);
-			_map[4, 4].CreateWall(WallType.WallGeneral);
-			_map[1, 4].CreateWall(WallType.WallGeneral);
-			_map[2, 4].CreateWall(WallType.WallGeneral);
-			_map[3, 4].CreateWall(WallType.WallGeneral);
+			_map[4, 5].CreateWall(WallType.WallGeneral);
+			_map[4, 7].CreateWall(WallType.WallGeneral);
+			_map[4, 11].CreateWall(WallType.WallGeneral);
+			_map[4, 12].CreateWall(WallType.WallGeneral);
+			_map[4, 13].CreateWall(WallType.WallGeneral);
 
-			//Creation of gernal Floors
-			_map[1, 1].CreateFloor(FloorType.FloorGeneral);
+			_map[5, 3].CreateWall(WallType.WallGeneral);
+			_map[5, 5].CreateWall(WallType.WallGeneral);
+			_map[5, 6].CreateWall(WallType.WallGeneral);
+			_map[5, 7].CreateWall(WallType.WallGeneral);
+
+			_map[6, 11].CreateWall(WallType.WallGeneral);
+			_map[6, 12].CreateWall(WallType.WallGeneral);
+
+			_map[7, 1].CreateWall(WallType.WallGeneral);
+			_map[7, 2].CreateWall(WallType.WallGeneral);
+			_map[7, 3].CreateWall(WallType.WallGeneral);
+			_map[7, 4].CreateWall(WallType.WallGeneral);
+			_map[7, 5].CreateWall(WallType.WallGeneral);
+			_map[7, 6].CreateWall(WallType.WallGeneral);
+			_map[7, 7].CreateWall(WallType.WallGeneral);
+			_map[7, 8].CreateWall(WallType.WallGeneral);
+			_map[7, 9].CreateWall(WallType.WallGeneral);
+			_map[7, 10].CreateWall(WallType.WallGeneral);
+			_map[7, 11].CreateWall(WallType.WallGeneral);
+			_map[7, 12].CreateWall(WallType.WallGeneral);
+
+			_map[8, 1].CreateWall(WallType.WallGeneral);
+			_map[8, 2].CreateWall(WallType.WallGeneral);
+			_map[8, 3].CreateWall(WallType.WallGeneral);
+			_map[8, 4].CreateWall(WallType.WallGeneral);
+			_map[8, 5].CreateWall(WallType.WallGeneral);
+			_map[8, 6].CreateWall(WallType.WallGeneral);
+			_map[8, 11].CreateWall(WallType.WallGeneral);
+			_map[8, 12].CreateWall(WallType.WallGeneral);
+
+			_map[9, 6].CreateWall(WallType.WallGeneral);
+			_map[9, 9].CreateWall(WallType.WallGeneral);
+			_map[9, 11].CreateWall(WallType.WallGeneral);
+			_map[9, 12].CreateWall(WallType.WallGeneral);
+
+			_map[10, 2].CreateWall(WallType.WallGeneral);
+			_map[10, 3].CreateWall(WallType.WallGeneral);
+			_map[10, 4].CreateWall(WallType.WallGeneral);
+			_map[10, 5].CreateWall(WallType.WallGeneral);
+			_map[10, 6].CreateWall(WallType.WallGeneral);
+			_map[10, 7].CreateWall(WallType.WallGeneral);
+			_map[10, 8].CreateWall(WallType.WallGeneral);
+			_map[10, 9].CreateWall(WallType.WallGeneral);
+
+			_map[11, 9].CreateWall(WallType.WallGeneral);
+			_map[11, 11].CreateWall(WallType.WallGeneral);
+			_map[11, 12].CreateWall(WallType.WallGeneral);
+			_map[11, 13].CreateWall(WallType.WallGeneral);
+
+			_map[12, 1].CreateWall(WallType.WallGeneral);
+			_map[12, 2].CreateWall(WallType.WallGeneral);
+			_map[12, 3].CreateWall(WallType.WallGeneral);
+			_map[12, 5].CreateWall(WallType.WallGeneral);
+			_map[12, 6].CreateWall(WallType.WallGeneral);
+			_map[12, 9].CreateWall(WallType.WallGeneral);
+			_map[12, 11].CreateWall(WallType.WallGeneral);
+			_map[12, 12].CreateWall(WallType.WallGeneral);
+
+			_map[13, 6].CreateWall(WallType.WallGeneral);
+			_map[13, 9].CreateWall(WallType.WallGeneral);
+			_map[13, 12].CreateWall(WallType.WallGeneral);
+
+			_map[14, 6].CreateWall(WallType.WallGeneral);
+			_map[14, 12].CreateWall(WallType.WallGeneral);
+
+			#endregion
+
+			#region [Floors]
+
+			_map[1, 2].CreateFloor(FloorType.FloorGeneral);
+			_map[1, 4].CreateFloor(FloorType.FloorGeneral);
+			_map[1, 6].CreateFloor(FloorType.FloorGeneral);
+			_map[1, 7].CreateFloor(FloorType.FloorGeneral);
+			_map[1, 9].CreateFloor(FloorType.FloorGeneral);
+			_map[1, 10].CreateFloor(FloorType.FloorGeneral);
+			_map[1, 11].CreateFloor(FloorType.FloorGeneral);
+
 			_map[2, 1].CreateFloor(FloorType.FloorGeneral);
-			_map[3, 1].CreateFloor(FloorType.FloorGeneral);
-			_map[1, 3].CreateFloor(FloorType.FloorGeneral);
-			_map[2, 3].CreateFloor(FloorType.FloorGeneral);
-			_map[3, 2].CreateFloor(FloorType.FloorGeneral);
-			_map[3, 3].CreateFloor(FloorType.FloorGeneral);
+			_map[2, 2].CreateFloor(FloorType.FloorGeneral);
+			_map[2, 4].CreateFloor(FloorType.FloorGeneral);
+			_map[2, 6].CreateFloor(FloorType.FloorGeneral);
+			_map[2, 7].CreateFloor(FloorType.FloorGeneral);
+			_map[2, 9].CreateFloor(FloorType.FloorGeneral);
+			_map[2, 10].CreateFloor(FloorType.FloorGeneral);
+			_map[2, 11].CreateFloor(FloorType.FloorGeneral);
+			_map[2, 13].CreateFloor(FloorType.FloorGeneral);
+			_map[2, 14].CreateFloor(FloorType.FloorGeneral);
 
-			//Creation of locked door
-			_map[1, 2].CreateDoor(DoorType.DoorLocked);
+			_map[3, 4].CreateFloor(FloorType.FloorGeneral);
+			_map[3, 6].CreateFloor(FloorType.FloorGeneral);
+			_map[3, 13].CreateFloor(FloorType.FloorGeneral);
+			_map[3, 14].CreateFloor(FloorType.FloorGeneral);
 
-			//Asignment of starting Cell
+			_map[4, 1].CreateFloor(FloorType.FloorGeneral);
+			_map[4, 2].CreateFloor(FloorType.FloorGeneral);
+			_map[4, 4].CreateFloor(FloorType.FloorGeneral);
+			_map[4, 6].CreateFloor(FloorType.FloorGeneral);
+			_map[4, 8].CreateFloor(FloorType.FloorGeneral);
+			_map[4, 9].CreateFloor(FloorType.FloorGeneral);
+			_map[4, 10].CreateFloor(FloorType.FloorGeneral);
+
+			_map[5, 1].CreateFloor(FloorType.FloorGeneral);
+			_map[5, 2].CreateFloor(FloorType.FloorGeneral);
+			_map[5, 4].CreateFloor(FloorType.FloorGeneral);
+			_map[5, 8].CreateFloor(FloorType.FloorGeneral);
+			_map[5, 9].CreateFloor(FloorType.FloorGeneral);
+			_map[5, 10].CreateFloor(FloorType.FloorGeneral);
+			_map[5, 11].CreateFloor(FloorType.FloorGeneral);
+			_map[5, 12].CreateFloor(FloorType.FloorGeneral);
+			_map[5, 13].CreateFloor(FloorType.FloorGeneral);
+			_map[5, 14].CreateFloor(FloorType.FloorGeneral);
+
+			_map[6, 1].CreateFloor(FloorType.FloorGeneral);
+			_map[6, 2].CreateFloor(FloorType.FloorGeneral);
+			_map[6, 4].CreateFloor(FloorType.FloorGeneral);
+			_map[6, 5].CreateFloor(FloorType.FloorGeneral);
+			_map[6, 6].CreateFloor(FloorType.FloorGeneral);
+			_map[6, 7].CreateFloor(FloorType.FloorGeneral);
+			_map[6, 8].CreateFloor(FloorType.FloorGeneral);
+			_map[6, 9].CreateFloor(FloorType.FloorGeneral);
+			_map[6, 10].CreateFloor(FloorType.FloorGeneral);
+			_map[6, 13].CreateFloor(FloorType.FloorGeneral);
+			_map[6, 14].CreateFloor(FloorType.FloorGeneral);
+
+			_map[7, 13].CreateFloor(FloorType.FloorGeneral);
+			_map[7, 14].CreateFloor(FloorType.FloorGeneral);
+
+			_map[8, 7].CreateFloor(FloorType.FloorGeneral);
+			_map[8, 8].CreateFloor(FloorType.FloorGeneral);
+			_map[8, 10].CreateFloor(FloorType.FloorGeneral);
+			_map[8, 13].CreateFloor(FloorType.FloorGeneral);
+			_map[8, 14].CreateFloor(FloorType.FloorGeneral);
+
+			_map[9, 1].CreateFloor(FloorType.FloorGeneral);
+			_map[9, 2].CreateFloor(FloorType.FloorGeneral);
+			_map[9, 3].CreateFloor(FloorType.FloorGeneral);
+			_map[9, 4].CreateFloor(FloorType.FloorGeneral);
+			_map[9, 5].CreateFloor(FloorType.FloorGeneral);
+			_map[9, 7].CreateFloor(FloorType.FloorGeneral);
+			_map[9, 8].CreateFloor(FloorType.FloorGeneral);
+			_map[9, 10].CreateFloor(FloorType.FloorGeneral);
+			_map[9, 13].CreateFloor(FloorType.FloorGeneral);
+			_map[9, 14].CreateFloor(FloorType.FloorGeneral);
+
+			_map[10, 10].CreateFloor(FloorType.FloorGeneral);
+			_map[10, 11].CreateFloor(FloorType.FloorGeneral);
+			_map[10, 12].CreateFloor(FloorType.FloorGeneral);
+			_map[10, 13].CreateFloor(FloorType.FloorGeneral);
+			_map[10, 14].CreateFloor(FloorType.FloorGeneral);
+
+			_map[11, 1].CreateFloor(FloorType.FloorGeneral);
+			_map[11, 2].CreateFloor(FloorType.FloorGeneral);
+			_map[11, 3].CreateFloor(FloorType.FloorGeneral);
+			_map[11, 4].CreateFloor(FloorType.FloorGeneral);
+			_map[11, 5].CreateFloor(FloorType.FloorGeneral);
+			_map[11, 6].CreateFloor(FloorType.FloorGeneral);
+			_map[11, 7].CreateFloor(FloorType.FloorGeneral);
+			_map[11, 8].CreateFloor(FloorType.FloorGeneral);
+			_map[11, 10].CreateFloor(FloorType.FloorGeneral);
+
+			_map[12, 7].CreateFloor(FloorType.FloorGeneral);
+			_map[12, 8].CreateFloor(FloorType.FloorGeneral);
+			_map[12, 10].CreateFloor(FloorType.FloorGeneral);
+			_map[12, 13].CreateFloor(FloorType.FloorGeneral);
+			_map[12, 14].CreateFloor(FloorType.FloorGeneral);
+
+			_map[13, 1].CreateFloor(FloorType.FloorGeneral);
+			_map[13, 2].CreateFloor(FloorType.FloorGeneral);
+			_map[13, 3].CreateFloor(FloorType.FloorGeneral);
+			_map[13, 4].CreateFloor(FloorType.FloorGeneral);
+			_map[13, 5].CreateFloor(FloorType.FloorGeneral);
+			_map[13, 7].CreateFloor(FloorType.FloorGeneral);
+			_map[13, 8].CreateFloor(FloorType.FloorGeneral);
+			_map[13, 10].CreateFloor(FloorType.FloorGeneral);
+			_map[13, 11].CreateFloor(FloorType.FloorGeneral);
+			_map[13, 13].CreateFloor(FloorType.FloorGeneral);
+			_map[13, 14].CreateFloor(FloorType.FloorGeneral);
+
+			_map[14, 1].CreateFloor(FloorType.FloorGeneral);
+			_map[14, 2].CreateFloor(FloorType.FloorGeneral);
+			_map[14, 3].CreateFloor(FloorType.FloorGeneral);
+			_map[14, 4].CreateFloor(FloorType.FloorGeneral);
+			_map[14, 5].CreateFloor(FloorType.FloorGeneral);
+			_map[14, 7].CreateFloor(FloorType.FloorGeneral);
+			_map[14, 8].CreateFloor(FloorType.FloorGeneral);
+			_map[14, 10].CreateFloor(FloorType.FloorGeneral);
+			_map[14, 11].CreateFloor(FloorType.FloorGeneral);
+			_map[14, 14].CreateFloor(FloorType.FloorGeneral);
+
+			#endregion
+
+			#region [Doors]
+
+			//Unlocked doors
+			_map[1, 3].CreateDoor(DoorType.DoorUnlocked);
+			_map[10, 1].CreateDoor(DoorType.DoorUnlocked);
+			_map[8, 9].CreateDoor(DoorType.DoorUnlocked);
+			_map[14, 9].CreateDoor(DoorType.DoorUnlocked);
+			_map[3, 10].CreateDoor(DoorType.DoorUnlocked);
+
+
+			//Locked doors
+			_map[6, 3].CreateDoor(DoorType.DoorLocked);
+			_map[12, 4].CreateDoor(DoorType.DoorLocked);
+			_map[1, 8].CreateDoor(DoorType.DoorLocked);
+			_map[4, 14].CreateDoor(DoorType.DoorLocked);
+			_map[11, 14].CreateDoor(DoorType.DoorLocked);
+
+			#endregion
+
+			#region [Stairs]
+
+			//Stairs up
+			_map[1, 13].CreateStairs(StairsType.StairsUp);
+
+			//Stairs down
+			_map[14, 13].CreateStairs(StairsType.StairsDpwn);
+
+			#endregion
+
+			//Assignment of starting cell
 			_map[1, 1].SetStartingCell(true);
 			this.SetStartingCell(1, 1);
-			
 
-			//This setup doesn't contribute
-			//_map[1, 1].SetStartingCell(true);
+
 
 		}
 
 		//Methods used to interaxt with specific cell objects in the array
 		//They require at least an x and y component passed to them as arguments
 		//-----------------------------------------------------------------------------------------------------
+
+		//Method to set the starting cell
+		//validates the range of x and y values
+		//internally sets the passed x and y arguments
+		//sets IsStartingCell boolean to true for that cell object 
 		public void SetStartingCell(int x, int y)
 		{
 			if(((x >= 0) && (x <= 100)) & ((y >= 0) && (y <= 100))) {
 				_startingCellX = x;
 				_startingCellY = y;
-				_map[x, y].IsStartingCell = true;
+				//_map[_startingCellX, _startingCellY].IsStartingCell = true;
 			}
 		}
 
@@ -182,8 +477,9 @@ namespace Thief_Escape
 			_map[x, y].WhatSetDoorType = door;
 		}
 
-		//-----------------------------------------------------------------------------------------------------
 
+		//-----------------------------------------------------------------------------------------------------
+		//Checks if the passed in array location is the starting cell
 		public bool IsStartingCell(int x, int y)
 		{
 			bool startCell = false;
@@ -191,6 +487,8 @@ namespace Thief_Escape
 			return startCell;
 		}
 
+		//-----------------------------------------------------------------------------------------------------
+		//Gets cell type
 		public CellType GetCellType(int x, int y)
 		{
 			CellType currentCell = CellType.Wall;
@@ -201,6 +499,7 @@ namespace Thief_Escape
 		}
 
 		//-----------------------------------------------------------------------------------------------------
+		//gets wall type
 		public WallType GetWallType(int x, int y)
 		{
 			WallType currentCell = WallType.WallGeneral;
@@ -211,6 +510,7 @@ namespace Thief_Escape
 		}
 
 		//-----------------------------------------------------------------------------------------------------
+		//gets floor type
 		public FloorType GetFloorType(int x, int y)
 		{
 			FloorType currentCell = FloorType.FloorGeneral;
@@ -221,6 +521,7 @@ namespace Thief_Escape
 		}
 
 		//-----------------------------------------------------------------------------------------------------
+		//gets door type
 		public DoorType GetDoorType(int x, int y)
 		{
 			DoorType currentCell = DoorType.DoorLocked;
@@ -231,6 +532,7 @@ namespace Thief_Escape
 		}
 
 		//-----------------------------------------------------------------------------------------------------
+		// gets stairs type
 		public StairsType GetStairsType(int x, int y)
 		{
 			StairsType currentCell = StairsType.Generic;

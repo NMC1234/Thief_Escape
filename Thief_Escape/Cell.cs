@@ -1,4 +1,5 @@
-﻿//***********************************************
+﻿
+//***********************************************
 //Created by: Zachary T. Vig
 //Cell.cs Class For Group Phiv project
 //Created on: 02/05/2015
@@ -32,7 +33,7 @@ namespace Thief_Escape
 	#region [ Enums ]
 	//-----------------------------------------------------------------------------------------------------
 
-	//Note: I remove the static modifiers because they were throwing errors, on both the merged version and the original - Keegon
+	//Various base cell types
 	//-----------------------------------------------------------------------------------------------------
 	public enum CellType
 	{
@@ -46,6 +47,7 @@ namespace Thief_Escape
 	}
 
 	//-----------------------------------------------------------------------------------------------------
+	//The different floor types
 	public enum FloorType
 	{
 		FloorGeneral,
@@ -56,6 +58,7 @@ namespace Thief_Escape
 	}
 
 	//-----------------------------------------------------------------------------------------------------
+	//The different wall types
 	public enum WallType
 	{
 		WallGeneral,
@@ -66,6 +69,7 @@ namespace Thief_Escape
 	}
 
 	//-----------------------------------------------------------------------------------------------------
+	//The differnt door types
 	public enum DoorType
 	{
 		DoorLocked,
@@ -74,6 +78,7 @@ namespace Thief_Escape
 	}
 
 	//-----------------------------------------------------------------------------------------------------
+	//The different stairs type
 	public enum StairsType
 	{
 		StairsUp,
@@ -107,7 +112,8 @@ namespace Thief_Escape
 		//-----------------------------------------------------------------------------------------------------
 		#region [ Properties ]
 		//-----------------------------------------------------------------------------------------------------
-		// Get and Set
+		// Get and Set for cell object properties
+
 		//-----------------------------------------------------------------------------------------------------
 		public CellType WhatIsCellType
 		{
@@ -190,6 +196,7 @@ namespace Thief_Escape
 
 		//Sets current cell as starting Cell
 		//-----------------------------------------------------------------------------------------------------
+		//Method to set cell object as starting cell
 		public void SetStartingCell(bool startCell)
 		{
 			if(startCell) {
