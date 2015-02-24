@@ -62,7 +62,6 @@ namespace Thief_Escape
 			set { }
 		}
 
-		
 		//Use this property to get asigned starting cell x value
 		//-----------------------------------------------------------------------------------------------------
 		public int WhatIsStartingCellX
@@ -126,65 +125,20 @@ namespace Thief_Escape
 		//-----------------------------------------------------------------------------------------------------
 
 		//-----------------------------------------------------------------------------------------------------
-		//public void CreateTestGrid()
-		//{
-		//	//Creation of the surrounding general walls
-		//	_map[0, 0].CreateWall(WallType.WallGeneral);
-		//	_map[0, 1].CreateWall(WallType.WallGeneral);
-		//	_map[0, 2].CreateWall(WallType.WallGeneral);
-		//	_map[0, 3].CreateWall(WallType.WallGeneral);
-		//	_map[0, 4].CreateWall(WallType.WallGeneral);
-		//	_map[1, 0].CreateWall(WallType.WallGeneral);
-		//	_map[2, 0].CreateWall(WallType.WallGeneral);
-		//	_map[3, 0].CreateWall(WallType.WallGeneral);
-		//	_map[4, 0].CreateWall(WallType.WallGeneral);
-		//	_map[2, 2].CreateWall(WallType.WallGeneral);
-		//	_map[3, 2].CreateWall(WallType.WallGeneral);
-		//	_map[4, 1].CreateWall(WallType.WallGeneral);
-		//	_map[4, 2].CreateWall(WallType.WallGeneral);
-		//	_map[4, 3].CreateWall(WallType.WallGeneral);
-		//	_map[4, 4].CreateWall(WallType.WallGeneral);
-		//	_map[1, 4].CreateWall(WallType.WallGeneral);
-		//	_map[2, 4].CreateWall(WallType.WallGeneral);
-		//	_map[3, 4].CreateWall(WallType.WallGeneral);
-
-		//	//Creation of gernal Floors
-		//	_map[1, 1].CreateFloor(FloorType.FloorGeneral);
-		//	_map[2, 1].CreateFloor(FloorType.FloorGeneral);
-		//	_map[3, 1].CreateFloor(FloorType.FloorGeneral);
-		//	_map[1, 3].CreateFloor(FloorType.FloorGeneral);
-		//	_map[2, 3].CreateFloor(FloorType.FloorGeneral);
-		//	_map[3, 2].CreateFloor(FloorType.FloorGeneral);
-		//	_map[3, 3].CreateFloor(FloorType.FloorGeneral);
-
-		//	//Creation of locked door
-		//	_map[1, 2].CreateDoor(DoorType.DoorUnlocked);
-
-		//	//Asignment of starting Cell
-		//	_map[1, 1].SetStartingCell(true);
-		//	this.SetStartingCell(1, 1);
-
-		//	//This setup doesn't contribute
-		//	//_map[1, 1].SetStartingCell(true);
-
-		//}
-
-		//Creates a bigger test grid
-		//
-		//
 		public void CreateTestGridBig()
 		{
 
+			//-----------------------------------------------------------------------------------------------------
 			#region [Walls]
+			//-----------------------------------------------------------------------------------------------------
 			//Create walls
 			//
-			//-----------------------------------------------------------------
-			
+
 			//create top row of walls
 			for(int i = 0; i < 16; i++) {
 				_map[0, i].CreateWall(WallType.WallGeneral);
 			}
-			
+
 			//create bottom row of walls
 			for(int i = 0; i < 16; i++) {
 				_map[15, i].CreateWall(WallType.WallGeneral);
@@ -291,9 +245,13 @@ namespace Thief_Escape
 			_map[14, 6].CreateWall(WallType.WallGeneral);
 			_map[14, 12].CreateWall(WallType.WallGeneral);
 
+			//-----------------------------------------------------------------------------------------------------
 			#endregion
+			//-----------------------------------------------------------------------------------------------------
 
+			//-----------------------------------------------------------------------------------------------------
 			#region [Floors]
+			//-----------------------------------------------------------------------------------------------------
 
 			_map[1, 2].CreateFloor(FloorType.FloorGeneral);
 			_map[1, 4].CreateFloor(FloorType.FloorGeneral);
@@ -415,9 +373,13 @@ namespace Thief_Escape
 			_map[14, 11].CreateFloor(FloorType.FloorGeneral);
 			_map[14, 14].CreateFloor(FloorType.FloorGeneral);
 
+			//-----------------------------------------------------------------------------------------------------
 			#endregion
+			//-----------------------------------------------------------------------------------------------------
 
+			//-----------------------------------------------------------------------------------------------------
 			#region [Doors]
+			//-----------------------------------------------------------------------------------------------------
 
 			//Unlocked doors
 			_map[1, 3].CreateDoor(DoorType.DoorUnlocked);
@@ -426,7 +388,6 @@ namespace Thief_Escape
 			_map[14, 9].CreateDoor(DoorType.DoorUnlocked);
 			_map[3, 10].CreateDoor(DoorType.DoorUnlocked);
 
-
 			//Locked doors
 			_map[6, 3].CreateDoor(DoorType.DoorLocked);
 			_map[12, 4].CreateDoor(DoorType.DoorLocked);
@@ -434,9 +395,13 @@ namespace Thief_Escape
 			_map[4, 14].CreateDoor(DoorType.DoorLocked);
 			_map[11, 14].CreateDoor(DoorType.DoorLocked);
 
+			//-----------------------------------------------------------------------------------------------------
 			#endregion
+			//-----------------------------------------------------------------------------------------------------
 
+			//-----------------------------------------------------------------------------------------------------
 			#region [Stairs]
+			//-----------------------------------------------------------------------------------------------------
 
 			//Stairs up
 			_map[1, 13].CreateStairs(StairsType.StairsUp);
@@ -444,24 +409,24 @@ namespace Thief_Escape
 			//Stairs down
 			_map[14, 13].CreateStairs(StairsType.StairsDpwn);
 
+			//-----------------------------------------------------------------------------------------------------
 			#endregion
+			//-----------------------------------------------------------------------------------------------------
 
 			//Assignment of starting cell
 			_map[1, 1].SetStartingCell(true);
 			this.SetStartingCell(1, 1);
 
-
-
 		}
 
 		//Methods used to interaxt with specific cell objects in the array
 		//They require at least an x and y component passed to them as arguments
-		//-----------------------------------------------------------------------------------------------------
 
 		//Method to set the starting cell
 		//validates the range of x and y values
 		//internally sets the passed x and y arguments
-		//sets IsStartingCell boolean to true for that cell object 
+		//sets IsStartingCell boolean to true for that cell object
+		//-----------------------------------------------------------------------------------------------------
 		public void SetStartingCell(int x, int y)
 		{
 			if(((x >= 0) && (x <= 100)) & ((y >= 0) && (y <= 100))) {
@@ -477,9 +442,8 @@ namespace Thief_Escape
 			_map[x, y].WhatSetDoorType = door;
 		}
 
-
-		//-----------------------------------------------------------------------------------------------------
 		//Checks if the passed in array location is the starting cell
+		//-----------------------------------------------------------------------------------------------------
 		public bool IsStartingCell(int x, int y)
 		{
 			bool startCell = false;
@@ -487,8 +451,8 @@ namespace Thief_Escape
 			return startCell;
 		}
 
-		//-----------------------------------------------------------------------------------------------------
 		//Gets cell type
+		//-----------------------------------------------------------------------------------------------------
 		public CellType GetCellType(int x, int y)
 		{
 			CellType currentCell = CellType.Wall;
@@ -498,8 +462,8 @@ namespace Thief_Escape
 			return currentCell;
 		}
 
-		//-----------------------------------------------------------------------------------------------------
 		//gets wall type
+		//-----------------------------------------------------------------------------------------------------
 		public WallType GetWallType(int x, int y)
 		{
 			WallType currentCell = WallType.WallGeneral;
@@ -509,8 +473,8 @@ namespace Thief_Escape
 			return currentCell;
 		}
 
-		//-----------------------------------------------------------------------------------------------------
 		//gets floor type
+		//-----------------------------------------------------------------------------------------------------
 		public FloorType GetFloorType(int x, int y)
 		{
 			FloorType currentCell = FloorType.FloorGeneral;
@@ -520,8 +484,8 @@ namespace Thief_Escape
 			return currentCell;
 		}
 
-		//-----------------------------------------------------------------------------------------------------
 		//gets door type
+		//-----------------------------------------------------------------------------------------------------
 		public DoorType GetDoorType(int x, int y)
 		{
 			DoorType currentCell = DoorType.DoorLocked;
@@ -531,8 +495,8 @@ namespace Thief_Escape
 			return currentCell;
 		}
 
-		//-----------------------------------------------------------------------------------------------------
 		// gets stairs type
+		//-----------------------------------------------------------------------------------------------------
 		public StairsType GetStairsType(int x, int y)
 		{
 			StairsType currentCell = StairsType.Generic;

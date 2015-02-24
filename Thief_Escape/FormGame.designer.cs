@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormGame));
 			this.lstOutput = new System.Windows.Forms.ListBox();
 			this.grpMovement = new System.Windows.Forms.GroupBox();
@@ -69,6 +70,7 @@
 			this.lblWall = new System.Windows.Forms.Label();
 			this.txtWalls = new System.Windows.Forms.TextBox();
 			this.grdconMap = new Syncfusion.Windows.Forms.Grid.GridControl();
+			this.tmrCellBlink = new System.Windows.Forms.Timer(this.components);
 			this.grpMovement.SuspendLayout();
 			this.grpActions.SuspendLayout();
 			this.grpboxLegend.SuspendLayout();
@@ -525,7 +527,6 @@
 			this.grdconMap.DrawOrder = Syncfusion.Windows.Forms.Grid.GridDrawOrder.Columns;
 			this.grdconMap.EnterKeyBehavior = Syncfusion.Windows.Forms.Grid.GridDirectionType.None;
 			this.grdconMap.HorizontalThumbTrack = true;
-			this.grdconMap.HScrollBehavior = Syncfusion.Windows.Forms.Grid.GridScrollbarMode.Automatic;
 			this.grdconMap.HScrollPixel = true;
 			this.grdconMap.IsSpreadsheetFillSeries = false;
 			this.grdconMap.Location = new System.Drawing.Point(12, 12);
@@ -552,6 +553,12 @@
 			this.grdconMap.UseRightToLeftCompatibleTextBox = true;
 			this.grdconMap.VerticalThumbTrack = true;
 			this.grdconMap.VScrollPixel = true;
+			// 
+			// tmrCellBlink
+			// 
+			this.tmrCellBlink.Enabled = true;
+			this.tmrCellBlink.Interval = 500;
+			this.tmrCellBlink.Tick += new System.EventHandler(this.tmrCellBlink_Tick);
 			// 
 			// FormGame
 			// 
@@ -629,5 +636,6 @@
 		private System.Windows.Forms.TextBox txtBejeweledKitten;
 		private System.Windows.Forms.Label lblStairsDown;
 		private System.Windows.Forms.TextBox txtStairsDown;
+		private System.Windows.Forms.Timer tmrCellBlink;
     }
 }

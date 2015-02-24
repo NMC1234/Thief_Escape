@@ -180,6 +180,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CellBlackoutImage.png" />
+    <Content Include="CellWallImage.png" />
     <Content Include="ThiefEscapeOpeningPicture.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
