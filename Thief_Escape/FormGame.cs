@@ -777,8 +777,8 @@ namespace Thief_Escape
 			#region walls
 			//-----------------------------------------------------------------------------------------------------
 			//The four far sides of walls
-			Image wallImage = Image.FromFile(@"D:\02 Documents\NMC 2014 Stuff\CIT195 .net Programming\Group phiv Project\current-Thief_Escape\Thief_Escape\CellWallImage.png");
-
+            //Image wallImage = Image.FromFile(@"D:\02 Documents\NMC 2014 Stuff\CIT195 .net Programming\Group phiv Project\current-Thief_Escape\Thief_Escape\CellWallImage.png");
+            Image wallImage = Image.FromFile(@"C:\Users\Keegon\Documents\GitHub\Thief_Escape\Thief_Escape\CellWallImage.png");
 			//top wall
 			for(int i = 1; i < 17; i++) {
 				grdconMap[1, i].BackgroundImage = wallImage;
