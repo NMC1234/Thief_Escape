@@ -543,16 +543,20 @@ namespace Thief_Escape
 			//Removes blackout for cells player can see
 			#region [Remove Blackout]
 
+			//pair of loops that will remove blackout for viewable area
 			for(int x = (player.CurrentCellX - 1); x < (player.CurrentCellX + 4); x++)
 			{
 
 				for(int y = (player.CurrentCellY - 1); y < (player.CurrentCellY + 4); y++)
 				{
-
+					//removes the background image for that cell
 					grdconMap[y, x].ResetBackgroundImage( );
 
+					//checks if current cell is out of range of the cell object array
 					if(((x - 1) >= 0) & ((y - 1) >= 0))
 					{
+						//if statement to check if the current cell is a wall
+						//if so then it assigns that cell the wall background image
 						if(mapCells.GetCellType((x - 1), (y - 1)) == CellType.Wall)
 						{
 							grdconMap[y, x].BackgroundImage = wallImage;
