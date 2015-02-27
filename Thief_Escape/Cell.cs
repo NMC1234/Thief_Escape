@@ -13,7 +13,7 @@
 * ********************************************************************
 * Cell Class
 * Used as cell objects in the array created in the grid class
-* Can be Floor, Wall, or Door type
+* Can be FLOOR, WALL, or DOOR type
 *
 *
 
@@ -35,12 +35,12 @@ namespace Thief_Escape
 	//-----------------------------------------------------------------------------------------------------
 	public enum CellType
 	{
-		Floor,
-		Wall,
-		Door,
-		Generic,
-		Stairs,
-		BejeweledKitten,
+		FLOOR,
+		WALL,
+		DOOR,
+		GENERIC,
+		STAIRS,
+		BEJEWELEDKITTEN,
 		KEY
 
 	}
@@ -49,10 +49,11 @@ namespace Thief_Escape
 	//-----------------------------------------------------------------------------------------------------
 	public enum FloorType
 	{
-		FloorGeneral,
-		FloorItem,
-		FloorSecret,
-		Generic
+		FLOORGENERAL,
+		FLOORITEM,
+		FLOORSECRET,
+		FLOORKEY,
+		GENERIC
 
 	}
 
@@ -60,10 +61,11 @@ namespace Thief_Escape
 	//-----------------------------------------------------------------------------------------------------
 	public enum WallType
 	{
-		WallGeneral,
-		WallItem,
-		WallSecret,
-		Generic
+		WALLGENERAL,
+		WALLITEM,
+		WALLSECRET,
+		WALLKEY,
+		GENERIC
 
 	}
 
@@ -71,18 +73,18 @@ namespace Thief_Escape
 	//-----------------------------------------------------------------------------------------------------
 	public enum DoorType
 	{
-		DoorLocked,
-		DoorUnlocked,
-		Generic
+		DOORLOCKED,
+		DOORUNLOCKED,
+		GENERIC
 	}
 
 	//The different stairs type
 	//-----------------------------------------------------------------------------------------------------
 	public enum StairsType
 	{
-		StairsUp,
-		StairsDpwn,
-		Generic
+		STAIRSUP,
+		STAIRSDOWN,
+		GENERIC
 	}
 
 	//The different Bejeweled Kitten types
@@ -244,66 +246,66 @@ namespace Thief_Escape
 			}
 		}
 
-		//Creates a Floor cell type
+		//Creates a FLOOR cell type
 		//-----------------------------------------------------------------------------------------------------
 		public void CreateFloor(FloorType floorType)
 		{
 
-			if(floorType == FloorType.FloorGeneral)
+			if(floorType == FloorType.FLOORGENERAL)
 			{
-				_cell = CellType.Floor;
-				_floor = FloorType.FloorGeneral;
+				_cell = CellType.FLOOR;
+				_floor = FloorType.FLOORGENERAL;
 			}
-			else if(floorType == FloorType.FloorItem) 
+			else if(floorType == FloorType.FLOORITEM) 
 			{
-				_cell = CellType.Floor;
-				_floor = FloorType.FloorItem;
+				_cell = CellType.FLOOR;
+				_floor = FloorType.FLOORITEM;
 			}
-			else if(floorType == FloorType.FloorSecret) 
+			else if(floorType == FloorType.FLOORSECRET) 
 			{
-				_cell = CellType.Floor;
-				_floor = FloorType.FloorSecret;
+				_cell = CellType.FLOOR;
+				_floor = FloorType.FLOORSECRET;
 			}
 
 		}
 
-		//Creates a Wall cell type
+		//Creates a WALL cell type
 		//-----------------------------------------------------------------------------------------------------
 		public void CreateWall(WallType wallType)
 		{
 
-			if(wallType == WallType.WallGeneral) 
+			if(wallType == WallType.WALLGENERAL) 
 			{
-				_cell = CellType.Wall;
-				_wall = WallType.WallGeneral;
+				_cell = CellType.WALL;
+				_wall = WallType.WALLGENERAL;
 			}
-			else if(wallType == WallType.WallItem) 
+			else if(wallType == WallType.WALLITEM) 
 			{
-				_cell = CellType.Wall;
-				_wall = WallType.WallItem;
+				_cell = CellType.WALL;
+				_wall = WallType.WALLITEM;
 			}
-			else if(wallType == WallType.WallSecret) 
+			else if(wallType == WallType.WALLSECRET) 
 			{
-				_cell = CellType.Wall;
-				_wall = WallType.WallSecret;
+				_cell = CellType.WALL;
+				_wall = WallType.WALLSECRET;
 			}
 
 		}
 
-		//creates a Door Cell Type
+		//creates a DOOR Cell Type
 		//-----------------------------------------------------------------------------------------------------
 		public void CreateDoor(DoorType doorType)
 		{
 
-			if(doorType == DoorType.DoorLocked) 
+			if(doorType == DoorType.DOORLOCKED) 
 			{
-				_cell = CellType.Door;
-				_door = DoorType.DoorLocked;
+				_cell = CellType.DOOR;
+				_door = DoorType.DOORLOCKED;
 			}
-			else if(doorType == DoorType.DoorUnlocked) 
+			else if(doorType == DoorType.DOORUNLOCKED) 
 			{
-				_cell = CellType.Door;
-				_door = DoorType.DoorUnlocked;
+				_cell = CellType.DOOR;
+				_door = DoorType.DOORUNLOCKED;
 			}
 
 		}
@@ -312,15 +314,15 @@ namespace Thief_Escape
 		//-----------------------------------------------------------------------------------------------------
 		public void CreateStairs(StairsType stairsType)
 		{
-			if(stairsType == StairsType.StairsUp) 
+			if(stairsType == StairsType.STAIRSUP) 
 			{
-				_cell = CellType.Stairs;
-				_stairs = StairsType.StairsUp;
+				_cell = CellType.STAIRS;
+				_stairs = StairsType.STAIRSUP;
 			}
-			else if(stairsType == StairsType.StairsDpwn) 
+			else if(stairsType == StairsType.STAIRSDOWN) 
 			{
-				_cell = CellType.Stairs;
-				_stairs = StairsType.StairsDpwn;
+				_cell = CellType.STAIRS;
+				_stairs = StairsType.STAIRSDOWN;
 			}
 
 		}
@@ -348,7 +350,7 @@ namespace Thief_Escape
 		//-----------------------------------------------------------------------------------------------------
 		public void CreateBejeweledKitten()
 		{
-			_cell = CellType.BejeweledKitten;
+			_cell = CellType.BEJEWELEDKITTEN;
 			_kitten = KittenType.AVAILABLE;
 			_isBejeweledKitten = true;
 		}

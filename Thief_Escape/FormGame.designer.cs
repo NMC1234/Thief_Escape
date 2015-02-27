@@ -390,7 +390,7 @@
 			this.lblStairsDown.Name = "lblStairsDown";
 			this.lblStairsDown.Size = new System.Drawing.Size(70, 13);
 			this.lblStairsDown.TabIndex = 15;
-			this.lblStairsDown.Text = "- Stairs Down";
+			this.lblStairsDown.Text = "- STAIRS Down";
 			// 
 			// txtStairsDown
 			// 
@@ -408,7 +408,7 @@
 			this.lblStairsUp.Name = "lblStairsUp";
 			this.lblStairsUp.Size = new System.Drawing.Size(56, 13);
 			this.lblStairsUp.TabIndex = 13;
-			this.lblStairsUp.Text = "- Stairs Up";
+			this.lblStairsUp.Text = "- STAIRS Up";
 			// 
 			// txtStairsUp
 			// 
@@ -444,7 +444,7 @@
 			this.lblDoorOpen.Name = "lblDoorOpen";
 			this.lblDoorOpen.Size = new System.Drawing.Size(85, 13);
 			this.lblDoorOpen.TabIndex = 9;
-			this.lblDoorOpen.Text = "- Door Unlocked";
+			this.lblDoorOpen.Text = "- DOOR Unlocked";
 			// 
 			// textBox1
 			// 
@@ -462,7 +462,7 @@
 			this.lblDoorLocked.Name = "lblDoorLocked";
 			this.lblDoorLocked.Size = new System.Drawing.Size(75, 13);
 			this.lblDoorLocked.TabIndex = 7;
-			this.lblDoorLocked.Text = "- Door Locked";
+			this.lblDoorLocked.Text = "- DOOR Locked";
 			// 
 			// txtDoorLocked
 			// 

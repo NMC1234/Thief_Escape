@@ -89,7 +89,7 @@ namespace Thief_Escape
 			CheckMovement(player.CurrentCellX, player.CurrentCellY);
 
 			//Initial Fog of war
-			FogOfWar(Direction.generic);
+			FogOfWar(Direction.GENERIC);
 
 			//Output initial prompt
 			InitalPrompt( );
@@ -267,25 +267,25 @@ namespace Thief_Escape
 
 			if(currentY - 1 < mapCells.MapSize
 			&& (mapCells.GetCellType(currentX, currentY - 1)
-			== (CellType.Floor)))
+			== (CellType.FLOOR)))
 			{
 				btnMoveNorth.Enabled = true;
 			}
 			else if(currentY - 1 < mapCells.MapSize
 			&& (mapCells.GetDoorType(currentX, currentY - 1)
-			== (DoorType.DoorUnlocked)))
+			== (DoorType.DOORUNLOCKED)))
 			{
 				btnMoveNorth.Enabled = true;
 			}
 			else if(currentY - 1 < mapCells.MapSize
 			&& (mapCells.GetCellType(currentX, currentY - 1)
-			== (CellType.BejeweledKitten)))
+			== (CellType.BEJEWELEDKITTEN)))
 			{
 				btnMoveNorth.Enabled = true;
 			}
 			else if(currentY - 1 < mapCells.MapSize
 			&& (mapCells.GetCellType(currentX, currentY - 1)
-			== (CellType.Stairs)))
+			== (CellType.STAIRS)))
 			{
 				btnMoveNorth.Enabled = true;
 			}
@@ -304,25 +304,25 @@ namespace Thief_Escape
 			#region [Check for Southern Movement]
 			if(currentY + 1 < mapCells.MapSize
 			&& (mapCells.GetCellType(currentX, currentY + 1)
-			== CellType.Floor))
+			== CellType.FLOOR))
 			{
 				btnMoveSouth.Enabled = true;
 			}
 			else if(currentY + 1 < mapCells.MapSize
 			&& (mapCells.GetDoorType(currentX, currentY + 1)
-			== DoorType.DoorUnlocked))
+			== DoorType.DOORUNLOCKED))
 			{
 				btnMoveSouth.Enabled = true;
 			}
 			else if(currentY + 1 < mapCells.MapSize
 			&& (mapCells.GetCellType(currentX, currentY + 1)
-			== (CellType.BejeweledKitten)))
+			== (CellType.BEJEWELEDKITTEN)))
 			{
 				btnMoveNorth.Enabled = true;
 			}
 			else if(currentY + 1 < mapCells.MapSize
 			&& (mapCells.GetCellType(currentX, currentY + 1)
-			== (CellType.Stairs)))
+			== (CellType.STAIRS)))
 			{
 				btnMoveNorth.Enabled = true;
 			}
@@ -341,25 +341,25 @@ namespace Thief_Escape
 			#region [Check for Western Movement]
 			if(currentX - 1 < mapCells.MapSize
 			&& (mapCells.GetCellType(currentX - 1, currentY)
-			== CellType.Floor))
+			== CellType.FLOOR))
 			{
 				btnMoveWest.Enabled = true;
 			}
 			else if(currentX - 1 < mapCells.MapSize
 			&& (mapCells.GetDoorType(currentX - 1, currentY)
-			== DoorType.DoorUnlocked))
+			== DoorType.DOORUNLOCKED))
 			{
 				btnMoveWest.Enabled = true;
 			}
 			else if(currentX - 1 < mapCells.MapSize
 			&& (mapCells.GetCellType(currentX - 1, currentY)
-			== CellType.BejeweledKitten))
+			== CellType.BEJEWELEDKITTEN))
 			{
 				btnMoveWest.Enabled = true;
 			}
 			else if(currentX - 1 < mapCells.MapSize
 			&& (mapCells.GetCellType(currentX - 1, currentY)
-			== CellType.Stairs))
+			== CellType.STAIRS))
 			{
 				btnMoveWest.Enabled = true;
 			}
@@ -379,25 +379,25 @@ namespace Thief_Escape
 
 			if(currentX + 1 < mapCells.MapSize
 			&& (mapCells.GetCellType(currentX + 1, currentY)
-			== CellType.Floor))
+			== CellType.FLOOR))
 			{
 				btnMoveEast.Enabled = true;
 			}
 			else if(currentX + 1 < mapCells.MapSize
 			&& (mapCells.GetDoorType(currentX + 1, currentY)
-			== DoorType.DoorUnlocked))
+			== DoorType.DOORUNLOCKED))
 			{
 				btnMoveEast.Enabled = true;
 			}
 			else if(currentX + 1 < mapCells.MapSize
 			&& (mapCells.GetCellType(currentX + 1, currentY)
-			== CellType.BejeweledKitten))
+			== CellType.BEJEWELEDKITTEN))
 			{
 				btnMoveWest.Enabled = true;
 			}
 			else if(currentX + 1 < mapCells.MapSize
 			&& (mapCells.GetCellType(currentX + 1, currentY)
-			== CellType.Stairs))
+			== CellType.STAIRS))
 			{
 				btnMoveWest.Enabled = true;
 			}
@@ -442,9 +442,9 @@ namespace Thief_Escape
 		{
 			//method scoped variables needed for the logic statements
 			Color color = Color.Brown;
-			CellType cell = CellType.Generic;
-			DoorType door = DoorType.Generic;
-			StairsType stairs = StairsType.Generic;
+			CellType cell = CellType.GENERIC;
+			DoorType door = DoorType.GENERIC;
+			StairsType stairs = StairsType.GENERIC;
 			bool IsStartingCell = false;
 			bool isStairs = false;
 			bool isBejeweledKitten = false;
@@ -464,12 +464,12 @@ namespace Thief_Escape
 					IsStartingCell = mapCells.IsStartingCell(player.CurrentCellX, (player.CurrentCellY + 1));
 
 					//check if in fact door celltype and if so save door type
-					if(cell == CellType.Door)
+					if(cell == CellType.DOOR)
 					{
 						door = mapCells.GetDoorType(player.CurrentCellX, (player.CurrentCellY + 1));
 					}
 					//check if in fact stairs celltype and if so save stairs type
-					else if(cell == CellType.Stairs)
+					else if(cell == CellType.STAIRS)
 					{
 						stairs = mapCells.GetStairsType(player.CurrentCellX, (player.CurrentCellY + 1));
 					}
@@ -482,12 +482,12 @@ namespace Thief_Escape
 					IsStartingCell = mapCells.IsStartingCell(player.CurrentCellX, (player.CurrentCellY - 1));
 
 					//check if in fact door celltype and if so save door type
-					if(cell == CellType.Door)
+					if(cell == CellType.DOOR)
 					{
 						door = mapCells.GetDoorType(player.CurrentCellX, (player.CurrentCellY - 1));
 					}
 					//check if in fact stairs celltype and if so save stairs type
-					else if(cell == CellType.Stairs)
+					else if(cell == CellType.STAIRS)
 					{
 						stairs = mapCells.GetStairsType(player.CurrentCellX, (player.CurrentCellY - 1));
 					}
@@ -500,12 +500,12 @@ namespace Thief_Escape
 					IsStartingCell = mapCells.IsStartingCell((player.CurrentCellX - 1), player.CurrentCellY);
 
 					//check if in fact door celltype and if so save door type
-					if(cell == CellType.Door)
+					if(cell == CellType.DOOR)
 					{
 						door = mapCells.GetDoorType((player.CurrentCellX - 1), player.CurrentCellY);
 					}
 					//check if in fact stairs celltype and if so save stairs type
-					else if(cell == CellType.Stairs)
+					else if(cell == CellType.STAIRS)
 					{
 						stairs = mapCells.GetStairsType((player.CurrentCellX - 1), player.CurrentCellY);
 					}
@@ -518,12 +518,12 @@ namespace Thief_Escape
 					IsStartingCell = mapCells.IsStartingCell((player.CurrentCellX + 1), player.CurrentCellY);
 
 					//check if in fact door celltype and if so save door type
-					if(cell == CellType.Door)
+					if(cell == CellType.DOOR)
 					{
 						door = mapCells.GetDoorType((player.CurrentCellX + 1), player.CurrentCellY);
 					}
 					//check if in fact stairs celltype and if so save stairs type
-					else if(cell == CellType.Stairs)
+					else if(cell == CellType.STAIRS)
 					{
 						stairs = mapCells.GetStairsType((player.CurrentCellX + 1), player.CurrentCellY);
 					}
@@ -545,30 +545,31 @@ namespace Thief_Escape
 				switch(cell)
 				{
 
-					case CellType.Floor:
+					case CellType.FLOOR:
 						color = Color.White;
 						break;
 
-					case CellType.Wall:
-						color = Color.DarkGray;
-						break;
+					//No longer needed since wall is now an image
+					//case CellType.WALL:
+					//	color = Color.DarkGray;
+					//	break;
 
-					case CellType.Door:
-						if(door == DoorType.DoorUnlocked)
+					case CellType.DOOR:
+						if(door == DoorType.DOORUNLOCKED)
 							color = Color.Blue;
-						else if(door == DoorType.DoorLocked)
+						else if(door == DoorType.DOORLOCKED)
 							color = Color.Red;
 						break;
 
-					case CellType.Stairs:
+					case CellType.STAIRS:
 						isStairs = true;
-						if(stairs == StairsType.StairsUp)
+						if(stairs == StairsType.STAIRSUP)
 							color = Color.Cyan;
-						else if(stairs == StairsType.StairsDpwn)
+						else if(stairs == StairsType.STAIRSDOWN)
 							color = Color.Salmon;
 						break;
 
-					case CellType.BejeweledKitten:
+					case CellType.BEJEWELEDKITTEN:
 						isBejeweledKitten = true;
 						color = Color.Purple;
 						break;
@@ -658,7 +659,7 @@ namespace Thief_Escape
 					{
 						//if statement to check if the current cell is a wall
 						//if so then it assigns that cell the wall background image
-						if(mapCells.GetCellType((x - 1), (y - 1)) == CellType.Wall)
+						if(mapCells.GetCellType((x - 1), (y - 1)) == CellType.WALL)
 						{
 							grdconMap[y, x].BackgroundImage = wallImage;
 						}
@@ -747,7 +748,7 @@ namespace Thief_Escape
 		//-----------------------------------------------------------------------------------------------------
 		public void Surroundings(int currentX, int currentY, Direction direction)
 		{
-			CellType cell = CellType.Generic;
+			CellType cell = CellType.GENERIC;
 
 			switch(direction)
 			{
@@ -1075,7 +1076,7 @@ namespace Thief_Escape
 			//-----------------------------------------------------------------------------------------------------
 
 			//-----------------------------------------------------------------------------------------------------
-			#region Stairs
+			#region STAIRS
 			//-----------------------------------------------------------------------------------------------------
 			grdconMap[14, 2].BackColor = stairsUpColor;
 			grdconMap[14, 15].BackColor = stairsDownColor;

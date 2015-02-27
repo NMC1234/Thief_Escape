@@ -26,7 +26,7 @@ namespace Thief_Escape
 		SOUTH,
 		EAST,
 		WEST,
-		generic
+		GENERIC
 	}
 
 	//-----------------------------------------------------------------------------------------------------
@@ -137,114 +137,114 @@ namespace Thief_Escape
 
 			//create top row of walls
 			for(int i = 0; i < 16; i++) {
-				_map[0, i].CreateWall(WallType.WallGeneral);
+				_map[0, i].CreateWall(WallType.WALLGENERAL);
 			}
 
 			//create bottom row of walls
 			for(int i = 0; i < 16; i++) {
-				_map[15, i].CreateWall(WallType.WallGeneral);
+				_map[15, i].CreateWall(WallType.WALLGENERAL);
 			}
 
 			//create left column of walls
 			for(int i = 0; i < 15; i++) {
-				_map[i, 0].CreateWall(WallType.WallGeneral);
+				_map[i, 0].CreateWall(WallType.WALLGENERAL);
 			}
 
 			//create right column of walls
 			for(int i = 0; i < 15; i++) {
-				_map[i, 15].CreateWall(WallType.WallGeneral);
+				_map[i, 15].CreateWall(WallType.WALLGENERAL);
 			}
 
 			//create all other walls
-			_map[1, 5].CreateWall(WallType.WallGeneral);
-			_map[1, 12].CreateWall(WallType.WallGeneral);
+			_map[1, 5].CreateWall(WallType.WALLGENERAL);
+			_map[1, 12].CreateWall(WallType.WALLGENERAL);
 
-			_map[2, 3].CreateWall(WallType.WallGeneral);
-			_map[2, 5].CreateWall(WallType.WallGeneral);
-			_map[2, 8].CreateWall(WallType.WallGeneral);
-			_map[2, 12].CreateWall(WallType.WallGeneral);
+			_map[2, 3].CreateWall(WallType.WALLGENERAL);
+			_map[2, 5].CreateWall(WallType.WALLGENERAL);
+			_map[2, 8].CreateWall(WallType.WALLGENERAL);
+			_map[2, 12].CreateWall(WallType.WALLGENERAL);
 
-			_map[3, 1].CreateWall(WallType.WallGeneral);
-			_map[3, 2].CreateWall(WallType.WallGeneral);
-			_map[3, 3].CreateWall(WallType.WallGeneral);
-			_map[3, 5].CreateWall(WallType.WallGeneral);
-			_map[3, 7].CreateWall(WallType.WallGeneral);
-			_map[3, 8].CreateWall(WallType.WallGeneral);
-			_map[3, 9].CreateWall(WallType.WallGeneral);
-			_map[3, 11].CreateWall(WallType.WallGeneral);
-			_map[3, 12].CreateWall(WallType.WallGeneral);
+			_map[3, 1].CreateWall(WallType.WALLGENERAL);
+			_map[3, 2].CreateWall(WallType.WALLGENERAL);
+			_map[3, 3].CreateWall(WallType.WALLGENERAL);
+			_map[3, 5].CreateWall(WallType.WALLGENERAL);
+			_map[3, 7].CreateWall(WallType.WALLGENERAL);
+			_map[3, 8].CreateWall(WallType.WALLGENERAL);
+			_map[3, 9].CreateWall(WallType.WALLGENERAL);
+			_map[3, 11].CreateWall(WallType.WALLGENERAL);
+			_map[3, 12].CreateWall(WallType.WALLGENERAL);
 
-			_map[4, 3].CreateWall(WallType.WallGeneral);
-			_map[4, 5].CreateWall(WallType.WallGeneral);
-			_map[4, 7].CreateWall(WallType.WallGeneral);
-			_map[4, 11].CreateWall(WallType.WallGeneral);
-			_map[4, 12].CreateWall(WallType.WallGeneral);
-			_map[4, 13].CreateWall(WallType.WallGeneral);
+			_map[4, 3].CreateWall(WallType.WALLGENERAL);
+			_map[4, 5].CreateWall(WallType.WALLGENERAL);
+			_map[4, 7].CreateWall(WallType.WALLGENERAL);
+			_map[4, 11].CreateWall(WallType.WALLGENERAL);
+			_map[4, 12].CreateWall(WallType.WALLGENERAL);
+			_map[4, 13].CreateWall(WallType.WALLGENERAL);
 
-			_map[5, 3].CreateWall(WallType.WallGeneral);
-			_map[5, 5].CreateWall(WallType.WallGeneral);
-			_map[5, 6].CreateWall(WallType.WallGeneral);
-			_map[5, 7].CreateWall(WallType.WallGeneral);
+			_map[5, 3].CreateWall(WallType.WALLGENERAL);
+			_map[5, 5].CreateWall(WallType.WALLGENERAL);
+			_map[5, 6].CreateWall(WallType.WALLGENERAL);
+			_map[5, 7].CreateWall(WallType.WALLGENERAL);
 
-			_map[6, 11].CreateWall(WallType.WallGeneral);
-			_map[6, 12].CreateWall(WallType.WallGeneral);
+			_map[6, 11].CreateWall(WallType.WALLGENERAL);
+			_map[6, 12].CreateWall(WallType.WALLGENERAL);
 
-			_map[7, 1].CreateWall(WallType.WallGeneral);
-			_map[7, 2].CreateWall(WallType.WallGeneral);
-			_map[7, 3].CreateWall(WallType.WallGeneral);
-			_map[7, 4].CreateWall(WallType.WallGeneral);
-			_map[7, 5].CreateWall(WallType.WallGeneral);
-			_map[7, 6].CreateWall(WallType.WallGeneral);
-			_map[7, 7].CreateWall(WallType.WallGeneral);
-			_map[7, 8].CreateWall(WallType.WallGeneral);
-			_map[7, 9].CreateWall(WallType.WallGeneral);
-			_map[7, 10].CreateWall(WallType.WallGeneral);
-			_map[7, 11].CreateWall(WallType.WallGeneral);
-			_map[7, 12].CreateWall(WallType.WallGeneral);
+			_map[7, 1].CreateWall(WallType.WALLGENERAL);
+			_map[7, 2].CreateWall(WallType.WALLGENERAL);
+			_map[7, 3].CreateWall(WallType.WALLGENERAL);
+			_map[7, 4].CreateWall(WallType.WALLGENERAL);
+			_map[7, 5].CreateWall(WallType.WALLGENERAL);
+			_map[7, 6].CreateWall(WallType.WALLGENERAL);
+			_map[7, 7].CreateWall(WallType.WALLGENERAL);
+			_map[7, 8].CreateWall(WallType.WALLGENERAL);
+			_map[7, 9].CreateWall(WallType.WALLGENERAL);
+			_map[7, 10].CreateWall(WallType.WALLGENERAL);
+			_map[7, 11].CreateWall(WallType.WALLGENERAL);
+			_map[7, 12].CreateWall(WallType.WALLGENERAL);
 
-			_map[8, 1].CreateWall(WallType.WallGeneral);
-			_map[8, 2].CreateWall(WallType.WallGeneral);
-			_map[8, 3].CreateWall(WallType.WallGeneral);
-			_map[8, 4].CreateWall(WallType.WallGeneral);
-			_map[8, 5].CreateWall(WallType.WallGeneral);
-			_map[8, 6].CreateWall(WallType.WallGeneral);
-			_map[8, 11].CreateWall(WallType.WallGeneral);
-			_map[8, 12].CreateWall(WallType.WallGeneral);
+			_map[8, 1].CreateWall(WallType.WALLGENERAL);
+			_map[8, 2].CreateWall(WallType.WALLGENERAL);
+			_map[8, 3].CreateWall(WallType.WALLGENERAL);
+			_map[8, 4].CreateWall(WallType.WALLGENERAL);
+			_map[8, 5].CreateWall(WallType.WALLGENERAL);
+			_map[8, 6].CreateWall(WallType.WALLGENERAL);
+			_map[8, 11].CreateWall(WallType.WALLGENERAL);
+			_map[8, 12].CreateWall(WallType.WALLGENERAL);
 
-			_map[9, 6].CreateWall(WallType.WallGeneral);
-			_map[9, 9].CreateWall(WallType.WallGeneral);
-			_map[9, 11].CreateWall(WallType.WallGeneral);
-			_map[9, 12].CreateWall(WallType.WallGeneral);
+			_map[9, 6].CreateWall(WallType.WALLGENERAL);
+			_map[9, 9].CreateWall(WallType.WALLGENERAL);
+			_map[9, 11].CreateWall(WallType.WALLGENERAL);
+			_map[9, 12].CreateWall(WallType.WALLGENERAL);
 
-			_map[10, 2].CreateWall(WallType.WallGeneral);
-			_map[10, 3].CreateWall(WallType.WallGeneral);
-			_map[10, 4].CreateWall(WallType.WallGeneral);
-			_map[10, 5].CreateWall(WallType.WallGeneral);
-			_map[10, 6].CreateWall(WallType.WallGeneral);
-			_map[10, 7].CreateWall(WallType.WallGeneral);
-			_map[10, 8].CreateWall(WallType.WallGeneral);
-			_map[10, 9].CreateWall(WallType.WallGeneral);
+			_map[10, 2].CreateWall(WallType.WALLGENERAL);
+			_map[10, 3].CreateWall(WallType.WALLGENERAL);
+			_map[10, 4].CreateWall(WallType.WALLGENERAL);
+			_map[10, 5].CreateWall(WallType.WALLGENERAL);
+			_map[10, 6].CreateWall(WallType.WALLGENERAL);
+			_map[10, 7].CreateWall(WallType.WALLGENERAL);
+			_map[10, 8].CreateWall(WallType.WALLGENERAL);
+			_map[10, 9].CreateWall(WallType.WALLGENERAL);
 
-			_map[11, 9].CreateWall(WallType.WallGeneral);
-			_map[11, 11].CreateWall(WallType.WallGeneral);
-			_map[11, 12].CreateWall(WallType.WallGeneral);
-			_map[11, 13].CreateWall(WallType.WallGeneral);
+			_map[11, 9].CreateWall(WallType.WALLGENERAL);
+			_map[11, 11].CreateWall(WallType.WALLGENERAL);
+			_map[11, 12].CreateWall(WallType.WALLGENERAL);
+			_map[11, 13].CreateWall(WallType.WALLGENERAL);
 
-			_map[12, 1].CreateWall(WallType.WallGeneral);
-			_map[12, 2].CreateWall(WallType.WallGeneral);
-			_map[12, 3].CreateWall(WallType.WallGeneral);
-			_map[12, 5].CreateWall(WallType.WallGeneral);
-			_map[12, 6].CreateWall(WallType.WallGeneral);
-			_map[12, 9].CreateWall(WallType.WallGeneral);
-			_map[12, 11].CreateWall(WallType.WallGeneral);
-			_map[12, 12].CreateWall(WallType.WallGeneral);
+			_map[12, 1].CreateWall(WallType.WALLGENERAL);
+			_map[12, 2].CreateWall(WallType.WALLGENERAL);
+			_map[12, 3].CreateWall(WallType.WALLGENERAL);
+			_map[12, 5].CreateWall(WallType.WALLGENERAL);
+			_map[12, 6].CreateWall(WallType.WALLGENERAL);
+			_map[12, 9].CreateWall(WallType.WALLGENERAL);
+			_map[12, 11].CreateWall(WallType.WALLGENERAL);
+			_map[12, 12].CreateWall(WallType.WALLGENERAL);
 
-			_map[13, 6].CreateWall(WallType.WallGeneral);
-			_map[13, 9].CreateWall(WallType.WallGeneral);
-			_map[13, 12].CreateWall(WallType.WallGeneral);
+			_map[13, 6].CreateWall(WallType.WALLGENERAL);
+			_map[13, 9].CreateWall(WallType.WALLGENERAL);
+			_map[13, 12].CreateWall(WallType.WALLGENERAL);
 
-			_map[14, 6].CreateWall(WallType.WallGeneral);
-			_map[14, 12].CreateWall(WallType.WallGeneral);
+			_map[14, 6].CreateWall(WallType.WALLGENERAL);
+			_map[14, 12].CreateWall(WallType.WALLGENERAL);
 
 			//-----------------------------------------------------------------------------------------------------
 			#endregion
@@ -254,125 +254,125 @@ namespace Thief_Escape
 			#region [Floors]
 			//-----------------------------------------------------------------------------------------------------
 
-			_map[1, 2].CreateFloor(FloorType.FloorGeneral);
-			_map[1, 4].CreateFloor(FloorType.FloorGeneral);
-			_map[1, 6].CreateFloor(FloorType.FloorGeneral);
-			_map[1, 7].CreateFloor(FloorType.FloorGeneral);
-			_map[1, 9].CreateFloor(FloorType.FloorGeneral);
-			_map[1, 10].CreateFloor(FloorType.FloorGeneral);
-			_map[1, 11].CreateFloor(FloorType.FloorGeneral);
+			_map[1, 2].CreateFloor(FloorType.FLOORGENERAL);
+			_map[1, 4].CreateFloor(FloorType.FLOORGENERAL);
+			_map[1, 6].CreateFloor(FloorType.FLOORGENERAL);
+			_map[1, 7].CreateFloor(FloorType.FLOORGENERAL);
+			_map[1, 9].CreateFloor(FloorType.FLOORGENERAL);
+			_map[1, 10].CreateFloor(FloorType.FLOORGENERAL);
+			_map[1, 11].CreateFloor(FloorType.FLOORGENERAL);
 
-			_map[2, 1].CreateFloor(FloorType.FloorGeneral);
-			_map[2, 2].CreateFloor(FloorType.FloorGeneral);
-			_map[2, 4].CreateFloor(FloorType.FloorGeneral);
-			_map[2, 6].CreateFloor(FloorType.FloorGeneral);
-			_map[2, 7].CreateFloor(FloorType.FloorGeneral);
-			_map[2, 9].CreateFloor(FloorType.FloorGeneral);
-			_map[2, 10].CreateFloor(FloorType.FloorGeneral);
-			_map[2, 11].CreateFloor(FloorType.FloorGeneral);
-			_map[2, 13].CreateFloor(FloorType.FloorGeneral);
-			_map[2, 14].CreateFloor(FloorType.FloorGeneral);
+			_map[2, 1].CreateFloor(FloorType.FLOORGENERAL);
+			_map[2, 2].CreateFloor(FloorType.FLOORGENERAL);
+			_map[2, 4].CreateFloor(FloorType.FLOORGENERAL);
+			_map[2, 6].CreateFloor(FloorType.FLOORGENERAL);
+			_map[2, 7].CreateFloor(FloorType.FLOORGENERAL);
+			_map[2, 9].CreateFloor(FloorType.FLOORGENERAL);
+			_map[2, 10].CreateFloor(FloorType.FLOORGENERAL);
+			_map[2, 11].CreateFloor(FloorType.FLOORGENERAL);
+			_map[2, 13].CreateFloor(FloorType.FLOORGENERAL);
+			_map[2, 14].CreateFloor(FloorType.FLOORGENERAL);
 
-			_map[3, 4].CreateFloor(FloorType.FloorGeneral);
-			_map[3, 6].CreateFloor(FloorType.FloorGeneral);
-			_map[3, 13].CreateFloor(FloorType.FloorGeneral);
-			_map[3, 14].CreateFloor(FloorType.FloorGeneral);
+			_map[3, 4].CreateFloor(FloorType.FLOORGENERAL);
+			_map[3, 6].CreateFloor(FloorType.FLOORGENERAL);
+			_map[3, 13].CreateFloor(FloorType.FLOORGENERAL);
+			_map[3, 14].CreateFloor(FloorType.FLOORGENERAL);
 
-			_map[4, 1].CreateFloor(FloorType.FloorGeneral);
-			_map[4, 2].CreateFloor(FloorType.FloorGeneral);
-			_map[4, 4].CreateFloor(FloorType.FloorGeneral);
-			_map[4, 6].CreateFloor(FloorType.FloorGeneral);
-			_map[4, 8].CreateFloor(FloorType.FloorGeneral);
-			_map[4, 9].CreateFloor(FloorType.FloorGeneral);
-			_map[4, 10].CreateFloor(FloorType.FloorGeneral);
+			_map[4, 1].CreateFloor(FloorType.FLOORGENERAL);
+			_map[4, 2].CreateFloor(FloorType.FLOORGENERAL);
+			_map[4, 4].CreateFloor(FloorType.FLOORGENERAL);
+			_map[4, 6].CreateFloor(FloorType.FLOORGENERAL);
+			_map[4, 8].CreateFloor(FloorType.FLOORGENERAL);
+			_map[4, 9].CreateFloor(FloorType.FLOORGENERAL);
+			_map[4, 10].CreateFloor(FloorType.FLOORGENERAL);
 
-			_map[5, 1].CreateFloor(FloorType.FloorGeneral);
-			_map[5, 2].CreateFloor(FloorType.FloorGeneral);
-			_map[5, 4].CreateFloor(FloorType.FloorGeneral);
-			_map[5, 8].CreateFloor(FloorType.FloorGeneral);
-			_map[5, 9].CreateFloor(FloorType.FloorGeneral);
-			_map[5, 10].CreateFloor(FloorType.FloorGeneral);
-			_map[5, 11].CreateFloor(FloorType.FloorGeneral);
-			_map[5, 12].CreateFloor(FloorType.FloorGeneral);
-			_map[5, 13].CreateFloor(FloorType.FloorGeneral);
-			_map[5, 14].CreateFloor(FloorType.FloorGeneral);
+			_map[5, 1].CreateFloor(FloorType.FLOORGENERAL);
+			_map[5, 2].CreateFloor(FloorType.FLOORGENERAL);
+			_map[5, 4].CreateFloor(FloorType.FLOORGENERAL);
+			_map[5, 8].CreateFloor(FloorType.FLOORGENERAL);
+			_map[5, 9].CreateFloor(FloorType.FLOORGENERAL);
+			_map[5, 10].CreateFloor(FloorType.FLOORGENERAL);
+			_map[5, 11].CreateFloor(FloorType.FLOORGENERAL);
+			_map[5, 12].CreateFloor(FloorType.FLOORGENERAL);
+			_map[5, 13].CreateFloor(FloorType.FLOORGENERAL);
+			_map[5, 14].CreateFloor(FloorType.FLOORGENERAL);
 
-			_map[6, 1].CreateFloor(FloorType.FloorGeneral);
-			_map[6, 2].CreateFloor(FloorType.FloorGeneral);
-			_map[6, 4].CreateFloor(FloorType.FloorGeneral);
-			_map[6, 5].CreateFloor(FloorType.FloorGeneral);
-			_map[6, 6].CreateFloor(FloorType.FloorGeneral);
-			_map[6, 7].CreateFloor(FloorType.FloorGeneral);
-			_map[6, 8].CreateFloor(FloorType.FloorGeneral);
-			_map[6, 9].CreateFloor(FloorType.FloorGeneral);
-			_map[6, 10].CreateFloor(FloorType.FloorGeneral);
-			_map[6, 13].CreateFloor(FloorType.FloorGeneral);
-			_map[6, 14].CreateFloor(FloorType.FloorGeneral);
+			_map[6, 1].CreateFloor(FloorType.FLOORGENERAL);
+			_map[6, 2].CreateFloor(FloorType.FLOORGENERAL);
+			_map[6, 4].CreateFloor(FloorType.FLOORGENERAL);
+			_map[6, 5].CreateFloor(FloorType.FLOORGENERAL);
+			_map[6, 6].CreateFloor(FloorType.FLOORGENERAL);
+			_map[6, 7].CreateFloor(FloorType.FLOORGENERAL);
+			_map[6, 8].CreateFloor(FloorType.FLOORGENERAL);
+			_map[6, 9].CreateFloor(FloorType.FLOORGENERAL);
+			_map[6, 10].CreateFloor(FloorType.FLOORGENERAL);
+			_map[6, 13].CreateFloor(FloorType.FLOORGENERAL);
+			_map[6, 14].CreateFloor(FloorType.FLOORGENERAL);
 
-			_map[7, 13].CreateFloor(FloorType.FloorGeneral);
-			_map[7, 14].CreateFloor(FloorType.FloorGeneral);
+			_map[7, 13].CreateFloor(FloorType.FLOORGENERAL);
+			_map[7, 14].CreateFloor(FloorType.FLOORGENERAL);
 
-			_map[8, 7].CreateFloor(FloorType.FloorGeneral);
-			_map[8, 8].CreateFloor(FloorType.FloorGeneral);
-			_map[8, 10].CreateFloor(FloorType.FloorGeneral);
-			_map[8, 13].CreateFloor(FloorType.FloorGeneral);
-			_map[8, 14].CreateFloor(FloorType.FloorGeneral);
+			_map[8, 7].CreateFloor(FloorType.FLOORGENERAL);
+			_map[8, 8].CreateFloor(FloorType.FLOORGENERAL);
+			_map[8, 10].CreateFloor(FloorType.FLOORGENERAL);
+			_map[8, 13].CreateFloor(FloorType.FLOORGENERAL);
+			_map[8, 14].CreateFloor(FloorType.FLOORGENERAL);
 
-			_map[9, 1].CreateFloor(FloorType.FloorGeneral);
-			_map[9, 2].CreateFloor(FloorType.FloorGeneral);
-			_map[9, 3].CreateFloor(FloorType.FloorGeneral);
-			_map[9, 4].CreateFloor(FloorType.FloorGeneral);
-			_map[9, 5].CreateFloor(FloorType.FloorGeneral);
-			_map[9, 7].CreateFloor(FloorType.FloorGeneral);
-			_map[9, 8].CreateFloor(FloorType.FloorGeneral);
-			_map[9, 10].CreateFloor(FloorType.FloorGeneral);
-			_map[9, 13].CreateFloor(FloorType.FloorGeneral);
-			_map[9, 14].CreateFloor(FloorType.FloorGeneral);
+			_map[9, 1].CreateFloor(FloorType.FLOORGENERAL);
+			_map[9, 2].CreateFloor(FloorType.FLOORGENERAL);
+			_map[9, 3].CreateFloor(FloorType.FLOORGENERAL);
+			_map[9, 4].CreateFloor(FloorType.FLOORGENERAL);
+			_map[9, 5].CreateFloor(FloorType.FLOORGENERAL);
+			_map[9, 7].CreateFloor(FloorType.FLOORGENERAL);
+			_map[9, 8].CreateFloor(FloorType.FLOORGENERAL);
+			_map[9, 10].CreateFloor(FloorType.FLOORGENERAL);
+			_map[9, 13].CreateFloor(FloorType.FLOORGENERAL);
+			_map[9, 14].CreateFloor(FloorType.FLOORGENERAL);
 
-			_map[10, 10].CreateFloor(FloorType.FloorGeneral);
-			_map[10, 11].CreateFloor(FloorType.FloorGeneral);
-			_map[10, 12].CreateFloor(FloorType.FloorGeneral);
-			_map[10, 13].CreateFloor(FloorType.FloorGeneral);
-			_map[10, 14].CreateFloor(FloorType.FloorGeneral);
+			_map[10, 10].CreateFloor(FloorType.FLOORGENERAL);
+			_map[10, 11].CreateFloor(FloorType.FLOORGENERAL);
+			_map[10, 12].CreateFloor(FloorType.FLOORGENERAL);
+			_map[10, 13].CreateFloor(FloorType.FLOORGENERAL);
+			_map[10, 14].CreateFloor(FloorType.FLOORGENERAL);
 
-			_map[11, 1].CreateFloor(FloorType.FloorGeneral);
-			_map[11, 2].CreateFloor(FloorType.FloorGeneral);
-			_map[11, 3].CreateFloor(FloorType.FloorGeneral);
-			_map[11, 4].CreateFloor(FloorType.FloorGeneral);
-			_map[11, 5].CreateFloor(FloorType.FloorGeneral);
-			_map[11, 6].CreateFloor(FloorType.FloorGeneral);
-			_map[11, 7].CreateFloor(FloorType.FloorGeneral);
-			_map[11, 8].CreateFloor(FloorType.FloorGeneral);
-			_map[11, 10].CreateFloor(FloorType.FloorGeneral);
+			_map[11, 1].CreateFloor(FloorType.FLOORGENERAL);
+			_map[11, 2].CreateFloor(FloorType.FLOORGENERAL);
+			_map[11, 3].CreateFloor(FloorType.FLOORGENERAL);
+			_map[11, 4].CreateFloor(FloorType.FLOORGENERAL);
+			_map[11, 5].CreateFloor(FloorType.FLOORGENERAL);
+			_map[11, 6].CreateFloor(FloorType.FLOORGENERAL);
+			_map[11, 7].CreateFloor(FloorType.FLOORGENERAL);
+			_map[11, 8].CreateFloor(FloorType.FLOORGENERAL);
+			_map[11, 10].CreateFloor(FloorType.FLOORGENERAL);
 
-			_map[12, 7].CreateFloor(FloorType.FloorGeneral);
-			_map[12, 8].CreateFloor(FloorType.FloorGeneral);
-			_map[12, 10].CreateFloor(FloorType.FloorGeneral);
-			_map[12, 13].CreateFloor(FloorType.FloorGeneral);
-			_map[12, 14].CreateFloor(FloorType.FloorGeneral);
+			_map[12, 7].CreateFloor(FloorType.FLOORGENERAL);
+			_map[12, 8].CreateFloor(FloorType.FLOORGENERAL);
+			_map[12, 10].CreateFloor(FloorType.FLOORGENERAL);
+			_map[12, 13].CreateFloor(FloorType.FLOORGENERAL);
+			_map[12, 14].CreateFloor(FloorType.FLOORGENERAL);
 
-			_map[13, 1].CreateFloor(FloorType.FloorGeneral);
-			_map[13, 2].CreateFloor(FloorType.FloorGeneral);
-			_map[13, 3].CreateFloor(FloorType.FloorGeneral);
-			_map[13, 4].CreateFloor(FloorType.FloorGeneral);
-			_map[13, 5].CreateFloor(FloorType.FloorGeneral);
-			_map[13, 7].CreateFloor(FloorType.FloorGeneral);
-			_map[13, 8].CreateFloor(FloorType.FloorGeneral);
-			_map[13, 10].CreateFloor(FloorType.FloorGeneral);
-			_map[13, 11].CreateFloor(FloorType.FloorGeneral);
-			_map[13, 13].CreateFloor(FloorType.FloorGeneral);
-			_map[13, 14].CreateFloor(FloorType.FloorGeneral);
+			_map[13, 1].CreateFloor(FloorType.FLOORGENERAL);
+			_map[13, 2].CreateFloor(FloorType.FLOORGENERAL);
+			_map[13, 3].CreateFloor(FloorType.FLOORGENERAL);
+			_map[13, 4].CreateFloor(FloorType.FLOORGENERAL);
+			_map[13, 5].CreateFloor(FloorType.FLOORGENERAL);
+			_map[13, 7].CreateFloor(FloorType.FLOORGENERAL);
+			_map[13, 8].CreateFloor(FloorType.FLOORGENERAL);
+			_map[13, 10].CreateFloor(FloorType.FLOORGENERAL);
+			_map[13, 11].CreateFloor(FloorType.FLOORGENERAL);
+			_map[13, 13].CreateFloor(FloorType.FLOORGENERAL);
+			_map[13, 14].CreateFloor(FloorType.FLOORGENERAL);
 
-			_map[14, 1].CreateFloor(FloorType.FloorGeneral);
-			_map[14, 2].CreateFloor(FloorType.FloorGeneral);
-			_map[14, 3].CreateFloor(FloorType.FloorGeneral);
-			_map[14, 4].CreateFloor(FloorType.FloorGeneral);
-			_map[14, 5].CreateFloor(FloorType.FloorGeneral);
-			_map[14, 7].CreateFloor(FloorType.FloorGeneral);
-			_map[14, 8].CreateFloor(FloorType.FloorGeneral);
-			_map[14, 10].CreateFloor(FloorType.FloorGeneral);
-			_map[14, 11].CreateFloor(FloorType.FloorGeneral);
-			_map[14, 14].CreateFloor(FloorType.FloorGeneral);
+			_map[14, 1].CreateFloor(FloorType.FLOORGENERAL);
+			_map[14, 2].CreateFloor(FloorType.FLOORGENERAL);
+			_map[14, 3].CreateFloor(FloorType.FLOORGENERAL);
+			_map[14, 4].CreateFloor(FloorType.FLOORGENERAL);
+			_map[14, 5].CreateFloor(FloorType.FLOORGENERAL);
+			_map[14, 7].CreateFloor(FloorType.FLOORGENERAL);
+			_map[14, 8].CreateFloor(FloorType.FLOORGENERAL);
+			_map[14, 10].CreateFloor(FloorType.FLOORGENERAL);
+			_map[14, 11].CreateFloor(FloorType.FLOORGENERAL);
+			_map[14, 14].CreateFloor(FloorType.FLOORGENERAL);
 
 			//-----------------------------------------------------------------------------------------------------
 			#endregion
@@ -383,32 +383,32 @@ namespace Thief_Escape
 			//-----------------------------------------------------------------------------------------------------
 
 			//Unlocked doors
-			_map[1, 3].CreateDoor(DoorType.DoorUnlocked);
-			_map[10, 1].CreateDoor(DoorType.DoorUnlocked);
-			_map[8, 9].CreateDoor(DoorType.DoorUnlocked);
-			_map[14, 9].CreateDoor(DoorType.DoorUnlocked);
-			_map[3, 10].CreateDoor(DoorType.DoorUnlocked);
+			_map[1, 3].CreateDoor(DoorType.DOORUNLOCKED);
+			_map[10, 1].CreateDoor(DoorType.DOORUNLOCKED);
+			_map[8, 9].CreateDoor(DoorType.DOORUNLOCKED);
+			_map[14, 9].CreateDoor(DoorType.DOORUNLOCKED);
+			_map[3, 10].CreateDoor(DoorType.DOORUNLOCKED);
 
 			//Locked doors
-			_map[6, 3].CreateDoor(DoorType.DoorLocked);
-			_map[12, 4].CreateDoor(DoorType.DoorLocked);
-			_map[1, 8].CreateDoor(DoorType.DoorLocked);
-			_map[4, 14].CreateDoor(DoorType.DoorLocked);
-			_map[11, 14].CreateDoor(DoorType.DoorLocked);
+			_map[6, 3].CreateDoor(DoorType.DOORLOCKED);
+			_map[12, 4].CreateDoor(DoorType.DOORLOCKED);
+			_map[1, 8].CreateDoor(DoorType.DOORLOCKED);
+			_map[4, 14].CreateDoor(DoorType.DOORLOCKED);
+			_map[11, 14].CreateDoor(DoorType.DOORLOCKED);
 
 			//-----------------------------------------------------------------------------------------------------
 			#endregion
 			//-----------------------------------------------------------------------------------------------------
 
 			//-----------------------------------------------------------------------------------------------------
-			#region [Stairs]
+			#region [STAIRS]
 			//-----------------------------------------------------------------------------------------------------
 
-			//Stairs up
-			_map[1, 13].CreateStairs(StairsType.StairsUp);
+			//STAIRS up
+			_map[1, 13].CreateStairs(StairsType.STAIRSUP);
 
-			//Stairs down
-			_map[14, 13].CreateStairs(StairsType.StairsDpwn);
+			//STAIRS down
+			_map[14, 13].CreateStairs(StairsType.STAIRSDOWN);
 
 			//-----------------------------------------------------------------------------------------------------
 			#endregion
@@ -496,7 +496,7 @@ namespace Thief_Escape
 		//-----------------------------------------------------------------------------------------------------
 		public CellType GetCellType(int x, int y)
 		{
-			CellType currentCell = CellType.Wall;
+			CellType currentCell = CellType.WALL;
 
 			currentCell = _map[x, y].WhatIsCellType;
 
@@ -507,7 +507,7 @@ namespace Thief_Escape
 		//-----------------------------------------------------------------------------------------------------
 		public WallType GetWallType(int x, int y)
 		{
-			WallType currentCell = WallType.WallGeneral;
+			WallType currentCell = WallType.WALLGENERAL;
 
 			currentCell = _map[x, y].WhatIsWallType;
 
@@ -518,7 +518,7 @@ namespace Thief_Escape
 		//-----------------------------------------------------------------------------------------------------
 		public FloorType GetFloorType(int x, int y)
 		{
-			FloorType currentCell = FloorType.FloorGeneral;
+			FloorType currentCell = FloorType.FLOORGENERAL;
 
 			currentCell = _map[x, y].WhatIsFloorType;
 
@@ -529,7 +529,7 @@ namespace Thief_Escape
 		//-----------------------------------------------------------------------------------------------------
 		public DoorType GetDoorType(int x, int y)
 		{
-			DoorType currentCell = DoorType.DoorLocked;
+			DoorType currentCell = DoorType.DOORLOCKED;
 
 			currentCell = _map[x, y].WhatSetDoorType;
 
@@ -540,7 +540,7 @@ namespace Thief_Escape
 		//-----------------------------------------------------------------------------------------------------
 		public StairsType GetStairsType(int x, int y)
 		{
-			StairsType currentCell = StairsType.Generic;
+			StairsType currentCell = StairsType.GENERIC;
 
 			currentCell = _map[x, y].WhatIsStairsType;
 

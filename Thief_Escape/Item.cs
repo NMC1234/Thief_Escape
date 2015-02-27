@@ -18,7 +18,7 @@ namespace Thief_Escape
 			JewelKitten,
 			Key,
 			Generic
-			//Generic is just something to initialize an object to, it is equal to null
+			//GENERIC is just something to initialize an object to, it is equal to null
 		}
 		//-----------------------------------------------------------------------------------------------------
 		#endregion
@@ -77,13 +77,13 @@ namespace Thief_Escape
 		#region [ Constructors ]
 		//-----------------------------------------------------------------------------------------------------
 
-		//Default constructor, assumes generic
+		//Default constructor, assumes GENERIC
 		//-----------------------------------------------------------------------------------------------------
 		public Item( )
 		{
 			itemType = Item.ItemType.Generic;
-			Name = "Generic Item";
-			Description = "Its a perfectly generic... thing.";
+			Name = "GENERIC Item";
+			Description = "Its a perfectly GENERIC... thing.";
 		}
 		//Overloaded constructor, creates pre-defined items based on type.
 		//-----------------------------------------------------------------------------------------------------
@@ -105,11 +105,11 @@ namespace Thief_Escape
 					Description = "I've been told this opens doors.";
 					break;
 
-				//Anything else is a generic item.
+				//Anything else is a GENERIC item.
 				default:
 					itemType = Item.ItemType.Generic;
-					Name = "Generic Item";
-					Description = "Its a perfectly generic... thing.";
+					Name = "GENERIC Item";
+					Description = "Its a perfectly GENERIC... thing.";
 					break;
 			}
 		}
