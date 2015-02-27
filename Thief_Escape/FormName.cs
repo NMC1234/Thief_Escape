@@ -35,10 +35,9 @@ namespace Thief_Escape
 		//-----------------------------------------------------------------------------------------------------
 		private void btnBack_Click(object sender, EventArgs e)
 		{
-			//Launch the second form, that contains the game interface
-			//FormMenu frm2 = new FormMenu();
+			FormMainMenu frm2 = new FormMainMenu();
 
-			//frm2.Show();
+			frm2.Show();
 
 			//Hide this form
 			this.Hide();

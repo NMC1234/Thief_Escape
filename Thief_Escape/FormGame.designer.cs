@@ -29,6 +29,10 @@
         private void InitializeComponent()
         {
 			this.components = new System.ComponentModel.Container();
+			Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle1 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
+			Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle2 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
+			Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle3 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
+			Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle4 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
 			this.lstOutput = new System.Windows.Forms.ListBox();
 			this.grpMovement = new System.Windows.Forms.GroupBox();
 			this.btnMoveWest = new System.Windows.Forms.Button();
@@ -67,13 +71,14 @@
 			this.lblFloors = new System.Windows.Forms.Label();
 			this.txtFloors = new System.Windows.Forms.TextBox();
 			this.lblWall = new System.Windows.Forms.Label();
-			this.txtWalls = new System.Windows.Forms.TextBox();
 			this.grdconMap = new Syncfusion.Windows.Forms.Grid.GridControl();
 			this.tmrCellBlink = new System.Windows.Forms.Timer(this.components);
+			this.picbWallImage = new System.Windows.Forms.PictureBox();
 			this.grpMovement.SuspendLayout();
 			this.grpActions.SuspendLayout();
 			this.grpboxLegend.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.grdconMap)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.picbWallImage)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// lstOutput
@@ -107,6 +112,7 @@
 			// 
 			this.btnMoveWest.BackColor = System.Drawing.Color.DarkGray;
 			this.btnMoveWest.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnMoveWest.ForeColor = System.Drawing.Color.DarkGreen;
 			this.btnMoveWest.Location = new System.Drawing.Point(21, 48);
 			this.btnMoveWest.Name = "btnMoveWest";
 			this.btnMoveWest.Size = new System.Drawing.Size(75, 50);
@@ -119,6 +125,7 @@
 			// 
 			this.btnMoveEast.BackColor = System.Drawing.Color.DarkGray;
 			this.btnMoveEast.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnMoveEast.ForeColor = System.Drawing.Color.DarkGreen;
 			this.btnMoveEast.Location = new System.Drawing.Point(183, 48);
 			this.btnMoveEast.Name = "btnMoveEast";
 			this.btnMoveEast.Size = new System.Drawing.Size(75, 50);
@@ -131,6 +138,7 @@
 			// 
 			this.btnMoveSouth.BackColor = System.Drawing.Color.DarkGray;
 			this.btnMoveSouth.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnMoveSouth.ForeColor = System.Drawing.Color.DarkGreen;
 			this.btnMoveSouth.Location = new System.Drawing.Point(102, 75);
 			this.btnMoveSouth.Name = "btnMoveSouth";
 			this.btnMoveSouth.Size = new System.Drawing.Size(75, 50);
@@ -143,6 +151,7 @@
 			// 
 			this.btnMoveNorth.BackColor = System.Drawing.Color.DarkGray;
 			this.btnMoveNorth.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnMoveNorth.ForeColor = System.Drawing.Color.DarkGreen;
 			this.btnMoveNorth.Location = new System.Drawing.Point(102, 19);
 			this.btnMoveNorth.Name = "btnMoveNorth";
 			this.btnMoveNorth.Size = new System.Drawing.Size(75, 50);
@@ -330,6 +339,7 @@
 			// 
 			// grpboxLegend
 			// 
+			this.grpboxLegend.Controls.Add(this.picbWallImage);
 			this.grpboxLegend.Controls.Add(this.label2);
 			this.grpboxLegend.Controls.Add(this.txtBejeweledKitten);
 			this.grpboxLegend.Controls.Add(this.lblStairsDown);
@@ -347,7 +357,6 @@
 			this.grpboxLegend.Controls.Add(this.lblFloors);
 			this.grpboxLegend.Controls.Add(this.txtFloors);
 			this.grpboxLegend.Controls.Add(this.lblWall);
-			this.grpboxLegend.Controls.Add(this.txtWalls);
 			this.grpboxLegend.ForeColor = System.Drawing.Color.MidnightBlue;
 			this.grpboxLegend.Location = new System.Drawing.Point(650, 12);
 			this.grpboxLegend.Name = "grpboxLegend";
@@ -509,23 +518,40 @@
 			this.lblWall.TabIndex = 1;
 			this.lblWall.Text = "- Walls";
 			// 
-			// txtWalls
-			// 
-			this.txtWalls.BackColor = System.Drawing.Color.DarkGray;
-			this.txtWalls.Location = new System.Drawing.Point(6, 45);
-			this.txtWalls.Name = "txtWalls";
-			this.txtWalls.ReadOnly = true;
-			this.txtWalls.Size = new System.Drawing.Size(21, 20);
-			this.txtWalls.TabIndex = 0;
-			// 
 			// grdconMap
 			// 
 			this.grdconMap.ActivateCurrentCellBehavior = Syncfusion.Windows.Forms.Grid.GridCellActivateAction.None;
 			this.grdconMap.AllowIncreaseSmallChange = false;
 			this.grdconMap.AllowSelection = Syncfusion.Windows.Forms.Grid.GridSelectionFlags.None;
 			this.grdconMap.BackColor = System.Drawing.Color.Black;
+			gridBaseStyle1.Name = "Header";
+			gridBaseStyle1.StyleInfo.Borders.Bottom = new Syncfusion.Windows.Forms.Grid.GridBorder(Syncfusion.Windows.Forms.Grid.GridBorderStyle.None);
+			gridBaseStyle1.StyleInfo.Borders.Left = new Syncfusion.Windows.Forms.Grid.GridBorder(Syncfusion.Windows.Forms.Grid.GridBorderStyle.None);
+			gridBaseStyle1.StyleInfo.Borders.Right = new Syncfusion.Windows.Forms.Grid.GridBorder(Syncfusion.Windows.Forms.Grid.GridBorderStyle.None);
+			gridBaseStyle1.StyleInfo.Borders.Top = new Syncfusion.Windows.Forms.Grid.GridBorder(Syncfusion.Windows.Forms.Grid.GridBorderStyle.None);
+			gridBaseStyle1.StyleInfo.CellType = "Header";
+			gridBaseStyle1.StyleInfo.Font.Bold = true;
+			gridBaseStyle1.StyleInfo.Interior = new Syncfusion.Drawing.BrushInfo(Syncfusion.Drawing.GradientStyle.Vertical, System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(199)))), ((int)(((byte)(184))))), System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(234)))), ((int)(((byte)(216))))));
+			gridBaseStyle1.StyleInfo.VerticalAlignment = Syncfusion.Windows.Forms.Grid.GridVerticalAlignment.Middle;
+			gridBaseStyle2.Name = "Standard";
+			gridBaseStyle2.StyleInfo.Font.Facename = "Tahoma";
+			gridBaseStyle2.StyleInfo.Interior = new Syncfusion.Drawing.BrushInfo(System.Drawing.SystemColors.Window);
+			gridBaseStyle3.Name = "Column Header";
+			gridBaseStyle3.StyleInfo.BaseStyle = "Header";
+			gridBaseStyle3.StyleInfo.HorizontalAlignment = Syncfusion.Windows.Forms.Grid.GridHorizontalAlignment.Center;
+			gridBaseStyle4.Name = "Row Header";
+			gridBaseStyle4.StyleInfo.BaseStyle = "Header";
+			gridBaseStyle4.StyleInfo.HorizontalAlignment = Syncfusion.Windows.Forms.Grid.GridHorizontalAlignment.Left;
+			gridBaseStyle4.StyleInfo.Interior = new Syncfusion.Drawing.BrushInfo(Syncfusion.Drawing.GradientStyle.Horizontal, System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(199)))), ((int)(((byte)(184))))), System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(234)))), ((int)(((byte)(216))))));
+			this.grdconMap.BaseStylesMap.AddRange(new Syncfusion.Windows.Forms.Grid.GridBaseStyle[] {
+            gridBaseStyle1,
+            gridBaseStyle2,
+            gridBaseStyle3,
+            gridBaseStyle4});
 			this.grdconMap.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
 			this.grdconMap.ColCount = 24;
+			this.grdconMap.ColWidthEntries.AddRange(new Syncfusion.Windows.Forms.Grid.GridColWidth[] {
+            new Syncfusion.Windows.Forms.Grid.GridColWidth(0, 35)});
 			this.grdconMap.DefaultColWidth = 26;
 			this.grdconMap.DefaultGridBorderStyle = Syncfusion.Windows.Forms.Grid.GridBorderStyle.Solid;
 			this.grdconMap.DefaultRowHeight = 26;
@@ -548,6 +574,8 @@
 			this.grdconMap.ResizeColsBehavior = Syncfusion.Windows.Forms.Grid.GridResizeCellsBehavior.None;
 			this.grdconMap.ResizeRowsBehavior = Syncfusion.Windows.Forms.Grid.GridResizeCellsBehavior.None;
 			this.grdconMap.RowCount = 24;
+			this.grdconMap.RowHeightEntries.AddRange(new Syncfusion.Windows.Forms.Grid.GridRowHeight[] {
+            new Syncfusion.Windows.Forms.Grid.GridRowHeight(0, 25)});
 			this.grdconMap.SerializeCellsBehavior = Syncfusion.Windows.Forms.Grid.GridSerializeCellsBehavior.SerializeAsRangeStylesIntoCode;
 			this.grdconMap.ShowCurrentCellBorderBehavior = Syncfusion.Windows.Forms.Grid.GridShowCurrentCellBorder.HideAlways;
 			this.grdconMap.Size = new System.Drawing.Size(632, 638);
@@ -565,11 +593,20 @@
 			this.tmrCellBlink.Interval = 500;
 			this.tmrCellBlink.Tick += new System.EventHandler(this.tmrCellBlink_Tick);
 			// 
+			// picbWallImage
+			// 
+			this.picbWallImage.Image = global::Thief_Escape.Properties.Resources.CellWallImage;
+			this.picbWallImage.Location = new System.Drawing.Point(6, 45);
+			this.picbWallImage.Name = "picbWallImage";
+			this.picbWallImage.Size = new System.Drawing.Size(21, 20);
+			this.picbWallImage.TabIndex = 14;
+			this.picbWallImage.TabStop = false;
+			// 
 			// FormGame
 			// 
 			this.AcceptButton = this.btnLoadGame;
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.BackColor = System.Drawing.Color.OliveDrab;
+			this.BackColor = System.Drawing.Color.DarkKhaki;
 			this.ClientSize = new System.Drawing.Size(1114, 663);
 			this.Controls.Add(this.grpboxLegend);
 			this.Controls.Add(this.grdconMap);
@@ -594,6 +631,7 @@
 			this.grpboxLegend.ResumeLayout(false);
 			this.grpboxLegend.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.grdconMap)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.picbWallImage)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -635,12 +673,12 @@
 		private System.Windows.Forms.Label lblFloors;
 		private System.Windows.Forms.TextBox txtFloors;
 		private System.Windows.Forms.Label lblWall;
-		private System.Windows.Forms.TextBox txtWalls;
 		private Syncfusion.Windows.Forms.Grid.GridControl grdconMap;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.TextBox txtBejeweledKitten;
 		private System.Windows.Forms.Label lblStairsDown;
 		private System.Windows.Forms.TextBox txtStairsDown;
 		private System.Windows.Forms.Timer tmrCellBlink;
+		private System.Windows.Forms.PictureBox picbWallImage;
     }
 }

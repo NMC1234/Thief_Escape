@@ -55,9 +55,9 @@
 			// 
 			// btnPlay
 			// 
-			this.btnPlay.BackColor = System.Drawing.Color.Black;
+			this.btnPlay.BackColor = System.Drawing.Color.DarkGray;
 			this.btnPlay.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnPlay.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+			this.btnPlay.ForeColor = System.Drawing.Color.MidnightBlue;
 			this.btnPlay.Location = new System.Drawing.Point(191, 68);
 			this.btnPlay.Name = "btnPlay";
 			this.btnPlay.Size = new System.Drawing.Size(81, 34);
@@ -68,9 +68,9 @@
 			// 
 			// btnBack
 			// 
-			this.btnBack.BackColor = System.Drawing.Color.Black;
+			this.btnBack.BackColor = System.Drawing.Color.DarkGray;
 			this.btnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnBack.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+			this.btnBack.ForeColor = System.Drawing.Color.MidnightBlue;
 			this.btnBack.Location = new System.Drawing.Point(12, 68);
 			this.btnBack.Name = "btnBack";
 			this.btnBack.Size = new System.Drawing.Size(81, 34);
@@ -84,7 +84,7 @@
 			this.AcceptButton = this.btnPlay;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.BackColor = System.Drawing.Color.Gray;
+			this.BackColor = System.Drawing.Color.DarkKhaki;
 			this.ClientSize = new System.Drawing.Size(284, 114);
 			this.Controls.Add(this.btnBack);
 			this.Controls.Add(this.btnPlay);
