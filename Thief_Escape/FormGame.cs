@@ -78,9 +78,8 @@ namespace Thief_Escape
 			CreateTestMapBig( );
 
 			//Make the player
-			//uncomment when the get of the player name is implimented
-			//player = new Player(name);
-			player = new Player( );
+			player = new Player(name);
+			//player = new Player( );
 
 			//Sets the first starting point by asking the grid for it's preset,
 			//by array creation method
@@ -654,7 +653,8 @@ namespace Thief_Escape
 					grdconMap[y, x].ResetBackgroundImage( );
 
 					//checks if current cell is out of range of the cell object array
-					if(((x - 1) >= 0) & ((y - 1) >= 0))
+					if((((x - 1) >= 0) && ((y - 1) >= 0))
+						& ((x <= mapCells.MapSize) && (y <= mapCells.MapSize)))
 					{
 						//if statement to check if the current cell is a wall
 						//if so then it assigns that cell the wall background image
