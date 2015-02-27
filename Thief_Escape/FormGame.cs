@@ -89,6 +89,9 @@ namespace Thief_Escape
 			//Get the initial valid movements
 			CheckMovement(player.CurrentCellX, player.CurrentCellY);
 
+			//Initial Fog of war
+			FogOfWar( );
+
 			//Output initial prompt
 			InitalPrompt();
 
@@ -119,6 +122,9 @@ namespace Thief_Escape
 			player.CurrentCellX,
 			(player.CurrentCellY - 1)
 			);
+
+			//Remake Fog of war on movement
+			FogOfWar( );
 
 			//Check new movements
 			CheckMovement(player.CurrentCellX, player.CurrentCellY);
@@ -152,6 +158,9 @@ namespace Thief_Escape
 			player.CurrentCellY
 			);
 
+			//Remake Fog of war on movement
+			FogOfWar( );
+
 			//Check new movements
 			CheckMovement(player.CurrentCellX, player.CurrentCellY);
 
@@ -184,6 +193,9 @@ namespace Thief_Escape
 			player.CurrentCellY
 			);
 
+			//Remake Fog of war on movement
+			FogOfWar( );
+
 			//Check new movements
 			CheckMovement(player.CurrentCellX, player.CurrentCellY);
 
@@ -215,6 +227,9 @@ namespace Thief_Escape
 			player.CurrentCellX,
 			(player.CurrentCellY + 1)
 			);
+
+			//Remake Fog of war on movement
+			FogOfWar( );
 
 			//Check new movements
 			CheckMovement(player.CurrentCellX, player.CurrentCellY);
@@ -505,6 +520,104 @@ namespace Thief_Escape
 		}
 
 		//-----------------------------------------------------------------------------------------------------
+
+		public void FogOfWar()
+		{
+			//Image to apply to cells within fog of war
+			Image blackoutImage = Image.FromFile("CellBlackoutImage.png");
+			Image wallImage = Image.FromFile("CellWallImage.png");
+
+
+			//Temp loop to put all cells in blackout to test removal of blackout
+			for(int x = 1; x < (mapCells.MapSize + 1); x++)
+			{
+				for(int y = 1; y < (mapCells.MapSize + 1); y++)
+				{
+					grdconMap[y, x].BackgroundImage = blackoutImage;
+				}
+
+
+			}
+
+
+			//Removes blackout for cells player can see
+			#region [Remove Blackout]
+
+			for(int x = (player.CurrentCellX - 1); x < (player.CurrentCellX + 4); x++)
+			{
+
+				for(int y = (player.CurrentCellY - 1); y < (player.CurrentCellY + 4); y++)
+				{
+
+					grdconMap[y, x].ResetBackgroundImage( );
+
+					if(((x - 1) >= 0) & ((y - 1) >= 0))
+					{
+						if(mapCells.GetCellType((x - 1), (y - 1)) == CellType.Wall)
+						{
+							grdconMap[y, x].BackgroundImage = wallImage;
+						}
+					}
+				}
+			}
+
+
+			#endregion
+
+
+
+			//#region [Blackout]
+			////Black out to right and down from upper-right corner of viewable area
+			//for(int x = (player.CurrentCellX + 4); x < (mapCells.MapSize + 1); x++)
+			//{
+
+			//	for(int y = (player.CurrentCellY); y < (mapCells.MapSize + 1); y++)
+			//	{
+			//		grdconMap[y, x].BackgroundImage = blackoutImage;
+			//	}
+
+			//}
+
+			////Black out to down and right from lower-right corner of viewable area
+			//for(int y = (player.CurrentCellX + 4); y < (mapCells.MapSize + 1); y++)
+			//{
+
+			//	for(int x = (player.CurrentCellY); x < (mapCells.MapSize + 1); x++)
+			//	{
+			//		grdconMap[y, x].BackgroundImage = blackoutImage;
+			//	}
+
+			//}
+
+			////Black out left and down from upper-left corner of viewable area
+			//for(int x = (player.CurrentCellX - 4); x >= 0; x--)
+			//{
+
+			//	for(int y = (player.CurrentCellY); y >= 0; y--)
+			//	{
+			//		grdconMap[y, x].BackgroundImage = blackoutImage;
+			//	}
+
+			//}
+
+			////Black out down and left from lower-left corner of viewable area
+			//for(int y = (player.CurrentCellX - 4); y >= 0; y--)
+			//{
+
+			//	for(int x = (player.CurrentCellY); x >= 0; x--)
+			//	{
+			//		grdconMap[y, x].BackgroundImage = blackoutImage;
+			//	}
+
+			//}
+			//#endregion
+
+
+
+
+		}
+
+		//-----------------------------------------------------------------------------------------------------
 		#region [ Blink Current Cell]
 		//-----------------------------------------------------------------------------------------------------
 
@@ -776,9 +889,12 @@ namespace Thief_Escape
 			//-----------------------------------------------------------------------------------------------------
 			#region walls
 			//-----------------------------------------------------------------------------------------------------
+
+			//Image for walls
+			Image wallImage = Image.FromFile("CellWallImage.png");
+
 			//The four far sides of walls
-            //Image wallImage = Image.FromFile(@"D:\02 Documents\NMC 2014 Stuff\CIT195 .net Programming\Group phiv Project\current-Thief_Escape\Thief_Escape\CellWallImage.png");
-            Image wallImage = Image.FromFile("CellWallImage.png");
+			
 			//top wall
 			for(int i = 1; i < 17; i++) {
 				grdconMap[1, i].BackgroundImage = wallImage;

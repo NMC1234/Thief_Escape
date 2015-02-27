@@ -520,10 +520,10 @@
 			this.grdconMap.AllowSelection = Syncfusion.Windows.Forms.Grid.GridSelectionFlags.None;
 			this.grdconMap.BackColor = System.Drawing.Color.Black;
 			this.grdconMap.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-			this.grdconMap.ColCount = 34;
-			this.grdconMap.DefaultColWidth = 22;
+			this.grdconMap.ColCount = 20;
+			this.grdconMap.DefaultColWidth = 30;
 			this.grdconMap.DefaultGridBorderStyle = Syncfusion.Windows.Forms.Grid.GridBorderStyle.Solid;
-			this.grdconMap.DefaultRowHeight = 22;
+			this.grdconMap.DefaultRowHeight = 30;
 			this.grdconMap.DrawOrder = Syncfusion.Windows.Forms.Grid.GridDrawOrder.Columns;
 			this.grdconMap.EnterKeyBehavior = Syncfusion.Windows.Forms.Grid.GridDirectionType.None;
 			this.grdconMap.HorizontalThumbTrack = true;
@@ -542,7 +542,7 @@
 			this.grdconMap.Properties.RowHeaders = false;
 			this.grdconMap.ResizeColsBehavior = Syncfusion.Windows.Forms.Grid.GridResizeCellsBehavior.None;
 			this.grdconMap.ResizeRowsBehavior = Syncfusion.Windows.Forms.Grid.GridResizeCellsBehavior.None;
-			this.grdconMap.RowCount = 21;
+			this.grdconMap.RowCount = 18;
 			this.grdconMap.SerializeCellsBehavior = Syncfusion.Windows.Forms.Grid.GridSerializeCellsBehavior.SerializeAsRangeStylesIntoCode;
 			this.grdconMap.ShowCurrentCellBorderBehavior = Syncfusion.Windows.Forms.Grid.GridShowCurrentCellBorder.HideAlways;
 			this.grdconMap.Size = new System.Drawing.Size(756, 468);
