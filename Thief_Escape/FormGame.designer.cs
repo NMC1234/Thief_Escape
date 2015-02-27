@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
 			this.components = new System.ComponentModel.Container();
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormGame));
 			this.lstOutput = new System.Windows.Forms.ListBox();
 			this.grpMovement = new System.Windows.Forms.GroupBox();
 			this.btnMoveWest = new System.Windows.Forms.Button();
@@ -79,25 +78,25 @@
 			// 
 			// lstOutput
 			// 
-			this.lstOutput.Anchor = System.Windows.Forms.AnchorStyles.None;
 			this.lstOutput.BackColor = System.Drawing.Color.Silver;
 			this.lstOutput.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lstOutput.FormattingEnabled = true;
 			this.lstOutput.ItemHeight = 19;
-			this.lstOutput.Location = new System.Drawing.Point(483, 691);
+			this.lstOutput.Location = new System.Drawing.Point(650, 364);
 			this.lstOutput.Name = "lstOutput";
-			this.lstOutput.Size = new System.Drawing.Size(442, 156);
+			this.lstOutput.Size = new System.Drawing.Size(452, 99);
 			this.lstOutput.TabIndex = 0;
 			// 
 			// grpMovement
 			// 
-			this.grpMovement.Anchor = System.Windows.Forms.AnchorStyles.None;
+			this.grpMovement.BackColor = System.Drawing.Color.Transparent;
 			this.grpMovement.Controls.Add(this.btnMoveWest);
 			this.grpMovement.Controls.Add(this.btnMoveEast);
 			this.grpMovement.Controls.Add(this.btnMoveSouth);
 			this.grpMovement.Controls.Add(this.btnMoveNorth);
 			this.grpMovement.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.grpMovement.Location = new System.Drawing.Point(642, 519);
+			this.grpMovement.ForeColor = System.Drawing.Color.MidnightBlue;
+			this.grpMovement.Location = new System.Drawing.Point(819, 211);
 			this.grpMovement.Name = "grpMovement";
 			this.grpMovement.Size = new System.Drawing.Size(283, 147);
 			this.grpMovement.TabIndex = 1;
@@ -106,58 +105,62 @@
 			// 
 			// btnMoveWest
 			// 
-			this.btnMoveWest.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnMoveWest.BackgroundImage")));
+			this.btnMoveWest.BackColor = System.Drawing.Color.DarkGray;
+			this.btnMoveWest.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btnMoveWest.Location = new System.Drawing.Point(21, 48);
 			this.btnMoveWest.Name = "btnMoveWest";
 			this.btnMoveWest.Size = new System.Drawing.Size(75, 50);
 			this.btnMoveWest.TabIndex = 3;
 			this.btnMoveWest.Text = "West";
-			this.btnMoveWest.UseVisualStyleBackColor = true;
+			this.btnMoveWest.UseVisualStyleBackColor = false;
 			this.btnMoveWest.Click += new System.EventHandler(this.btnMoveWest_Click);
 			// 
 			// btnMoveEast
 			// 
-			this.btnMoveEast.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnMoveEast.BackgroundImage")));
+			this.btnMoveEast.BackColor = System.Drawing.Color.DarkGray;
+			this.btnMoveEast.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btnMoveEast.Location = new System.Drawing.Point(183, 48);
 			this.btnMoveEast.Name = "btnMoveEast";
 			this.btnMoveEast.Size = new System.Drawing.Size(75, 50);
 			this.btnMoveEast.TabIndex = 2;
 			this.btnMoveEast.Text = "East";
-			this.btnMoveEast.UseVisualStyleBackColor = true;
+			this.btnMoveEast.UseVisualStyleBackColor = false;
 			this.btnMoveEast.Click += new System.EventHandler(this.btnMoveEast_Click);
 			// 
 			// btnMoveSouth
 			// 
-			this.btnMoveSouth.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnMoveSouth.BackgroundImage")));
+			this.btnMoveSouth.BackColor = System.Drawing.Color.DarkGray;
+			this.btnMoveSouth.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btnMoveSouth.Location = new System.Drawing.Point(102, 75);
 			this.btnMoveSouth.Name = "btnMoveSouth";
 			this.btnMoveSouth.Size = new System.Drawing.Size(75, 50);
 			this.btnMoveSouth.TabIndex = 1;
 			this.btnMoveSouth.Text = "South";
-			this.btnMoveSouth.UseVisualStyleBackColor = true;
+			this.btnMoveSouth.UseVisualStyleBackColor = false;
 			this.btnMoveSouth.Click += new System.EventHandler(this.btnMoveSouth_Click);
 			// 
 			// btnMoveNorth
 			// 
-			this.btnMoveNorth.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnMoveNorth.BackgroundImage")));
+			this.btnMoveNorth.BackColor = System.Drawing.Color.DarkGray;
+			this.btnMoveNorth.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btnMoveNorth.Location = new System.Drawing.Point(102, 19);
 			this.btnMoveNorth.Name = "btnMoveNorth";
 			this.btnMoveNorth.Size = new System.Drawing.Size(75, 50);
 			this.btnMoveNorth.TabIndex = 0;
 			this.btnMoveNorth.Text = "North";
-			this.btnMoveNorth.UseVisualStyleBackColor = true;
+			this.btnMoveNorth.UseVisualStyleBackColor = false;
 			this.btnMoveNorth.Click += new System.EventHandler(this.btnMoveNorth_Click);
 			// 
 			// grpActions
 			// 
-			this.grpActions.Anchor = System.Windows.Forms.AnchorStyles.None;
 			this.grpActions.Controls.Add(this.btnAction6);
 			this.grpActions.Controls.Add(this.btnAction5);
 			this.grpActions.Controls.Add(this.btnAction4);
 			this.grpActions.Controls.Add(this.btnAction3);
 			this.grpActions.Controls.Add(this.btnAction2);
 			this.grpActions.Controls.Add(this.btnAction1);
-			this.grpActions.Location = new System.Drawing.Point(16, 519);
+			this.grpActions.ForeColor = System.Drawing.Color.MidnightBlue;
+			this.grpActions.Location = new System.Drawing.Point(819, 63);
 			this.grpActions.Name = "grpActions";
 			this.grpActions.Size = new System.Drawing.Size(283, 142);
 			this.grpActions.TabIndex = 2;
@@ -166,119 +169,119 @@
 			// 
 			// btnAction6
 			// 
-			this.btnAction6.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnAction6.BackgroundImage")));
+			this.btnAction6.BackColor = System.Drawing.Color.DarkGray;
 			this.btnAction6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btnAction6.Location = new System.Drawing.Point(184, 75);
 			this.btnAction6.Name = "btnAction6";
 			this.btnAction6.Size = new System.Drawing.Size(74, 50);
 			this.btnAction6.TabIndex = 9;
-			this.btnAction6.Text = "Show Map";
-			this.btnAction6.UseVisualStyleBackColor = true;
+			this.btnAction6.Text = "Action 6";
+			this.btnAction6.UseVisualStyleBackColor = false;
 			this.btnAction6.Click += new System.EventHandler(this.btnAction6_Click);
 			// 
 			// btnAction5
 			// 
-			this.btnAction5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnAction5.BackgroundImage")));
+			this.btnAction5.BackColor = System.Drawing.Color.DarkGray;
 			this.btnAction5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btnAction5.Location = new System.Drawing.Point(103, 75);
 			this.btnAction5.Name = "btnAction5";
 			this.btnAction5.Size = new System.Drawing.Size(74, 50);
 			this.btnAction5.TabIndex = 8;
 			this.btnAction5.Text = "Action 5";
-			this.btnAction5.UseVisualStyleBackColor = true;
+			this.btnAction5.UseVisualStyleBackColor = false;
 			this.btnAction5.Click += new System.EventHandler(this.btnAction5_Click);
 			// 
 			// btnAction4
 			// 
-			this.btnAction4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnAction4.BackgroundImage")));
+			this.btnAction4.BackColor = System.Drawing.Color.DarkGray;
 			this.btnAction4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btnAction4.Location = new System.Drawing.Point(22, 75);
 			this.btnAction4.Name = "btnAction4";
 			this.btnAction4.Size = new System.Drawing.Size(74, 50);
 			this.btnAction4.TabIndex = 7;
 			this.btnAction4.Text = "Action 4";
-			this.btnAction4.UseVisualStyleBackColor = true;
+			this.btnAction4.UseVisualStyleBackColor = false;
 			this.btnAction4.Click += new System.EventHandler(this.btnAction4_Click);
 			// 
 			// btnAction3
 			// 
-			this.btnAction3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnAction3.BackgroundImage")));
+			this.btnAction3.BackColor = System.Drawing.Color.DarkGray;
 			this.btnAction3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btnAction3.Location = new System.Drawing.Point(184, 19);
 			this.btnAction3.Name = "btnAction3";
 			this.btnAction3.Size = new System.Drawing.Size(74, 50);
 			this.btnAction3.TabIndex = 6;
 			this.btnAction3.Text = "Action 3";
-			this.btnAction3.UseVisualStyleBackColor = true;
+			this.btnAction3.UseVisualStyleBackColor = false;
 			this.btnAction3.Click += new System.EventHandler(this.btnAction3_Click);
 			// 
 			// btnAction2
 			// 
-			this.btnAction2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnAction2.BackgroundImage")));
+			this.btnAction2.BackColor = System.Drawing.Color.DarkGray;
 			this.btnAction2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btnAction2.Location = new System.Drawing.Point(103, 19);
 			this.btnAction2.Name = "btnAction2";
 			this.btnAction2.Size = new System.Drawing.Size(74, 50);
 			this.btnAction2.TabIndex = 5;
 			this.btnAction2.Text = "Action 2";
-			this.btnAction2.UseVisualStyleBackColor = true;
+			this.btnAction2.UseVisualStyleBackColor = false;
 			this.btnAction2.Click += new System.EventHandler(this.btnAction2_Click);
 			// 
 			// btnAction1
 			// 
-			this.btnAction1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnAction1.BackgroundImage")));
+			this.btnAction1.BackColor = System.Drawing.Color.DarkGray;
 			this.btnAction1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btnAction1.Location = new System.Drawing.Point(22, 19);
 			this.btnAction1.Name = "btnAction1";
 			this.btnAction1.Size = new System.Drawing.Size(74, 50);
 			this.btnAction1.TabIndex = 4;
 			this.btnAction1.Text = "Action 1";
-			this.btnAction1.UseVisualStyleBackColor = true;
+			this.btnAction1.UseVisualStyleBackColor = false;
 			this.btnAction1.Click += new System.EventHandler(this.btnAction1_Click);
 			// 
 			// btnMainMenu
 			// 
-			this.btnMainMenu.Anchor = System.Windows.Forms.AnchorStyles.None;
-			this.btnMainMenu.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnMainMenu.BackgroundImage")));
+			this.btnMainMenu.BackColor = System.Drawing.Color.DarkGray;
 			this.btnMainMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnMainMenu.Location = new System.Drawing.Point(436, 533);
+			this.btnMainMenu.ForeColor = System.Drawing.Color.MidnightBlue;
+			this.btnMainMenu.Location = new System.Drawing.Point(844, 7);
 			this.btnMainMenu.Name = "btnMainMenu";
 			this.btnMainMenu.Size = new System.Drawing.Size(82, 50);
 			this.btnMainMenu.TabIndex = 4;
 			this.btnMainMenu.Text = "Main Menu";
-			this.btnMainMenu.UseVisualStyleBackColor = true;
+			this.btnMainMenu.UseVisualStyleBackColor = false;
 			this.btnMainMenu.Click += new System.EventHandler(this.btnMainMenu_Click);
 			this.btnMainMenu.MouseLeave += new System.EventHandler(this.btnMainMenu_MouseLeave);
 			this.btnMainMenu.MouseHover += new System.EventHandler(this.btnMainMenu_MouseHover);
 			// 
 			// btnSaveGame
 			// 
-			this.btnSaveGame.Anchor = System.Windows.Forms.AnchorStyles.None;
-			this.btnSaveGame.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnSaveGame.BackgroundImage")));
+			this.btnSaveGame.BackColor = System.Drawing.Color.DarkGray;
 			this.btnSaveGame.Cursor = System.Windows.Forms.Cursors.No;
 			this.btnSaveGame.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnSaveGame.Location = new System.Drawing.Point(395, 589);
+			this.btnSaveGame.ForeColor = System.Drawing.Color.MidnightBlue;
+			this.btnSaveGame.Location = new System.Drawing.Point(932, 7);
 			this.btnSaveGame.Name = "btnSaveGame";
 			this.btnSaveGame.Size = new System.Drawing.Size(82, 50);
 			this.btnSaveGame.TabIndex = 5;
 			this.btnSaveGame.Text = "Save Game";
-			this.btnSaveGame.UseVisualStyleBackColor = true;
+			this.btnSaveGame.UseVisualStyleBackColor = false;
 			this.btnSaveGame.Click += new System.EventHandler(this.btnSaveGame_Click);
 			this.btnSaveGame.MouseLeave += new System.EventHandler(this.btnSaveGame_MouseLeave);
 			this.btnSaveGame.MouseHover += new System.EventHandler(this.btnSaveGame_MouseHover);
 			// 
 			// btnLoadGame
 			// 
-			this.btnLoadGame.Anchor = System.Windows.Forms.AnchorStyles.None;
-			this.btnLoadGame.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnLoadGame.BackgroundImage")));
+			this.btnLoadGame.BackColor = System.Drawing.Color.DarkGray;
 			this.btnLoadGame.Cursor = System.Windows.Forms.Cursors.No;
 			this.btnLoadGame.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnLoadGame.Location = new System.Drawing.Point(483, 589);
+			this.btnLoadGame.ForeColor = System.Drawing.Color.MidnightBlue;
+			this.btnLoadGame.Location = new System.Drawing.Point(1020, 7);
 			this.btnLoadGame.Name = "btnLoadGame";
 			this.btnLoadGame.Size = new System.Drawing.Size(82, 50);
 			this.btnLoadGame.TabIndex = 6;
 			this.btnLoadGame.Text = "Load Game";
-			this.btnLoadGame.UseVisualStyleBackColor = true;
+			this.btnLoadGame.UseVisualStyleBackColor = false;
 			this.btnLoadGame.Click += new System.EventHandler(this.btnLoadGame_Click);
 			this.btnLoadGame.MouseLeave += new System.EventHandler(this.btnLoadGame_MouseLeave);
 			this.btnLoadGame.MouseHover += new System.EventHandler(this.btnLoadGame_MouseHover);
@@ -287,7 +290,7 @@
 			// 
 			this.lblMenuHover.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.lblMenuHover.AutoSize = true;
-			this.lblMenuHover.Location = new System.Drawing.Point(703, 65);
+			this.lblMenuHover.Location = new System.Drawing.Point(880, 65);
 			this.lblMenuHover.Name = "lblMenuHover";
 			this.lblMenuHover.Size = new System.Drawing.Size(0, 13);
 			this.lblMenuHover.TabIndex = 7;
@@ -296,7 +299,8 @@
 			// 
 			this.label1.AutoSize = true;
 			this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label1.Location = new System.Drawing.Point(480, 664);
+			this.label1.ForeColor = System.Drawing.Color.Black;
+			this.label1.Location = new System.Drawing.Point(650, 337);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(143, 24);
 			this.label1.TabIndex = 8;
@@ -308,16 +312,17 @@
 			this.lstDialog.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lstDialog.FormattingEnabled = true;
 			this.lstDialog.ItemHeight = 19;
-			this.lstDialog.Location = new System.Drawing.Point(12, 691);
+			this.lstDialog.Location = new System.Drawing.Point(650, 493);
 			this.lstDialog.Name = "lstDialog";
-			this.lstDialog.Size = new System.Drawing.Size(441, 156);
+			this.lstDialog.Size = new System.Drawing.Size(452, 156);
 			this.lstDialog.TabIndex = 9;
 			// 
 			// lblDialog
 			// 
 			this.lblDialog.AutoSize = true;
 			this.lblDialog.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lblDialog.Location = new System.Drawing.Point(12, 664);
+			this.lblDialog.ForeColor = System.Drawing.Color.Black;
+			this.lblDialog.Location = new System.Drawing.Point(650, 466);
 			this.lblDialog.Name = "lblDialog";
 			this.lblDialog.Size = new System.Drawing.Size(63, 24);
 			this.lblDialog.TabIndex = 10;
@@ -343,8 +348,8 @@
 			this.grpboxLegend.Controls.Add(this.txtFloors);
 			this.grpboxLegend.Controls.Add(this.lblWall);
 			this.grpboxLegend.Controls.Add(this.txtWalls);
-			this.grpboxLegend.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-			this.grpboxLegend.Location = new System.Drawing.Point(797, 12);
+			this.grpboxLegend.ForeColor = System.Drawing.Color.MidnightBlue;
+			this.grpboxLegend.Location = new System.Drawing.Point(650, 12);
 			this.grpboxLegend.Name = "grpboxLegend";
 			this.grpboxLegend.Size = new System.Drawing.Size(128, 252);
 			this.grpboxLegend.TabIndex = 13;
@@ -520,10 +525,10 @@
 			this.grdconMap.AllowSelection = Syncfusion.Windows.Forms.Grid.GridSelectionFlags.None;
 			this.grdconMap.BackColor = System.Drawing.Color.Black;
 			this.grdconMap.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-			this.grdconMap.ColCount = 20;
-			this.grdconMap.DefaultColWidth = 30;
+			this.grdconMap.ColCount = 24;
+			this.grdconMap.DefaultColWidth = 26;
 			this.grdconMap.DefaultGridBorderStyle = Syncfusion.Windows.Forms.Grid.GridBorderStyle.Solid;
-			this.grdconMap.DefaultRowHeight = 30;
+			this.grdconMap.DefaultRowHeight = 26;
 			this.grdconMap.DrawOrder = Syncfusion.Windows.Forms.Grid.GridDrawOrder.Columns;
 			this.grdconMap.EnterKeyBehavior = Syncfusion.Windows.Forms.Grid.GridDirectionType.None;
 			this.grdconMap.HorizontalThumbTrack = true;
@@ -542,10 +547,10 @@
 			this.grdconMap.Properties.RowHeaders = false;
 			this.grdconMap.ResizeColsBehavior = Syncfusion.Windows.Forms.Grid.GridResizeCellsBehavior.None;
 			this.grdconMap.ResizeRowsBehavior = Syncfusion.Windows.Forms.Grid.GridResizeCellsBehavior.None;
-			this.grdconMap.RowCount = 18;
+			this.grdconMap.RowCount = 24;
 			this.grdconMap.SerializeCellsBehavior = Syncfusion.Windows.Forms.Grid.GridSerializeCellsBehavior.SerializeAsRangeStylesIntoCode;
 			this.grdconMap.ShowCurrentCellBorderBehavior = Syncfusion.Windows.Forms.Grid.GridShowCurrentCellBorder.HideAlways;
-			this.grdconMap.Size = new System.Drawing.Size(756, 468);
+			this.grdconMap.Size = new System.Drawing.Size(632, 638);
 			this.grdconMap.SmartSizeBox = false;
 			this.grdconMap.SpreadsheetLikeSelection = false;
 			this.grdconMap.TabIndex = 12;
@@ -564,8 +569,8 @@
 			// 
 			this.AcceptButton = this.btnLoadGame;
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.BackColor = System.Drawing.Color.Black;
-			this.ClientSize = new System.Drawing.Size(937, 859);
+			this.BackColor = System.Drawing.Color.OliveDrab;
+			this.ClientSize = new System.Drawing.Size(1114, 663);
 			this.Controls.Add(this.grpboxLegend);
 			this.Controls.Add(this.grdconMap);
 			this.Controls.Add(this.lblDialog);

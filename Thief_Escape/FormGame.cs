@@ -124,7 +124,7 @@ namespace Thief_Escape
 			);
 
 			//Remake Fog of war on movement
-			FogOfWar( );
+			FogOfWar(Direction.NORTH);
 
 			//Check new movements
 			CheckMovement(player.CurrentCellX, player.CurrentCellY);
@@ -159,7 +159,7 @@ namespace Thief_Escape
 			);
 
 			//Remake Fog of war on movement
-			FogOfWar( );
+			FogOfWar(Direction.WEST);
 
 			//Check new movements
 			CheckMovement(player.CurrentCellX, player.CurrentCellY);
@@ -194,7 +194,7 @@ namespace Thief_Escape
 			);
 
 			//Remake Fog of war on movement
-			FogOfWar( );
+			FogOfWar(Direction.EAST);
 
 			//Check new movements
 			CheckMovement(player.CurrentCellX, player.CurrentCellY);
@@ -229,7 +229,7 @@ namespace Thief_Escape
 			);
 
 			//Remake Fog of war on movement
-			FogOfWar( );
+			FogOfWar(Direction.SOUTH);
 
 			//Check new movements
 			CheckMovement(player.CurrentCellX, player.CurrentCellY);
@@ -521,7 +521,7 @@ namespace Thief_Escape
 
 		//-----------------------------------------------------------------------------------------------------
 
-		public void FogOfWar()
+		public void FogOfWar(Direction direction)
 		{
 			//Image to apply to cells within fog of war
 			Image blackoutImage = Image.FromFile("CellBlackoutImage.png");
@@ -536,8 +536,8 @@ namespace Thief_Escape
 					grdconMap[y, x].BackgroundImage = blackoutImage;
 				}
 
-
 			}
+
 
 
 			//Removes blackout for cells player can see
@@ -569,6 +569,9 @@ namespace Thief_Escape
 			#endregion
 
 
+			//unused code for blacking out only specific area
+			//May be moddified and used later
+			//we will see
 
 			//#region [Blackout]
 			////Black out to right and down from upper-right corner of viewable area
