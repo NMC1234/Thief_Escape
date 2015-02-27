@@ -620,6 +620,8 @@ namespace Thief_Escape
 			Image blackoutImage = Image.FromFile("CellBlackoutImage.png");
 			Image wallImage = Image.FromFile("CellWallImage.png");
 
+
+			//Version 1 of Fog of War
 			////loop to blackout all cells before a portion is removed by remove blackout
 			//for(int x = 1; x < (mapCells.MapSize + 1); x++)
 			//{

@@ -29,7 +29,9 @@ namespace Thief_Escape
 {
 
 	//Class specific Enums
+	//-----------------------------------------------------------------------------------------------------
 	#region [ Enums ]
+	//-----------------------------------------------------------------------------------------------------
 	//Various base cell types
 	//-----------------------------------------------------------------------------------------------------
 	public enum CellType
@@ -104,12 +106,24 @@ namespace Thief_Escape
 		GENERIC
 	}
 
+	//the different item types
+	//-----------------------------------------------------------------------------------------------------
+	public enum ItemType
+	{
+		AVAILABLE,
+		PICKEDUP,
+		GENERIC
+	}
+
 	//-----------------------------------------------------------------------------------------------------
 	#endregion
+	//-----------------------------------------------------------------------------------------------------
 
 	class Cell
 	{
+		//-----------------------------------------------------------------------------------------------------
 		#region [ Fields ]
+		//-----------------------------------------------------------------------------------------------------
 		//Internal Cell type variables
 		private CellType _cell;
 		private WallType _wall;
@@ -118,16 +132,37 @@ namespace Thief_Escape
 		private StairsType _stairs;
 		private KeyType _key;
 		private KittenType _kitten;
+		private ItemType _itemType;
 		private bool _startingCell;
 		private bool _isBejeweledKitten;
 		private bool _isKey;
+		private bool _hasItem;
+		private Item _item;
 
+		//-----------------------------------------------------------------------------------------------------
 		#endregion
+		//-----------------------------------------------------------------------------------------------------
 
-
+		//-----------------------------------------------------------------------------------------------------
 		#region [ Properties ]
+		//-----------------------------------------------------------------------------------------------------
 		// Get and Set for cell object properties
 		//-----------------------------------------------------------------------------------------------------
+		public Item GetItem
+		{
+			get { return _item; }
+			set { }
+		}
+
+		//-----------------------------------------------------------------------------------------------------
+
+		public ItemType WhatIsItemType
+		{
+			get { return _itemType; }
+			set { }
+		}
+
+
 		public CellType WhatIsCellType
 		{
 			get { return _cell; }
@@ -174,15 +209,15 @@ namespace Thief_Escape
 			//no external set must be set through ceate methods
 			set { }
 		}
-		//-----------------------------------------------------------------------------------------------------
 
+		//-----------------------------------------------------------------------------------------------------
 		public KittenType WhatIsKittenType
 		{
 			get { return _kitten; }
 			set { }
 		}
-		//-----------------------------------------------------------------------------------------------------
 
+		//-----------------------------------------------------------------------------------------------------
 		public bool IsStartingCell
 		{
 			get { return _startingCell; }
@@ -190,39 +225,65 @@ namespace Thief_Escape
 			set { }
 		}
 
+		//-----------------------------------------------------------------------------------------------------
 		public bool IsBejeweledKitten
 		{
 			get { return _isBejeweledKitten; }
 			set { }
 		}
 
+		//-----------------------------------------------------------------------------------------------------
 		public bool IsKey
 		{
 			get { return _isKey; }
 			set { }
 		}
 
+		//-----------------------------------------------------------------------------------------------------
+		public bool HasItem
+		{
+			get { return _hasItem; }
+			set { }
+		}
+
+		//-----------------------------------------------------------------------------------------------------
 		#endregion
+		//-----------------------------------------------------------------------------------------------------
 
-
+		//-----------------------------------------------------------------------------------------------------
 		#region [ Constructors ]
 		//Default Constructor
-		public Cell()
+		//-----------------------------------------------------------------------------------------------------
+		public Cell( )
 		{
 			_startingCell = false;
 			_isBejeweledKitten = false;
 		}
 
+		//-----------------------------------------------------------------------------------------------------
 		#endregion
+		//-----------------------------------------------------------------------------------------------------
 
-	
+		//-----------------------------------------------------------------------------------------------------
 		#region  [ Methods ]
+		//-----------------------------------------------------------------------------------------------------
 		//External acessable methods to set the type of cell in the map array
 		//Sets current cell as starting Cell
 		//Method to set cell object as starting cell
+		//-----------------------------------------------------------------------------------------------------
+
+		public void CreateItem(Item item)
+		{
+			_cell = CellType.FLOOR;
+			_floor = FloorType.FLOORITEM;
+			_itemType = ItemType.AVAILABLE;
+			_hasItem = true;
+			_item = item;
+
+		}
 		public void SetStartingCell(bool startCell)
 		{
-			if(startCell) 
+			if(startCell)
 			{
 				_startingCell = true;
 			}
@@ -238,12 +299,12 @@ namespace Thief_Escape
 				_cell = CellType.FLOOR;
 				_floor = FloorType.FLOORGENERAL;
 			}
-			else if(floorType == FloorType.FLOORITEM) 
+			else if(floorType == FloorType.FLOORITEM)
 			{
 				_cell = CellType.FLOOR;
 				_floor = FloorType.FLOORITEM;
 			}
-			else if(floorType == FloorType.FLOORSECRET) 
+			else if(floorType == FloorType.FLOORSECRET)
 			{
 				_cell = CellType.FLOOR;
 				_floor = FloorType.FLOORSECRET;
@@ -256,17 +317,17 @@ namespace Thief_Escape
 		public void CreateWall(WallType wallType)
 		{
 
-			if(wallType == WallType.WALLGENERAL) 
+			if(wallType == WallType.WALLGENERAL)
 			{
 				_cell = CellType.WALL;
 				_wall = WallType.WALLGENERAL;
 			}
-			else if(wallType == WallType.WALLITEM) 
+			else if(wallType == WallType.WALLITEM)
 			{
 				_cell = CellType.WALL;
 				_wall = WallType.WALLITEM;
 			}
-			else if(wallType == WallType.WALLSECRET) 
+			else if(wallType == WallType.WALLSECRET)
 			{
 				_cell = CellType.WALL;
 				_wall = WallType.WALLSECRET;
@@ -279,12 +340,12 @@ namespace Thief_Escape
 		public void CreateDoor(DoorType doorType)
 		{
 
-			if(doorType == DoorType.DOORLOCKED) 
+			if(doorType == DoorType.DOORLOCKED)
 			{
 				_cell = CellType.DOOR;
 				_door = DoorType.DOORLOCKED;
 			}
-			else if(doorType == DoorType.DOORUNLOCKED) 
+			else if(doorType == DoorType.DOORUNLOCKED)
 			{
 				_cell = CellType.DOOR;
 				_door = DoorType.DOORUNLOCKED;
@@ -296,12 +357,12 @@ namespace Thief_Escape
 		//-----------------------------------------------------------------------------------------------------
 		public void CreateStairs(StairsType stairsType)
 		{
-			if(stairsType == StairsType.STAIRSUP) 
+			if(stairsType == StairsType.STAIRSUP)
 			{
 				_cell = CellType.STAIRS;
 				_stairs = StairsType.STAIRSUP;
 			}
-			else if(stairsType == StairsType.STAIRSDOWN) 
+			else if(stairsType == StairsType.STAIRSDOWN)
 			{
 				_cell = CellType.STAIRS;
 				_stairs = StairsType.STAIRSDOWN;
@@ -320,23 +381,30 @@ namespace Thief_Escape
 				_key = KeyType.AVAILABLE;
 				_isKey = true;
 			}
-				
+
 		}
 
+		//-----------------------------------------------------------------------------------------------------
 		public void PickUpKey( )
 		{
 			_key = KeyType.PICKEDUP;
 		}
 
+		public void PickUpItem( )
+		{
+			_itemType = ItemType.PICKEDUP;
+		}
+
 		//Sets current cell object as bejeweled kitten
 		//-----------------------------------------------------------------------------------------------------
-		public void CreateBejeweledKitten()
+		public void CreateBejeweledKitten( )
 		{
 			_cell = CellType.BEJEWELEDKITTEN;
 			_kitten = KittenType.AVAILABLE;
 			_isBejeweledKitten = true;
 		}
 
+		//-----------------------------------------------------------------------------------------------------
 		public void PickUpKitten( )
 		{
 			_kitten = KittenType.PICKEDUP;
@@ -344,6 +412,7 @@ namespace Thief_Escape
 
 		//-----------------------------------------------------------------------------------------------------
 		#endregion
+		//-----------------------------------------------------------------------------------------------------
 
 	}
 
