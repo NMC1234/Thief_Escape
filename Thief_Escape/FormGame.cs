@@ -616,18 +616,62 @@ namespace Thief_Escape
 		//-----------------------------------------------------------------------------------------------------
 		public void FogOfWar(Direction direction)
 		{
-			//Image to apply to cells within fog of war
+			//Image to apply to cells outside fog of war
 			Image blackoutImage = Image.FromFile("CellBlackoutImage.png");
 			Image wallImage = Image.FromFile("CellWallImage.png");
 
-			//loop to blackout all cells before a portion is removed by remove blackout
-			for(int x = 1; x < (mapCells.MapSize + 1); x++)
+			////loop to blackout all cells before a portion is removed by remove blackout
+			//for(int x = 1; x < (mapCells.MapSize + 1); x++)
+			//{
+			//	for(int y = 1; y < (mapCells.MapSize + 1); y++)
+			//	{
+			//		grdconMap[y, x].BackgroundImage = blackoutImage;
+			//	}
+
+			//}
+
+
+			//Version 2 of Fog of War
+			//For loops backout all surrounding cells outside of viewable area
+			for(int x = 1; x < (player.CurrentCellX - 1); x++)
+			{
+				for(int y = 1; y < (player.CurrentCellY - 1); y++)
+				{
+					grdconMap[y, x].BackgroundImage = blackoutImage;
+				}
+				
+			}
+
+			for(int x = (player.CurrentCellX + 4); x < (mapCells.MapSize + 1); x++)
 			{
 				for(int y = 1; y < (mapCells.MapSize + 1); y++)
 				{
 					grdconMap[y, x].BackgroundImage = blackoutImage;
 				}
+			}
 
+			for(int x = 1; x < (mapCells.MapSize + 1); x++)
+			{
+				for(int y = (player.CurrentCellY + 4); y < (mapCells.MapSize + 1); y++)
+				{
+					grdconMap[y, x].BackgroundImage = blackoutImage;
+				}
+			}
+
+			for(int x = 1; x < (player.CurrentCellX - 1); x++)
+			{
+				for(int y = (player.CurrentCellY - 1); y < (mapCells.MapSize + 1); y++)
+				{
+					grdconMap[y, x].BackgroundImage = blackoutImage;
+				}
+			}
+
+			for(int x = 1; x < (player.CurrentCellX + 4); x++)
+			{
+				for(int y = 1; y < (player.CurrentCellY - 1); y++)
+				{
+					grdconMap[y, x].BackgroundImage = blackoutImage;
+				}
 			}
 
 			//Removes blackout for cells player can see
@@ -659,10 +703,8 @@ namespace Thief_Escape
 
 		//-----------------------------------------------------------------------------------------------------
 		#region [ Blink Current Cell]
-		//-----------------------------------------------------------------------------------------------------
-
+	
 		//The tick event function for the tmrCellBlink timer
-		//-----------------------------------------------------------------------------------------------------
 		private void tmrCellBlink_Tick(object sender, EventArgs e)
 		{
 			//for each tick count gets increased
@@ -670,11 +712,11 @@ namespace Thief_Escape
 			//if counter is even or odd
 			counter++;
 
-			if((counter % 2) == 0)
+			if((counter % 2) != 0)
 			{
 				BlinkCurrentCellBack( );
 			}
-			if((counter % 2) != 0)
+			if((counter % 2) == 0)
 			{
 				BlinkCurrentCell( );
 
@@ -691,7 +733,6 @@ namespace Thief_Escape
 		}
 
 		//when counter is even this method is called
-		//-----------------------------------------------------------------------------------------------------
 		public void BlinkCurrentCellBack( )
 		{
 
@@ -699,15 +740,10 @@ namespace Thief_Escape
 
 		}
 
-		//-----------------------------------------------------------------------------------------------------
 		#endregion
-		//-----------------------------------------------------------------------------------------------------
-
-		//-----------------------------------------------------------------------------------------------------
+	
 		#endregion
-		//-----------------------------------------------------------------------------------------------------
 
-		//-----------------------------------------------------------------------------------------------------
 		#endregion
 		
 
