@@ -42,7 +42,7 @@ namespace Thief_Escape
 		//-----------------------------------------------------------------------------------------------------
 		public FormGame(string playername)
 		{
-			InitializeComponent();
+			InitializeComponent( );
 
 			//Change the player name
 			name = playername;
@@ -50,10 +50,10 @@ namespace Thief_Escape
 
 		//Default constructor
 		//-----------------------------------------------------------------------------------------------------
-		public FormGame()
+		public FormGame( )
 		{
 			// TODO: Complete member initialization
-			InitializeComponent();
+			InitializeComponent( );
 		}
 		//-----------------------------------------------------------------------------------------------------
 		#endregion
@@ -72,15 +72,15 @@ namespace Thief_Escape
 
 			//Call various mapCell creation methods here
 			//method call that Creates the structure of the grid of cell object
-			mapCells.CreateTestGridBig();
+			mapCells.CreateTestGridBig( );
 
 			//make the image map grid
-			CreateTestMapBig();
+			CreateTestMapBig( );
 
 			//Make the player
 			//uncomment when the get of the player name is implimented
 			//player = new Player(name);
-			player = new Player();
+			player = new Player( );
 
 			//Sets the first starting point by asking the grid for it's preset,
 			//by array creation method
@@ -90,10 +90,10 @@ namespace Thief_Escape
 			CheckMovement(player.CurrentCellX, player.CurrentCellY);
 
 			//Initial Fog of war
-			FogOfWar( );
+			FogOfWar(Direction.generic);
 
 			//Output initial prompt
-			InitalPrompt();
+			InitalPrompt( );
 
 			//Output information about surrounding tiles
 			OutputAroundPlayer(false);
@@ -255,7 +255,6 @@ namespace Thief_Escape
 		#endregion
 		//-----------------------------------------------------------------------------------------------------
 
-		//-----------------------------------------------------------------------------------------------------
 
 		//This method outputs the types of the 4 cells surrounding the current cell
 		//-----------------------------------------------------------------------------------------------------
@@ -268,68 +267,81 @@ namespace Thief_Escape
 			//Check for Northern Movement
 			if(currentY - 1 < mapCells.MapSize
 			&& (mapCells.GetCellType(currentX, currentY - 1)
-			== (CellType.Floor))) {
+			== (CellType.Floor)))
+			{
 				btnMoveNorth.Enabled = true;
 			}
 			else if(currentY - 1 < mapCells.MapSize
 			&& (mapCells.GetDoorType(currentX, currentY - 1)
-			== (DoorType.DoorUnlocked))) {
+			== (DoorType.DoorUnlocked)))
+			{
 				btnMoveNorth.Enabled = true;
 			}
-			else {
+			else
+			{
 				btnMoveNorth.Enabled = false;
 			}
 
 			//Check for Southern Movement
 			if(currentY + 1 < mapCells.MapSize
 			&& (mapCells.GetCellType(currentX, currentY + 1)
-			== CellType.Floor)) {
+			== CellType.Floor))
+			{
 				btnMoveSouth.Enabled = true;
 			}
 			else if(currentY + 1 < mapCells.MapSize
 			&& (mapCells.GetDoorType(currentX, currentY + 1)
-			== DoorType.DoorUnlocked)) {
+			== DoorType.DoorUnlocked))
+			{
 				btnMoveSouth.Enabled = true;
 			}
-			else {
+			else
+			{
 				btnMoveSouth.Enabled = false;
 			}
 
 			//Check for Western Movement
 			if(currentX - 1 < mapCells.MapSize
 			&& (mapCells.GetCellType(currentX - 1, currentY)
-			== CellType.Floor)) {
+			== CellType.Floor))
+			{
 				btnMoveWest.Enabled = true;
 			}
 			else if(currentX - 1 < mapCells.MapSize
 			&& (mapCells.GetDoorType(currentX - 1, currentY)
-			== DoorType.DoorUnlocked)) {
+			== DoorType.DoorUnlocked))
+			{
 				btnMoveWest.Enabled = true;
 			}
-			else {
+			else
+			{
 				btnMoveWest.Enabled = false;
 			}
 
 			//Check for Eastern Movement
 			if(currentX + 1 < mapCells.MapSize
 			&& (mapCells.GetCellType(currentX + 1, currentY)
-			== CellType.Floor)) {
+			== CellType.Floor))
+			{
 				btnMoveEast.Enabled = true;
 			}
 			else if(currentX + 1 < mapCells.MapSize
 			&& (mapCells.GetDoorType(currentX + 1, currentY)
-			== DoorType.DoorUnlocked)) {
+			== DoorType.DoorUnlocked))
+			{
 				btnMoveEast.Enabled = true;
 			}
-			else {
+			else
+			{
 				btnMoveEast.Enabled = false;
 			}
 		}
 
+		//-----------------------------------------------------------------------------------------------------
 		public void OutputAroundPlayer(bool clear)
 		{
 			if(clear)
-				lstOutput.Items.Clear();
+				lstOutput.Items.Clear( );
 
 			Surroundings(player.CurrentCellX, player.CurrentCellY, Direction.NORTH);
 			Surroundings(player.CurrentCellX, player.CurrentCellY, Direction.SOUTH);
@@ -363,7 +375,8 @@ namespace Thief_Escape
 			//Uses reverse of next cell math to pull previous cell properties
 			//Then checks if it's a door, stairs, etc.
 			//and gets it's respective type
-			switch(direction) {
+			switch(direction)
+			{
 
 				case Direction.NORTH:
 					//get previous cell's type
@@ -372,11 +385,13 @@ namespace Thief_Escape
 					IsStartingCell = mapCells.IsStartingCell(player.CurrentCellX, (player.CurrentCellY + 1));
 
 					//check if in fact door celltype and if so save door type
-					if(cell == CellType.Door) {
+					if(cell == CellType.Door)
+					{
 						door = mapCells.GetDoorType(player.CurrentCellX, (player.CurrentCellY + 1));
 					}
 					//check if in fact stairs celltype and if so save stairs type
-					else if(cell == CellType.Stairs) {
+					else if(cell == CellType.Stairs)
+					{
 						stairs = mapCells.GetStairsType(player.CurrentCellX, (player.CurrentCellY + 1));
 					}
 					break;
@@ -388,11 +403,13 @@ namespace Thief_Escape
 					IsStartingCell = mapCells.IsStartingCell(player.CurrentCellX, (player.CurrentCellY - 1));
 
 					//check if in fact door celltype and if so save door type
-					if(cell == CellType.Door) {
+					if(cell == CellType.Door)
+					{
 						door = mapCells.GetDoorType(player.CurrentCellX, (player.CurrentCellY - 1));
 					}
 					//check if in fact stairs celltype and if so save stairs type
-					else if(cell == CellType.Stairs) {
+					else if(cell == CellType.Stairs)
+					{
 						stairs = mapCells.GetStairsType(player.CurrentCellX, (player.CurrentCellY - 1));
 					}
 					break;
@@ -404,11 +421,13 @@ namespace Thief_Escape
 					IsStartingCell = mapCells.IsStartingCell((player.CurrentCellX - 1), player.CurrentCellY);
 
 					//check if in fact door celltype and if so save door type
-					if(cell == CellType.Door) {
+					if(cell == CellType.Door)
+					{
 						door = mapCells.GetDoorType((player.CurrentCellX - 1), player.CurrentCellY);
 					}
 					//check if in fact stairs celltype and if so save stairs type
-					else if(cell == CellType.Stairs) {
+					else if(cell == CellType.Stairs)
+					{
 						stairs = mapCells.GetStairsType((player.CurrentCellX - 1), player.CurrentCellY);
 					}
 					break;
@@ -420,11 +439,13 @@ namespace Thief_Escape
 					IsStartingCell = mapCells.IsStartingCell((player.CurrentCellX + 1), player.CurrentCellY);
 
 					//check if in fact door celltype and if so save door type
-					if(cell == CellType.Door) {
+					if(cell == CellType.Door)
+					{
 						door = mapCells.GetDoorType((player.CurrentCellX + 1), player.CurrentCellY);
 					}
 					//check if in fact stairs celltype and if so save stairs type
-					else if(cell == CellType.Stairs) {
+					else if(cell == CellType.Stairs)
+					{
 						stairs = mapCells.GetStairsType((player.CurrentCellX + 1), player.CurrentCellY);
 					}
 					break;
@@ -436,11 +457,14 @@ namespace Thief_Escape
 			//Switch statement to select color based on previous cell type
 			//Initial if-else statement to weed out the starting cell
 			//Will need to be expanded to handle other floor and wall types.
-			if(IsStartingCell) {
+			if(IsStartingCell)
+			{
 				color = Color.DarkGreen;
 			}
-			else {
-				switch(cell) {
+			else
+			{
+				switch(cell)
+				{
 
 					case CellType.Floor:
 						color = Color.White;
@@ -491,7 +515,8 @@ namespace Thief_Escape
 			grdconMap[y, x].BackColor = Color.Orange;
 
 			//Switch statement to change back previous current cell's color to default
-			switch(direction) {
+			switch(direction)
+			{
 
 				case Direction.NORTH:
 					//set previous current cell with correct color
@@ -519,14 +544,13 @@ namespace Thief_Escape
 
 		}
 
-		//-----------------------------------------------------------------------------------------------------
 
+		//-----------------------------------------------------------------------------------------------------
 		public void FogOfWar(Direction direction)
 		{
 			//Image to apply to cells within fog of war
 			Image blackoutImage = Image.FromFile("CellBlackoutImage.png");
 			Image wallImage = Image.FromFile("CellWallImage.png");
-
 
 			//loop to blackout all cells before a portion is removed by remove blackout
 			for(int x = 1; x < (mapCells.MapSize + 1); x++)
@@ -538,10 +562,7 @@ namespace Thief_Escape
 
 			}
 
-
-
 			//Removes blackout for cells player can see
-			#region [Remove Blackout]
 
 			//pair of loops that will remove blackout for viewable area
 			for(int x = (player.CurrentCellX - 1); x < (player.CurrentCellX + 4); x++)
@@ -565,63 +586,6 @@ namespace Thief_Escape
 				}
 			}
 
-
-			#endregion
-
-
-			//unused code for blacking out only specific area
-			//May be moddified and used later
-			//we will see
-
-			//#region [Blackout]
-			////Black out to right and down from upper-right corner of viewable area
-			//for(int x = (player.CurrentCellX + 4); x < (mapCells.MapSize + 1); x++)
-			//{
-
-			//	for(int y = (player.CurrentCellY); y < (mapCells.MapSize + 1); y++)
-			//	{
-			//		grdconMap[y, x].BackgroundImage = blackoutImage;
-			//	}
-
-			//}
-
-			////Black out to down and right from lower-right corner of viewable area
-			//for(int y = (player.CurrentCellX + 4); y < (mapCells.MapSize + 1); y++)
-			//{
-
-			//	for(int x = (player.CurrentCellY); x < (mapCells.MapSize + 1); x++)
-			//	{
-			//		grdconMap[y, x].BackgroundImage = blackoutImage;
-			//	}
-
-			//}
-
-			////Black out left and down from upper-left corner of viewable area
-			//for(int x = (player.CurrentCellX - 4); x >= 0; x--)
-			//{
-
-			//	for(int y = (player.CurrentCellY); y >= 0; y--)
-			//	{
-			//		grdconMap[y, x].BackgroundImage = blackoutImage;
-			//	}
-
-			//}
-
-			////Black out down and left from lower-left corner of viewable area
-			//for(int y = (player.CurrentCellX - 4); y >= 0; y--)
-			//{
-
-			//	for(int x = (player.CurrentCellY); x >= 0; x--)
-			//	{
-			//		grdconMap[y, x].BackgroundImage = blackoutImage;
-			//	}
-
-			//}
-			//#endregion
-
-
-
-
 		}
 
 		//-----------------------------------------------------------------------------------------------------
@@ -637,18 +601,20 @@ namespace Thief_Escape
 			//if counter is even or odd
 			counter++;
 
-			if((counter % 2) == 0) {
-				BlinkCurrentCellBack();
+			if((counter % 2) == 0)
+			{
+				BlinkCurrentCellBack( );
 			}
-			if((counter % 2) != 0) {
-				BlinkCurrentCell();
+			if((counter % 2) != 0)
+			{
+				BlinkCurrentCell( );
 
 			}
 		}
 
 		//When counter is odd this method is called
 		//-----------------------------------------------------------------------------------------------------
-		public void BlinkCurrentCell()
+		public void BlinkCurrentCell( )
 		{
 
 			grdconMap[(player.CurrentCellY + 1), (player.CurrentCellX + 1)].BackColor = Color.DimGray;
@@ -657,7 +623,7 @@ namespace Thief_Escape
 
 		//when counter is even this method is called
 		//-----------------------------------------------------------------------------------------------------
-		public void BlinkCurrentCellBack()
+		public void BlinkCurrentCellBack( )
 		{
 
 			grdconMap[(player.CurrentCellY + 1), (player.CurrentCellX + 1)].BackColor = Color.Orange;
@@ -668,11 +634,9 @@ namespace Thief_Escape
 		#endregion
 		//-----------------------------------------------------------------------------------------------------
 
-
 		//-----------------------------------------------------------------------------------------------------
 		#endregion
 		//-----------------------------------------------------------------------------------------------------
-
 
 		//-----------------------------------------------------------------------------------------------------
 		#endregion
@@ -684,7 +648,7 @@ namespace Thief_Escape
 
 		//starting dialog
 		//-----------------------------------------------------------------------------------------------------
-		public void InitalPrompt()
+		public void InitalPrompt( )
 		{
 			lstDialog.Items.Add(string.Format("Hello, {0}, welcome to the game", name));
 			lstDialog.Items.Add("Help Robbie get out of the house with all his treasures!");
@@ -692,45 +656,50 @@ namespace Thief_Escape
 		}
 
 		//-----------------------------------------------------------------------------------------------------
-		public void PardonDust()
+		public void PardonDust( )
 		{
 			MessageBox.Show("Pardon our dust, we're still under construction.");
 		}
 
-		//-----------------------------------------------------------------------------------------------------
 		//this method outputs the types of walls surrounding the player to the textbox
 		//MIGHT WANT TO REMOVE
 		//NOT REALLY NEEDED WITH THE MAP
+		//-----------------------------------------------------------------------------------------------------
 		public void Surroundings(int currentX, int currentY, Direction direction)
 		{
 			CellType cell = CellType.Generic;
 
-			switch(direction) {
+			switch(direction)
+			{
 
 				case Direction.NORTH:
 					//North is Y - 1
-					if(currentY - 1 < mapCells.MapSize) {
+					if(currentY - 1 < mapCells.MapSize)
+					{
 						cell = mapCells.GetCellType(currentX, currentY - 1);
 					}
 					break;
 
 				case Direction.SOUTH:
 					//North is Y + 1
-					if(currentY + 1 < mapCells.MapSize) {
+					if(currentY + 1 < mapCells.MapSize)
+					{
 						cell = mapCells.GetCellType(currentX, currentY + 1);
 					}
 					break;
 
 				case Direction.EAST:
 					//North is X + 1
-					if(currentY + 1 < mapCells.MapSize) {
+					if(currentY + 1 < mapCells.MapSize)
+					{
 						cell = mapCells.GetCellType(currentX + 1, currentY);
 					}
 					break;
 
 				case Direction.WEST:
 					//North is X - 1
-					if(currentY - 1 < mapCells.MapSize) {
+					if(currentY - 1 < mapCells.MapSize)
+					{
 						cell = mapCells.GetCellType(currentX - 1, currentY);
 					}
 					break;
@@ -741,7 +710,7 @@ namespace Thief_Escape
 
 			//Add the output to the listbox
 			lstOutput.Items.Add(String.Format("There is a {0} {1} of you.",
-			cell.ToString().ToLower(), direction.ToString().ToLower()));
+			cell.ToString( ).ToLower( ), direction.ToString( ).ToLower( )));
 		}
 
 		//-----------------------------------------------------------------------------------------------------
@@ -755,38 +724,38 @@ namespace Thief_Escape
 		//-----------------------------------------------------------------------------------------------------
 		private void btnAction1_Click(object sender, EventArgs e)
 		{
-			PardonDust();
+			PardonDust( );
 		}
 
 		//-----------------------------------------------------------------------------------------------------
 		private void btnAction2_Click(object sender, EventArgs e)
 		{
-			PardonDust();
+			PardonDust( );
 		}
 
 		//-----------------------------------------------------------------------------------------------------
 		private void btnAction3_Click(object sender, EventArgs e)
 		{
-			PardonDust();
+			PardonDust( );
 		}
 
 		//-----------------------------------------------------------------------------------------------------
 		private void btnAction4_Click(object sender, EventArgs e)
 		{
-			PardonDust();
+			PardonDust( );
 		}
 
 		//-----------------------------------------------------------------------------------------------------
 		private void btnAction5_Click(object sender, EventArgs e)
 		{
-			PardonDust();
+			PardonDust( );
 		}
 
 		//button used to open the map form
 		//-----------------------------------------------------------------------------------------------------
 		private void btnAction6_Click(object sender, EventArgs e)
 		{
-			PardonDust();
+			PardonDust( );
 		}
 
 		//-----------------------------------------------------------------------------------------------------
@@ -819,10 +788,11 @@ namespace Thief_Escape
 			//frm.Show();
 
 			//Close this form
-			this.Close();
+			this.Close( );
 		}
 
 		# endregion
+		//-----------------------------------------------------------------------------------------------------
 
 		//-----------------------------------------------------------------------------------------------------
 		#region [ Menu Buttons Hover ]
@@ -873,7 +843,7 @@ namespace Thief_Escape
 		//-----------------------------------------------------------------------------------------------------
 
 		//-----------------------------------------------------------------------------------------------------
-		public void CreateTestMapBig()
+		public void CreateTestMapBig( )
 		{
 
 			//Get column and row count
@@ -893,10 +863,8 @@ namespace Thief_Escape
 			//starting Cell
 			grdconMap[2, 2].BackColor = startingCellColor;
 
-
 			//MAY NOT NEED TO ASSIGN WALLS AN IMAGE HERE
 			//DONE BY REMOVE BLACKOUT LOOP FOR FOG OF WAR
-			//-----------------------------------------------------------------------------------------------------
 			//#region walls
 			////-----------------------------------------------------------------------------------------------------
 
@@ -904,7 +872,7 @@ namespace Thief_Escape
 			//Image wallImage = Image.FromFile("CellWallImage.png");
 
 			////The four far sides of walls
-			
+
 			////top wall
 			//for(int i = 1; i < 17; i++) {
 			//	grdconMap[1, i].BackgroundImage = wallImage;
@@ -927,7 +895,7 @@ namespace Thief_Escape
 
 			////Rest of the walls
 			//grdconMap[4, 3].BackgroundImage = wallImage;
-				
+
 			//grdconMap[2, 4].BackgroundImage = wallImage;
 			//grdconMap[3, 4].BackgroundImage = wallImage;
 			//grdconMap[4, 4].BackgroundImage = wallImage;
@@ -1006,7 +974,6 @@ namespace Thief_Escape
 
 			////-----------------------------------------------------------------------------------------------------
 			//#endregion
-			//-----------------------------------------------------------------------------------------------------
 
 			//-----------------------------------------------------------------------------------------------------
 			#region doors
@@ -1062,7 +1029,8 @@ namespace Thief_Escape
 			grdconMap[4, 12].BackColor = floorColor;
 			grdconMap[4, 14].BackColor = floorColor;
 			grdconMap[4, 15].BackColor = floorColor;
-			for(int i = 2; i < 8; i++) {
+			for(int i = 2; i < 8; i++)
+			{
 				grdconMap[5, i].BackColor = floorColor;
 			}
 			grdconMap[5, 10].BackColor = floorColor;
@@ -1108,7 +1076,8 @@ namespace Thief_Escape
 			grdconMap[11, 5].BackColor = floorColor;
 			grdconMap[11, 6].BackColor = floorColor;
 			grdconMap[11, 7].BackColor = floorColor;
-			for(int i = 9; i < 16; i++) {
+			for(int i = 9; i < 16; i++)
+			{
 				grdconMap[11, i].BackColor = floorColor;
 			}
 			grdconMap[12, 2].BackColor = floorColor;
@@ -1121,7 +1090,8 @@ namespace Thief_Escape
 			grdconMap[13, 11].BackColor = floorColor;
 			grdconMap[14, 3].BackColor = floorColor;
 			grdconMap[14, 4].BackColor = floorColor;
-			for(int i = 6; i < 12; i++) {
+			for(int i = 6; i < 12; i++)
+			{
 				grdconMap[14, i].BackColor = floorColor;
 			}
 			grdconMap[14, 13].BackColor = floorColor;
@@ -1129,7 +1099,8 @@ namespace Thief_Escape
 			grdconMap[15, 2].BackColor = floorColor;
 			grdconMap[15, 3].BackColor = floorColor;
 			grdconMap[15, 4].BackColor = floorColor;
-			for(int i = 6; i < 12; i++) {
+			for(int i = 6; i < 12; i++)
+			{
 				grdconMap[15, i].BackColor = floorColor;
 			}
 			grdconMap[15, 13].BackColor = floorColor;
@@ -1144,7 +1115,6 @@ namespace Thief_Escape
 		//-----------------------------------------------------------------------------------------------------
 		#endregion
 		//-----------------------------------------------------------------------------------------------------
-
 
 	}
 }
