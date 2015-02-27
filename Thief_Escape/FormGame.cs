@@ -277,6 +277,18 @@ namespace Thief_Escape
 			{
 				btnMoveNorth.Enabled = true;
 			}
+			else if(currentY - 1 < mapCells.MapSize
+			&& (mapCells.GetCellType(currentX, currentY - 1)
+			== (CellType.BejeweledKitten)))
+			{
+				btnMoveNorth.Enabled = true;
+			}
+			else if(currentY - 1 < mapCells.MapSize
+			&& (mapCells.GetCellType(currentX, currentY - 1)
+			== (CellType.Stairs)))
+			{
+				btnMoveNorth.Enabled = true;
+			}
 			else
 			{
 				btnMoveNorth.Enabled = false;
@@ -295,6 +307,18 @@ namespace Thief_Escape
 			{
 				btnMoveSouth.Enabled = true;
 			}
+			else if(currentY + 1 < mapCells.MapSize
+			&& (mapCells.GetCellType(currentX, currentY + 1)
+			== (CellType.BejeweledKitten)))
+			{
+				btnMoveNorth.Enabled = true;
+			}
+			else if(currentY + 1 < mapCells.MapSize
+			&& (mapCells.GetCellType(currentX, currentY + 1)
+			== (CellType.Stairs)))
+			{
+				btnMoveNorth.Enabled = true;
+			}
 			else
 			{
 				btnMoveSouth.Enabled = false;
@@ -310,6 +334,18 @@ namespace Thief_Escape
 			else if(currentX - 1 < mapCells.MapSize
 			&& (mapCells.GetDoorType(currentX - 1, currentY)
 			== DoorType.DoorUnlocked))
+			{
+				btnMoveWest.Enabled = true;
+			}
+			if(currentX - 1 < mapCells.MapSize
+			&& (mapCells.GetCellType(currentX - 1, currentY)
+			== CellType.BejeweledKitten))
+			{
+				btnMoveWest.Enabled = true;
+			}
+			if(currentX - 1 < mapCells.MapSize
+			&& (mapCells.GetCellType(currentX - 1, currentY)
+			== CellType.Stairs))
 			{
 				btnMoveWest.Enabled = true;
 			}
@@ -330,6 +366,18 @@ namespace Thief_Escape
 			== DoorType.DoorUnlocked))
 			{
 				btnMoveEast.Enabled = true;
+			}
+			if(currentX + 1 < mapCells.MapSize
+			&& (mapCells.GetCellType(currentX + 1, currentY)
+			== CellType.BejeweledKitten))
+			{
+				btnMoveWest.Enabled = true;
+			}
+			if(currentX + 1 < mapCells.MapSize
+			&& (mapCells.GetCellType(currentX + 1, currentY)
+			== CellType.Stairs))
+			{
+				btnMoveWest.Enabled = true;
 			}
 			else
 			{
