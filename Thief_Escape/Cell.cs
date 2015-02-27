@@ -125,18 +125,26 @@ namespace Thief_Escape
 		#region [ Fields ]
 		//-----------------------------------------------------------------------------------------------------
 		//Internal Cell type variables
+
+		//most commmon cell types
 		private CellType _cell;
 		private WallType _wall;
 		private FloorType _floor;
 		private DoorType _door;
 		private StairsType _stairs;
-		private KeyType _key;
-		private KittenType _kitten;
+		private KeyType _keyType;
+
+		//Specialized Cell types
+		private KittenType _kittenType;
 		private ItemType _itemType;
+
+
 		private bool _startingCell;
 		private bool _isBejeweledKitten;
 		private bool _isKey;
 		private bool _hasItem;
+
+		//if cell contains an item
 		private Item _item;
 
 		//-----------------------------------------------------------------------------------------------------
@@ -205,7 +213,7 @@ namespace Thief_Escape
 		//-----------------------------------------------------------------------------------------------------
 		public KeyType WhatIsKeyType
 		{
-			get { return _key; }
+			get { return _keyType; }
 			//no external set must be set through ceate methods
 			set { }
 		}
@@ -213,7 +221,7 @@ namespace Thief_Escape
 		//-----------------------------------------------------------------------------------------------------
 		public KittenType WhatIsKittenType
 		{
-			get { return _kitten; }
+			get { return _kittenType; }
 			set { }
 		}
 
@@ -256,8 +264,7 @@ namespace Thief_Escape
 		//-----------------------------------------------------------------------------------------------------
 		public Cell( )
 		{
-			_startingCell = false;
-			_isBejeweledKitten = false;
+
 		}
 
 		//-----------------------------------------------------------------------------------------------------
@@ -272,7 +279,7 @@ namespace Thief_Escape
 		//Method to set cell object as starting cell
 		//-----------------------------------------------------------------------------------------------------
 
-		public void CreateItem(Item item)
+		private void CreateItem(Item item)
 		{
 			_cell = CellType.FLOOR;
 			_floor = FloorType.FLOORITEM;
@@ -373,44 +380,60 @@ namespace Thief_Escape
 		//Creates a Key cell type
 		//Pick up key method that changes the key cell type
 		//-----------------------------------------------------------------------------------------------------
-		public void CreateKey(KeyType keyType)
+		public void CreateKey(Item item)
 		{
-			if(keyType == KeyType.AVAILABLE)
-			{
-				_cell = CellType.KEY;
-				_key = KeyType.AVAILABLE;
-				_isKey = true;
-			}
+			
+			CreateItem(item);
+
+			_cell = CellType.KEY;
+			_keyType = KeyType.AVAILABLE;
+			_isKey = true;
 
 		}
 
 		//-----------------------------------------------------------------------------------------------------
-		public void PickUpKey( )
+		public void CreateBejeweledKitten(Item item )
 		{
-			_key = KeyType.PICKEDUP;
+			CreateItem(item);
+
+			_cell = CellType.BEJEWELEDKITTEN;
+			_kittenType = KittenType.AVAILABLE;
+			_isBejeweledKitten = true;
+			
 		}
 
-		public void PickUpItem( )
+		//-----------------------------------------------------------------------------------------------------
+		public Item PickUpItem( )
 		{
 			_itemType = ItemType.PICKEDUP;
+
+			return _item;
 		}
 
 		//Sets current cell object as bejeweled kitten
+		
+
 		//-----------------------------------------------------------------------------------------------------
-		public void CreateBejeweledKitten( )
+		public Item PickUpKitten( )
 		{
-			_cell = CellType.BEJEWELEDKITTEN;
-			_kitten = KittenType.AVAILABLE;
-			_isBejeweledKitten = true;
+			_kittenType = KittenType.PICKEDUP;
+			_isBejeweledKitten = false;
+			_itemType = ItemType.PICKEDUP;
+
+			return _item;
 		}
 
 		//-----------------------------------------------------------------------------------------------------
-		public void PickUpKitten( )
-		{
-			_kitten = KittenType.PICKEDUP;
-		}
 
-		//-----------------------------------------------------------------------------------------------------
+		public Item PickUpKey( )
+		{
+			_keyType = KeyType.PICKEDUP;
+			_isKey = false;
+			_itemType = ItemType.PICKEDUP;
+
+			return _item;
+
+		}
 		#endregion
 		//-----------------------------------------------------------------------------------------------------
 

@@ -418,7 +418,7 @@ namespace Thief_Escape
 			if(((x >= 0) && (x <= 100)) & ((y >= 0) && (y <= 100))) {
 				_startingCellX = x;
 				_startingCellY = y;
-				//_map[_startingCellX, _startingCellY].IsStartingCell = true;
+				_map[_startingCellX, _startingCellY].IsStartingCell = true;
 			}
 		}
 
@@ -431,38 +431,37 @@ namespace Thief_Escape
 
 		//Picks up the kitten by changing the kitten cell type
 		//-----------------------------------------------------------------------------------------------------
-		public void PickUpKitten(int x, int y)
+		public Item PickUpKitten(int x, int y)
 		{
-			_map[x, y].PickUpKitten( );
+			return _map[x, y].PickUpKitten( );
 		}
 
 		//Picks up the Key by changing the Key cell type
 		//-----------------------------------------------------------------------------------------------------
-		public void PickUpKey(int x, int y)
+		public Item PickUpKey(int x, int y)
 		{
-			_map[x, y].PickUpKey( );
+			return _map[x, y].PickUpKey( );
+		}
+
+		//Picks up Item
+		//-----------------------------------------------------------------------------------------------------
+		public Item PickUpItem(int x, int y)
+		{
+			return _map[x, y].PickUpItem( );
 		}
 
 		//Checks if the passed in array location is the starting cell
 		//-----------------------------------------------------------------------------------------------------
 		public bool IsStartingCell(int x, int y)
 		{
-			bool currentCell = false;
-
-			currentCell = _map[x, y].IsStartingCell;
-
-			return currentCell;
+			return _map[x, y].IsStartingCell;
 		}
 
 		//Checks if Cell is kitten cell
 		//-----------------------------------------------------------------------------------------------------
 		public bool IsBejeweledKitten(int x, int y)
 		{
-			bool currentCell = false;
-
-			currentCell = _map[x, y].IsBejeweledKitten;
-
-			return currentCell;
+			return _map[x, y].IsBejeweledKitten;
 
 		}
 
@@ -470,66 +469,49 @@ namespace Thief_Escape
 		//-----------------------------------------------------------------------------------------------------
 		public bool IsKey(int x, int y)
 		{
-			bool currentCell = false;
+			return _map[x, y].IsKey;
+		}
 
-			currentCell = _map[x, y].IsKey;
-
-			return currentCell;
+		//Checks if cell has an Item
+		//-----------------------------------------------------------------------------------------------------
+		public bool HasItem(int x, int y)
+		{
+			return _map[x, y].HasItem;
 		}
 
 		//Gets cell type
 		//-----------------------------------------------------------------------------------------------------
 		public CellType GetCellType(int x, int y)
 		{
-			CellType currentCell = CellType.WALL;
-
-			currentCell = _map[x, y].WhatIsCellType;
-
-			return currentCell;
+			return _map[x, y].WhatIsCellType;
 		}
 
 		//gets wall type
 		//-----------------------------------------------------------------------------------------------------
 		public WallType GetWallType(int x, int y)
 		{
-			WallType currentCell = WallType.WALLGENERAL;
-
-			currentCell = _map[x, y].WhatIsWallType;
-
-			return currentCell;
+			return _map[x, y].WhatIsWallType;
 		}
 
 		//gets floor type
 		//-----------------------------------------------------------------------------------------------------
 		public FloorType GetFloorType(int x, int y)
 		{
-			FloorType currentCell = FloorType.FLOORGENERAL;
-
-			currentCell = _map[x, y].WhatIsFloorType;
-
-			return currentCell;
+			return _map[x, y].WhatIsFloorType;
 		}
 
 		//gets door type
 		//-----------------------------------------------------------------------------------------------------
 		public DoorType GetDoorType(int x, int y)
 		{
-			DoorType currentCell = DoorType.DOORLOCKED;
-
-			currentCell = _map[x, y].WhatSetDoorType;
-
-			return currentCell;
+			return _map[x, y].WhatSetDoorType;
 		}
 
 		// gets stairs type
 		//-----------------------------------------------------------------------------------------------------
 		public StairsType GetStairsType(int x, int y)
 		{
-			StairsType currentCell = StairsType.GENERIC;
-
-			currentCell = _map[x, y].WhatIsStairsType;
-
-			return currentCell;
+			return _map[x, y].WhatIsStairsType;
 		}
 
 		//Gets Bejeweled kitten type
@@ -537,11 +519,7 @@ namespace Thief_Escape
 		//-----------------------------------------------------------------------------------------------------
 		public KittenType GetKittenType(int x, int y)
 		{
-			KittenType currentCell = KittenType.GENERIC;
-
-			currentCell = _map[x, y].WhatIsKittenType;
-
-			return currentCell;
+			return _map[x, y].WhatIsKittenType;
 		}
 
 		//Gets Key Type
@@ -549,11 +527,7 @@ namespace Thief_Escape
 		//-----------------------------------------------------------------------------------------------------
 		public KeyType GetKeyType(int x, int y)
 		{
-			KeyType currentCell = KeyType.GENERIC;
-
-			currentCell = _map[x, y].WhatIsKeyType;
-
-			return currentCell;
+			return _map[x, y].WhatIsKeyType;
 		}
 
 		#endregion
