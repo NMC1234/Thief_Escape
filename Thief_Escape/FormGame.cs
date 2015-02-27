@@ -528,7 +528,7 @@ namespace Thief_Escape
 			Image wallImage = Image.FromFile("CellWallImage.png");
 
 
-			//Temp loop to put all cells in blackout to test removal of blackout
+			//loop to blackout all cells before a portion is removed by remove blackout
 			for(int x = 1; x < (mapCells.MapSize + 1); x++)
 			{
 				for(int y = 1; y < (mapCells.MapSize + 1); y++)
@@ -886,116 +886,119 @@ namespace Thief_Escape
 			//starting Cell
 			grdconMap[2, 2].BackColor = startingCellColor;
 
-			//-----------------------------------------------------------------------------------------------------
-			#region walls
-			//-----------------------------------------------------------------------------------------------------
 
-			//Image for walls
-			Image wallImage = Image.FromFile("CellWallImage.png");
+			//MAY NOT NEED TO ASSIGN WALLS AN IMAGE HERE
+			//DONE BY REMOVE BLACKOUT LOOP FOR FOG OF WAR
+			//-----------------------------------------------------------------------------------------------------
+			//#region walls
+			////-----------------------------------------------------------------------------------------------------
 
-			//The four far sides of walls
+			////Image for walls
+			//Image wallImage = Image.FromFile("CellWallImage.png");
+
+			////The four far sides of walls
 			
-			//top wall
-			for(int i = 1; i < 17; i++) {
-				grdconMap[1, i].BackgroundImage = wallImage;
-			}
+			////top wall
+			//for(int i = 1; i < 17; i++) {
+			//	grdconMap[1, i].BackgroundImage = wallImage;
+			//}
 
-			//bottom wall
-			for(int i = 1; i < 17; i++) {
-				grdconMap[16, i].BackgroundImage = wallImage;
-			}
+			////bottom wall
+			//for(int i = 1; i < 17; i++) {
+			//	grdconMap[16, i].BackgroundImage = wallImage;
+			//}
 
-			//Left wall
-			for(int i = 1; i < 17; i++) {
-				grdconMap[i, 1].BackgroundImage = wallImage;
-			}
+			////Left wall
+			//for(int i = 1; i < 17; i++) {
+			//	grdconMap[i, 1].BackgroundImage = wallImage;
+			//}
 
-			//right wall
-			for(int i = 1; i < 17; i++) {
-				grdconMap[i, 16].BackgroundImage = wallImage;
-			}
+			////right wall
+			//for(int i = 1; i < 17; i++) {
+			//	grdconMap[i, 16].BackgroundImage = wallImage;
+			//}
 
-			//Rest of the walls
-			grdconMap[4, 3].BackgroundImage = wallImage;
+			////Rest of the walls
+			//grdconMap[4, 3].BackgroundImage = wallImage;
 				
-			grdconMap[2, 4].BackgroundImage = wallImage;
-			grdconMap[3, 4].BackgroundImage = wallImage;
-			grdconMap[4, 4].BackgroundImage = wallImage;
-			grdconMap[4, 5].BackgroundImage = wallImage;
-			grdconMap[4, 6].BackgroundImage = wallImage;
-			grdconMap[2, 8].BackgroundImage = wallImage;
-			grdconMap[3, 8].BackgroundImage = wallImage;
-			grdconMap[4, 8].BackgroundImage = wallImage;
-			grdconMap[2, 9].BackgroundImage = wallImage;
-			grdconMap[3, 9].BackgroundImage = wallImage;
-			grdconMap[4, 9].BackgroundImage = wallImage;
-			grdconMap[3, 11].BackgroundImage = wallImage;
-			grdconMap[4, 11].BackgroundImage = wallImage;
-			grdconMap[2, 13].BackgroundImage = wallImage;
-			grdconMap[3, 13].BackgroundImage = wallImage;
-			grdconMap[4, 13].BackgroundImage = wallImage;
-			grdconMap[5, 8].BackgroundImage = wallImage;
-			grdconMap[5, 9].BackgroundImage = wallImage;
-			grdconMap[5, 11].BackgroundImage = wallImage;
-			for(int i = 2; i < 7; i++) {
-				grdconMap[6, i].BackgroundImage = wallImage;
+			//grdconMap[2, 4].BackgroundImage = wallImage;
+			//grdconMap[3, 4].BackgroundImage = wallImage;
+			//grdconMap[4, 4].BackgroundImage = wallImage;
+			//grdconMap[4, 5].BackgroundImage = wallImage;
+			//grdconMap[4, 6].BackgroundImage = wallImage;
+			//grdconMap[2, 8].BackgroundImage = wallImage;
+			//grdconMap[3, 8].BackgroundImage = wallImage;
+			//grdconMap[4, 8].BackgroundImage = wallImage;
+			//grdconMap[2, 9].BackgroundImage = wallImage;
+			//grdconMap[3, 9].BackgroundImage = wallImage;
+			//grdconMap[4, 9].BackgroundImage = wallImage;
+			//grdconMap[3, 11].BackgroundImage = wallImage;
+			//grdconMap[4, 11].BackgroundImage = wallImage;
+			//grdconMap[2, 13].BackgroundImage = wallImage;
+			//grdconMap[3, 13].BackgroundImage = wallImage;
+			//grdconMap[4, 13].BackgroundImage = wallImage;
+			//grdconMap[5, 8].BackgroundImage = wallImage;
+			//grdconMap[5, 9].BackgroundImage = wallImage;
+			//grdconMap[5, 11].BackgroundImage = wallImage;
+			//for(int i = 2; i < 7; i++) {
+			//	grdconMap[6, i].BackgroundImage = wallImage;
 
-			}
-			grdconMap[6, 8].BackgroundImage = wallImage;
-			grdconMap[6, 9].BackgroundImage = wallImage;
-			grdconMap[6, 11].BackgroundImage = wallImage;
-			grdconMap[6, 13].BackgroundImage = wallImage;
-			grdconMap[7, 6].BackgroundImage = wallImage;
-			grdconMap[7, 8].BackgroundImage = wallImage;
-			grdconMap[7, 9].BackgroundImage = wallImage;
-			grdconMap[7, 10].BackgroundImage = wallImage;
-			grdconMap[7, 11].BackgroundImage = wallImage;
-			grdconMap[7, 13].BackgroundImage = wallImage;
-			grdconMap[7, 14].BackgroundImage = wallImage;
-			grdconMap[7, 15].BackgroundImage = wallImage;
-			grdconMap[8, 3].BackgroundImage = wallImage;
-			grdconMap[8, 4].BackgroundImage = wallImage;
-			grdconMap[8, 5].BackgroundImage = wallImage;
-			grdconMap[8, 6].BackgroundImage = wallImage;
-			grdconMap[8, 8].BackgroundImage = wallImage;
-			grdconMap[8, 11].BackgroundImage = wallImage;
-			grdconMap[9, 3].BackgroundImage = wallImage;
-			grdconMap[9, 4].BackgroundImage = wallImage;
-			grdconMap[9, 8].BackgroundImage = wallImage;
-			grdconMap[9, 11].BackgroundImage = wallImage;
-			grdconMap[10, 4].BackgroundImage = wallImage;
-			grdconMap[10, 8].BackgroundImage = wallImage;
-			grdconMap[10, 10].BackgroundImage = wallImage;
-			grdconMap[10, 11].BackgroundImage = wallImage;
-			grdconMap[10, 12].BackgroundImage = wallImage;
-			grdconMap[10, 13].BackgroundImage = wallImage;
-			grdconMap[10, 14].BackgroundImage = wallImage;
-			grdconMap[11, 8].BackgroundImage = wallImage;
-			grdconMap[12, 4].BackgroundImage = wallImage;
-			grdconMap[12, 5].BackgroundImage = wallImage;
-			grdconMap[12, 7].BackgroundImage = wallImage;
-			grdconMap[12, 8].BackgroundImage = wallImage;
-			grdconMap[12, 9].BackgroundImage = wallImage;
-			grdconMap[12, 10].BackgroundImage = wallImage;
-			grdconMap[12, 12].BackgroundImage = wallImage;
-			grdconMap[12, 13].BackgroundImage = wallImage;
-			grdconMap[13, 2].BackgroundImage = wallImage;
-			grdconMap[13, 3].BackgroundImage = wallImage;
-			grdconMap[13, 4].BackgroundImage = wallImage;
-			grdconMap[13, 5].BackgroundImage = wallImage;
-			grdconMap[13, 7].BackgroundImage = wallImage;
-			grdconMap[13, 8].BackgroundImage = wallImage;
-			grdconMap[13, 9].BackgroundImage = wallImage;
-			grdconMap[13, 10].BackgroundImage = wallImage;
-			grdconMap[13, 12].BackgroundImage = wallImage;
-			grdconMap[13, 13].BackgroundImage = wallImage;
-			grdconMap[13, 14].BackgroundImage = wallImage;
-			grdconMap[13, 15].BackgroundImage = wallImage;
-			grdconMap[14, 5].BackgroundImage = wallImage;
-			grdconMap[14, 12].BackgroundImage = wallImage;
+			//}
+			//grdconMap[6, 8].BackgroundImage = wallImage;
+			//grdconMap[6, 9].BackgroundImage = wallImage;
+			//grdconMap[6, 11].BackgroundImage = wallImage;
+			//grdconMap[6, 13].BackgroundImage = wallImage;
+			//grdconMap[7, 6].BackgroundImage = wallImage;
+			//grdconMap[7, 8].BackgroundImage = wallImage;
+			//grdconMap[7, 9].BackgroundImage = wallImage;
+			//grdconMap[7, 10].BackgroundImage = wallImage;
+			//grdconMap[7, 11].BackgroundImage = wallImage;
+			//grdconMap[7, 13].BackgroundImage = wallImage;
+			//grdconMap[7, 14].BackgroundImage = wallImage;
+			//grdconMap[7, 15].BackgroundImage = wallImage;
+			//grdconMap[8, 3].BackgroundImage = wallImage;
+			//grdconMap[8, 4].BackgroundImage = wallImage;
+			//grdconMap[8, 5].BackgroundImage = wallImage;
+			//grdconMap[8, 6].BackgroundImage = wallImage;
+			//grdconMap[8, 8].BackgroundImage = wallImage;
+			//grdconMap[8, 11].BackgroundImage = wallImage;
+			//grdconMap[9, 3].BackgroundImage = wallImage;
+			//grdconMap[9, 4].BackgroundImage = wallImage;
+			//grdconMap[9, 8].BackgroundImage = wallImage;
+			//grdconMap[9, 11].BackgroundImage = wallImage;
+			//grdconMap[10, 4].BackgroundImage = wallImage;
+			//grdconMap[10, 8].BackgroundImage = wallImage;
+			//grdconMap[10, 10].BackgroundImage = wallImage;
+			//grdconMap[10, 11].BackgroundImage = wallImage;
+			//grdconMap[10, 12].BackgroundImage = wallImage;
+			//grdconMap[10, 13].BackgroundImage = wallImage;
+			//grdconMap[10, 14].BackgroundImage = wallImage;
+			//grdconMap[11, 8].BackgroundImage = wallImage;
+			//grdconMap[12, 4].BackgroundImage = wallImage;
+			//grdconMap[12, 5].BackgroundImage = wallImage;
+			//grdconMap[12, 7].BackgroundImage = wallImage;
+			//grdconMap[12, 8].BackgroundImage = wallImage;
+			//grdconMap[12, 9].BackgroundImage = wallImage;
+			//grdconMap[12, 10].BackgroundImage = wallImage;
+			//grdconMap[12, 12].BackgroundImage = wallImage;
+			//grdconMap[12, 13].BackgroundImage = wallImage;
+			//grdconMap[13, 2].BackgroundImage = wallImage;
+			//grdconMap[13, 3].BackgroundImage = wallImage;
+			//grdconMap[13, 4].BackgroundImage = wallImage;
+			//grdconMap[13, 5].BackgroundImage = wallImage;
+			//grdconMap[13, 7].BackgroundImage = wallImage;
+			//grdconMap[13, 8].BackgroundImage = wallImage;
+			//grdconMap[13, 9].BackgroundImage = wallImage;
+			//grdconMap[13, 10].BackgroundImage = wallImage;
+			//grdconMap[13, 12].BackgroundImage = wallImage;
+			//grdconMap[13, 13].BackgroundImage = wallImage;
+			//grdconMap[13, 14].BackgroundImage = wallImage;
+			//grdconMap[13, 15].BackgroundImage = wallImage;
+			//grdconMap[14, 5].BackgroundImage = wallImage;
+			//grdconMap[14, 12].BackgroundImage = wallImage;
 
-			//-----------------------------------------------------------------------------------------------------
-			#endregion
+			////-----------------------------------------------------------------------------------------------------
+			//#endregion
 			//-----------------------------------------------------------------------------------------------------
 
 			//-----------------------------------------------------------------------------------------------------
