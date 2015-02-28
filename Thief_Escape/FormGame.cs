@@ -676,6 +676,41 @@ namespace Thief_Escape
 				}
 			}
 
+			////loops to create a ring of transparency cells on outerborder of visual range
+			////horizontal lines
+			////Image blackout60Image = Image.FromFile("Cell60prcBlackout.png");
+
+
+			//for(int x = (player.CurrentCellX - 2); x < (player.CurrentCellX + 6); x++)
+			//{
+			//	int y;
+			//	y = (player.CurrentCellY - 2);
+			//	grdconMap[y, x].BackgroundImage = blackout60Image;
+			//}
+
+			//for(int x = (player.CurrentCellX - 2); x < (player.CurrentCellX + 6); x++)
+			//{
+			//	int y;
+			//	y = (player.CurrentCellY + 5);
+			//	grdconMap[y, x].BackgroundImage = blackout60Image;
+			//}
+
+			////Vertical line
+			//for(int y = (player.CurrentCellY - 2); y < (player.CurrentCellY + 5); y++)
+			//{
+			//	int x;
+			//	x = (player.CurrentCellX - 2);
+			//	grdconMap[y, x].BackgroundImage = blackout60Image;
+			//}
+
+			//for(int y = (player.CurrentCellY - 2); y < (player.CurrentCellY + 5); y++)
+			//{
+			//	int x;
+			//	x = (player.CurrentCellX + 5);
+			//	grdconMap[y, x].BackgroundImage = blackout60Image;
+			//}
+
+
 			//Removes blackout for cells player can see
 
 			//pair of loops that will remove blackout for viewable area
