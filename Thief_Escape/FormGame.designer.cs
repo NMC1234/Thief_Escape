@@ -307,6 +307,7 @@
             // 
             this.lblMenuHover.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblMenuHover.AutoSize = true;
+            this.lblMenuHover.ForeColor = System.Drawing.Color.Red;
             this.lblMenuHover.Location = new System.Drawing.Point(878, 65);
             this.lblMenuHover.Name = "lblMenuHover";
             this.lblMenuHover.Size = new System.Drawing.Size(0, 13);
@@ -647,10 +648,10 @@
             this.BackColor = System.Drawing.Color.DarkKhaki;
             this.CancelButton = this.btnMainMenu;
             this.ClientSize = new System.Drawing.Size(1112, 653);
+            this.Controls.Add(this.lblMenuHover);
             this.Controls.Add(this.tabDialog);
             this.Controls.Add(this.grpboxLegend);
             this.Controls.Add(this.grdconMap);
-            this.Controls.Add(this.lblMenuHover);
             this.Controls.Add(this.btnLoadGame);
             this.Controls.Add(this.btnSaveGame);
             this.Controls.Add(this.btnMainMenu);
@@ -661,6 +662,7 @@
             this.MinimumSize = new System.Drawing.Size(590, 430);
             this.Name = "FormGame";
             this.Text = "Game Screen";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormGame_FormClosed);
             this.Load += new System.EventHandler(this.FormGamePlay_Load);
             this.grpMovement.ResumeLayout(false);
             this.grpActions.ResumeLayout(false);

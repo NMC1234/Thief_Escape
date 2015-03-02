@@ -10,31 +10,43 @@ using System.Windows.Forms;
 
 namespace Thief_Escape
 {
-	public partial class FormMainMenu : Form
-	{
-		public FormMainMenu( )
-		{
-			InitializeComponent( );
-		}
+    public partial class FormMainMenu : Form
+    {
+        public FormMainMenu()
+        {
+            InitializeComponent();
+        }
 
-		private void btnNew_Click(object sender, EventArgs e)
-		{
-			//Create the player name form, and launch it
-			FormName frm = new FormName( );
-			frm.Show( );
+        #region [ Button Click ]
+        private void btnNew_Click(object sender, EventArgs e)
+        {
+            //Create the player name form, and launch it
+            FormName frm = new FormName();
+            frm.Show();
 
-			//Hide this form
-			this.Hide( );
-		}
+            //Hide this form
+            this.Hide();
+        }
 
-		private void btnExit_Click(object sender, EventArgs e)
-		{
-			Application.Exit( );
-		}
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
 
-		private void btnLoadGame_Click(object sender, EventArgs e)
-		{
-			//To be implimented
-		}
-	}
+        private void btnLoadGame_Click(object sender, EventArgs e)
+        {
+            //To be implimented
+        }
+
+        #endregion
+
+        #region Load Event
+
+        private void FormMainMenu_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        #endregion
+    }
 }

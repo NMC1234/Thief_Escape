@@ -101,6 +101,7 @@
             this.Controls.Add(this.btnNew);
             this.Name = "FormMainMenu";
             this.Text = "FormMainMenu";
+            this.Load += new System.EventHandler(this.FormMainMenu_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picbThiefEscapePic)).EndInit();
             this.ResumeLayout(false);
 
