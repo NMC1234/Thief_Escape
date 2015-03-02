@@ -17,7 +17,7 @@ namespace Thief_Escape
 			InitializeComponent( );
 		}
 
-		private void btnMainMenu_Click(object sender, EventArgs e)
+		private void btnNew_Click(object sender, EventArgs e)
 		{
 			//Create the player name form, and launch it
 			FormName frm = new FormName( );
@@ -27,7 +27,7 @@ namespace Thief_Escape
 			this.Hide( );
 		}
 
-		private void btnSaveGame_Click(object sender, EventArgs e)
+		private void btnExit_Click(object sender, EventArgs e)
 		{
 			Application.Exit( );
 		}

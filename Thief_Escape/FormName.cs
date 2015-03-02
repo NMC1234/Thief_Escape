@@ -29,7 +29,7 @@ namespace Thief_Escape
 			frm1.Show();
 
 			//Hide this form
-			this.Hide();
+            this.Close();
 		}
 
 		//-----------------------------------------------------------------------------------------------------
@@ -40,7 +40,7 @@ namespace Thief_Escape
 			frm2.Show();
 
 			//Hide this form
-			this.Hide();
+			this.Close();
 		}
 	}
 }
