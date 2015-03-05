@@ -28,6 +28,7 @@ namespace Thief_Escape
 		Player player;
 		string name;
 		int counter;
+		Direction keyDirection;
 
 		//Exit bool is used to prevent unwanted shutdowns 
 		//  when going to the main menu.
@@ -93,6 +94,9 @@ namespace Thief_Escape
 
 			//Output information about surrounding tiles
 			OutputAroundPlayer(false);
+
+			//General Variable instanciation
+			keyDirection = Direction.GENERIC;
 		}
 
 		#endregion
@@ -121,10 +125,17 @@ namespace Thief_Escape
 				btnMoveNorth.Enabled = true;
 			}
 			else if(currentY - 1 < mapCells.MapSize
+			&& (mapCells.GetDoorType(currentX, currentY - 1)
+			== (DoorType.DOORLOCKED)))
+			{
+				btnMoveNorth.Enabled = false;
+				btnUseKey.Enabled = true;
+			}
+			else if(currentY - 1 < mapCells.MapSize
 			&& (mapCells.GetCellType(currentX, currentY - 1)
 			== (CellType.BEJEWELEDKITTEN)))
 			{
-				btnMoveNorth.Enabled = true;
+				btnMoveNorth.Enabled = false;
 			}
 			else if(currentY - 1 < mapCells.MapSize
 			&& (mapCells.GetCellType(currentX, currentY - 1)
@@ -136,7 +147,9 @@ namespace Thief_Escape
 			&& (mapCells.GetCellType(currentX, currentY - 1)
 			== (CellType.KEY)))
 			{
-				btnMoveNorth.Enabled = true;
+				btnPickupKey.Enabled = true;
+				btnMoveNorth.Enabled = false;
+				keyDirection = Direction.NORTH;
 			}
 			else
 			{
@@ -158,10 +171,17 @@ namespace Thief_Escape
 				btnMoveSouth.Enabled = true;
 			}
 			else if(currentY + 1 < mapCells.MapSize
+			&& (mapCells.GetDoorType(currentX, currentY + 1)
+			== DoorType.DOORLOCKED))
+			{
+				btnMoveSouth.Enabled = false;
+				btnUseKey.Enabled = true;
+			}
+			else if(currentY + 1 < mapCells.MapSize
 			&& (mapCells.GetCellType(currentX, currentY + 1)
 			== (CellType.BEJEWELEDKITTEN)))
 			{
-				btnMoveNorth.Enabled = true;
+				btnMoveNorth.Enabled = false;
 			}
 			else if(currentY + 1 < mapCells.MapSize
 			&& (mapCells.GetCellType(currentX, currentY + 1)
@@ -173,7 +193,9 @@ namespace Thief_Escape
 			&& (mapCells.GetCellType(currentX, currentY + 1)
 			== (CellType.KEY)))
 			{
-				btnMoveNorth.Enabled = true;
+				btnMoveNorth.Enabled = false;
+				btnPickupKey.Enabled = true;
+				keyDirection = Direction.SOUTH;
 			}
 			else
 			{
@@ -195,10 +217,17 @@ namespace Thief_Escape
 				btnMoveWest.Enabled = true;
 			}
 			else if(currentX - 1 < mapCells.MapSize
+			&& (mapCells.GetDoorType(currentX - 1, currentY)
+			== DoorType.DOORLOCKED))
+			{
+				btnMoveWest.Enabled = false;
+				btnUseKey.Enabled = true;
+			}
+			else if(currentX - 1 < mapCells.MapSize
 			&& (mapCells.GetCellType(currentX - 1, currentY)
 			== CellType.BEJEWELEDKITTEN))
 			{
-				btnMoveWest.Enabled = true;
+				btnMoveWest.Enabled = false;
 			}
 			else if(currentX - 1 < mapCells.MapSize
 			&& (mapCells.GetCellType(currentX - 1, currentY)
@@ -211,6 +240,8 @@ namespace Thief_Escape
 			== CellType.KEY))
 			{
 				btnMoveWest.Enabled = true;
+				btnPickupKey.Enabled = true;
+				keyDirection = Direction.WEST;
 			}
 			else
 			{
@@ -233,10 +264,17 @@ namespace Thief_Escape
 				btnMoveEast.Enabled = true;
 			}
 			else if(currentX + 1 < mapCells.MapSize
+			&& (mapCells.GetDoorType(currentX + 1, currentY)
+			== DoorType.DOORLOCKED))
+			{
+				btnMoveEast.Enabled = false;
+				btnUseKey.Enabled = true;
+			}
+			else if(currentX + 1 < mapCells.MapSize
 			&& (mapCells.GetCellType(currentX + 1, currentY)
 			== CellType.BEJEWELEDKITTEN))
 			{
-				btnMoveWest.Enabled = true;
+				btnMoveWest.Enabled = false;
 			}
 			else if(currentX + 1 < mapCells.MapSize
 			&& (mapCells.GetCellType(currentX + 1, currentY)
@@ -249,6 +287,8 @@ namespace Thief_Escape
 			== CellType.KEY))
 			{
 				btnMoveWest.Enabled = true;
+				btnPickupKey.Enabled = true;
+				keyDirection = Direction.EAST;
 			}
 			else
 			{
@@ -512,6 +552,7 @@ namespace Thief_Escape
 			bool IsStartingCell = false;
 			bool isStairs = false;
 			bool isBejeweledKitten = false;
+			bool isKey = false;
 
 			//Switch statement to find previous cell's type
 			//first checks direction
@@ -636,6 +677,11 @@ namespace Thief_Escape
 					case CellType.BEJEWELEDKITTEN:
 						isBejeweledKitten = true;
 						color = Color.Purple;
+						break;
+
+					case CellType.KEY:
+						isKey = true;
+						color = Color.SpringGreen;
 						break;
 
 					//default:
@@ -965,10 +1011,6 @@ namespace Thief_Escape
 		//-----------------------------------------------------------------------------------------------------
 
 		//-----------------------------------------------------------------------------------------------------
-		private void btnAction1_Click(object sender, EventArgs e)
-		{
-			PardonDust( );
-		}
 
 		private void btnAction2_Click(object sender, EventArgs e)
 		{
@@ -976,11 +1018,6 @@ namespace Thief_Escape
 		}
 
 		private void btnAction3_Click(object sender, EventArgs e)
-		{
-			PardonDust( );
-		}
-
-		private void btnAction4_Click(object sender, EventArgs e)
 		{
 			PardonDust( );
 		}
@@ -1080,122 +1117,12 @@ namespace Thief_Escape
 			Color stairsUpColor = Color.Cyan;
 			Color stairsDownColor = Color.Salmon;
 			Color bejeweledKittenColor = Color.Purple;
+			Color Key = Color.SpringGreen;
 
 			//starting Cell
 			grdconMap[2, 2].BackColor = startingCellColor;
 
-			//MAY NOT NEED TO ASSIGN WALLS AN IMAGE HERE
-			//DONE BY REMOVE BLACKOUT LOOP FOR FOG OF WAR
-			//#region walls
-			////-----------------------------------------------------------------------------------------------------
-
-			////Image for walls
-			//Image wallImage = Image.FromFile("CellWallImage.png");
-
-			////The four far sides of walls
-
-			////top wall
-			//for(int i = 1; i < 17; i++) {
-			//	grdconMap[1, i].BackgroundImage = wallImage;
-			//}
-
-			////bottom wall
-			//for(int i = 1; i < 17; i++) {
-			//	grdconMap[16, i].BackgroundImage = wallImage;
-			//}
-
-			////Left wall
-			//for(int i = 1; i < 17; i++) {
-			//	grdconMap[i, 1].BackgroundImage = wallImage;
-			//}
-
-			////right wall
-			//for(int i = 1; i < 17; i++) {
-			//	grdconMap[i, 16].BackgroundImage = wallImage;
-			//}
-
-			////Rest of the walls
-			//grdconMap[4, 3].BackgroundImage = wallImage;
-
-			//grdconMap[2, 4].BackgroundImage = wallImage;
-			//grdconMap[3, 4].BackgroundImage = wallImage;
-			//grdconMap[4, 4].BackgroundImage = wallImage;
-			//grdconMap[4, 5].BackgroundImage = wallImage;
-			//grdconMap[4, 6].BackgroundImage = wallImage;
-			//grdconMap[2, 8].BackgroundImage = wallImage;
-			//grdconMap[3, 8].BackgroundImage = wallImage;
-			//grdconMap[4, 8].BackgroundImage = wallImage;
-			//grdconMap[2, 9].BackgroundImage = wallImage;
-			//grdconMap[3, 9].BackgroundImage = wallImage;
-			//grdconMap[4, 9].BackgroundImage = wallImage;
-			//grdconMap[3, 11].BackgroundImage = wallImage;
-			//grdconMap[4, 11].BackgroundImage = wallImage;
-			//grdconMap[2, 13].BackgroundImage = wallImage;
-			//grdconMap[3, 13].BackgroundImage = wallImage;
-			//grdconMap[4, 13].BackgroundImage = wallImage;
-			//grdconMap[5, 8].BackgroundImage = wallImage;
-			//grdconMap[5, 9].BackgroundImage = wallImage;
-			//grdconMap[5, 11].BackgroundImage = wallImage;
-			//for(int i = 2; i < 7; i++) {
-			//	grdconMap[6, i].BackgroundImage = wallImage;
-
-			//}
-			//grdconMap[6, 8].BackgroundImage = wallImage;
-			//grdconMap[6, 9].BackgroundImage = wallImage;
-			//grdconMap[6, 11].BackgroundImage = wallImage;
-			//grdconMap[6, 13].BackgroundImage = wallImage;
-			//grdconMap[7, 6].BackgroundImage = wallImage;
-			//grdconMap[7, 8].BackgroundImage = wallImage;
-			//grdconMap[7, 9].BackgroundImage = wallImage;
-			//grdconMap[7, 10].BackgroundImage = wallImage;
-			//grdconMap[7, 11].BackgroundImage = wallImage;
-			//grdconMap[7, 13].BackgroundImage = wallImage;
-			//grdconMap[7, 14].BackgroundImage = wallImage;
-			//grdconMap[7, 15].BackgroundImage = wallImage;
-			//grdconMap[8, 3].BackgroundImage = wallImage;
-			//grdconMap[8, 4].BackgroundImage = wallImage;
-			//grdconMap[8, 5].BackgroundImage = wallImage;
-			//grdconMap[8, 6].BackgroundImage = wallImage;
-			//grdconMap[8, 8].BackgroundImage = wallImage;
-			//grdconMap[8, 11].BackgroundImage = wallImage;
-			//grdconMap[9, 3].BackgroundImage = wallImage;
-			//grdconMap[9, 4].BackgroundImage = wallImage;
-			//grdconMap[9, 8].BackgroundImage = wallImage;
-			//grdconMap[9, 11].BackgroundImage = wallImage;
-			//grdconMap[10, 4].BackgroundImage = wallImage;
-			//grdconMap[10, 8].BackgroundImage = wallImage;
-			//grdconMap[10, 10].BackgroundImage = wallImage;
-			//grdconMap[10, 11].BackgroundImage = wallImage;
-			//grdconMap[10, 12].BackgroundImage = wallImage;
-			//grdconMap[10, 13].BackgroundImage = wallImage;
-			//grdconMap[10, 14].BackgroundImage = wallImage;
-			//grdconMap[11, 8].BackgroundImage = wallImage;
-			//grdconMap[12, 4].BackgroundImage = wallImage;
-			//grdconMap[12, 5].BackgroundImage = wallImage;
-			//grdconMap[12, 7].BackgroundImage = wallImage;
-			//grdconMap[12, 8].BackgroundImage = wallImage;
-			//grdconMap[12, 9].BackgroundImage = wallImage;
-			//grdconMap[12, 10].BackgroundImage = wallImage;
-			//grdconMap[12, 12].BackgroundImage = wallImage;
-			//grdconMap[12, 13].BackgroundImage = wallImage;
-			//grdconMap[13, 2].BackgroundImage = wallImage;
-			//grdconMap[13, 3].BackgroundImage = wallImage;
-			//grdconMap[13, 4].BackgroundImage = wallImage;
-			//grdconMap[13, 5].BackgroundImage = wallImage;
-			//grdconMap[13, 7].BackgroundImage = wallImage;
-			//grdconMap[13, 8].BackgroundImage = wallImage;
-			//grdconMap[13, 9].BackgroundImage = wallImage;
-			//grdconMap[13, 10].BackgroundImage = wallImage;
-			//grdconMap[13, 12].BackgroundImage = wallImage;
-			//grdconMap[13, 13].BackgroundImage = wallImage;
-			//grdconMap[13, 14].BackgroundImage = wallImage;
-			//grdconMap[13, 15].BackgroundImage = wallImage;
-			//grdconMap[14, 5].BackgroundImage = wallImage;
-			//grdconMap[14, 12].BackgroundImage = wallImage;
-
-			////-----------------------------------------------------------------------------------------------------
-			//#endregion
-
+		
 			//-----------------------------------------------------------------------------------------------------
 			#region doors
 			//-----------------------------------------------------------------------------------------------------
@@ -1331,6 +1258,11 @@ namespace Thief_Escape
 			//-----------------------------------------------------------------------------------------------------
 			#endregion
 			//-----------------------------------------------------------------------------------------------------
+
+			#region [ Items ]
+			grdconMap[8, 10].BackColor = Key;
+
+			#endregion
 		}
 
 		#endregion

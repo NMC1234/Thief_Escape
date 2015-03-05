@@ -308,7 +308,7 @@ namespace Thief_Escape
 			_map[9, 3].CreateFloor(FloorType.FLOORGENERAL);
 			_map[9, 4].CreateFloor(FloorType.FLOORGENERAL);
 			_map[9, 5].CreateFloor(FloorType.FLOORGENERAL);
-			_map[9, 7].CreateFloor(FloorType.FLOORGENERAL);
+			//_map[9, 7].CreateFloor(FloorType.FLOORGENERAL);
 			_map[9, 8].CreateFloor(FloorType.FLOORGENERAL);
 			_map[9, 10].CreateFloor(FloorType.FLOORGENERAL);
 			_map[9, 13].CreateFloor(FloorType.FLOORGENERAL);
@@ -398,6 +398,12 @@ namespace Thief_Escape
 			//-----------------------------------------------------------------------------------------------------
 			#endregion
 			//-----------------------------------------------------------------------------------------------------
+
+			#region [ Items ]
+			Item tempKey = new Item(Item.ItemType.Key);
+			_map[9, 7].CreateKey(tempKey);
+
+			#endregion
 
 			//Assignment of starting cell
 			_map[1, 1].SetStartingCell(true);
