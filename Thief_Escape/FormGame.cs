@@ -677,7 +677,7 @@ namespace Thief_Escape
 			}
 
 			////loops to create a ring of transparency cells on outerborder of visual range
-			////horizontal lines
+ 			////horizontal lines
 			////Image blackout60Image = Image.FromFile("Cell60prcBlackout.png");
 
 
