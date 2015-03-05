@@ -29,9 +29,9 @@ namespace Thief_Escape
 		string name;
 		int counter;
 
-        //Exit bool is used to prevent unwanted shutdowns 
-        //  when going to the main menu.
-        bool exit = true;
+		//Exit bool is used to prevent unwanted shutdowns 
+		//  when going to the main menu.
+		bool exit = true;
 
 		#endregion
 		
@@ -54,8 +54,8 @@ namespace Thief_Escape
 			// TODO: Complete member initialization
 			InitializeComponent( );
 
-            //Defaut constructor creates name of "User"
-            name = "User";
+			//Defaut constructor creates name of "User"
+			name = "User";
 		}
 		#endregion
 		
@@ -86,7 +86,7 @@ namespace Thief_Escape
 			CheckMovement(player.CurrentCellX, player.CurrentCellY);
 
 			//Initial Fog of war
-			FogOfWar(Direction.GENERIC);
+			InitialFogOfWar( );
 
 			//Output initial prompt
 			InitalPrompt( );
@@ -96,162 +96,10 @@ namespace Thief_Escape
 		}
 
 		#endregion
-		
-
-		#region [ Movement Validation/Output/ImageMapupdate ]
-		//-----------------------------------------------------------------------------------------------------
-
-		//-----------------------------------------------------------------------------------------------------
-		#region Movement buttons
-		//-----------------------------------------------------------------------------------------------------
-
-		//-----------------------------------------------------------------------------------------------------
-		private void btnMoveNorth_Click(object sender, EventArgs e)
-		{
-			//disable current cell blink till movement to new cell in completed
-			tmrCellBlink.Enabled = false;
-
-			//Move the player north, (y axis - 1 )
-			player.SetCurrentCell(
-			player.CurrentCellX,
-			(player.CurrentCellY - 1)
-			);
-
-			//Remake Fog of war on movement
-			FogOfWar(Direction.NORTH);
-
-			//Check new movements
-			CheckMovement(player.CurrentCellX, player.CurrentCellY);
-
-			//Change map image possition
-			// X and Y is the moved to cell
-			//prevcolor function returns the color that should be left in the moved from cell
-			//Direction of button passed as arg
-			MoveCurrentPos(
-			player.CurrentCellX,
-			player.CurrentCellY,
-			WhatIsPrevCellColor(Direction.NORTH),
-			Direction.NORTH);
-
-			//Re-enable current cell blinking once moved to new cell
-			tmrCellBlink.Enabled = true;
-
-			//Output surrounding cell types in text output
-			OutputAroundPlayer(true);
-		}
-
-		//-----------------------------------------------------------------------------------------------------
-		private void btnMoveWest_Click(object sender, EventArgs e)
-		{
-			//disable current cell blink till movement to new cell in completed
-			tmrCellBlink.Enabled = false;
-
-			//Move the player west, (x axis - 1)
-			player.SetCurrentCell(
-			(player.CurrentCellX - 1),
-			player.CurrentCellY
-			);
-
-			//Remake Fog of war on movement
-			FogOfWar(Direction.WEST);
-
-			//Check new movements
-			CheckMovement(player.CurrentCellX, player.CurrentCellY);
-
-			//Change map image possition
-			// X and Y is the moved to cell
-			//prevcolor function returns the color that should be left in the moved from cell
-			//Direction of button passed as arg
-			MoveCurrentPos(
-			player.CurrentCellX,
-			player.CurrentCellY,
-			WhatIsPrevCellColor(Direction.WEST),
-			Direction.WEST);
-
-			//Re-enable current cell blinking once moved to new cell
-			tmrCellBlink.Enabled = true;
-
-			//Output surrounding cells
-			OutputAroundPlayer(true);
-		}
-
-		//-----------------------------------------------------------------------------------------------------
-		private void btnMoveEast_Click(object sender, EventArgs e)
-		{
-			//disable current cell blink till movement to new cell in completed
-			tmrCellBlink.Enabled = false;
-
-			//Move the player east, (x axis + 1)
-			player.SetCurrentCell(
-			(player.CurrentCellX + 1),
-			player.CurrentCellY
-			);
-
-			//Remake Fog of war on movement
-			FogOfWar(Direction.EAST);
-
-			//Check new movements
-			CheckMovement(player.CurrentCellX, player.CurrentCellY);
-
-			//Change map image possition
-			// X and Y is the moved to cell
-			//prevcolor function returns the color that should be left in the moved from cell
-			//Direction of button passed as arg
-			MoveCurrentPos(
-			player.CurrentCellX,
-			player.CurrentCellY,
-			WhatIsPrevCellColor(Direction.EAST),
-			Direction.EAST);
-
-			//Re-enable current cell blinking once moved to new cell
-			tmrCellBlink.Enabled = true;
-
-			//Output surrounding cells
-			OutputAroundPlayer(true);
-		}
-
-		//-----------------------------------------------------------------------------------------------------
-		private void btnMoveSouth_Click(object sender, EventArgs e)
-		{
-			//disable current cell blink till movement to new cell in completed
-			tmrCellBlink.Enabled = false;
-
-			//Move the player south, (y axis + 1 )
-			player.SetCurrentCell(
-			player.CurrentCellX,
-			(player.CurrentCellY + 1)
-			);
-
-			//Remake Fog of war on movement
-			FogOfWar(Direction.SOUTH);
-
-			//Check new movements
-			CheckMovement(player.CurrentCellX, player.CurrentCellY);
-
-			//Change map image possition
-			// X and Y is the moved to cell
-			//prevcolor function returns the color that should be left in the moved from cell
-			//Direction of button passed as arg
-			MoveCurrentPos(
-			player.CurrentCellX,
-			player.CurrentCellY,
-			WhatIsPrevCellColor(Direction.SOUTH),
-			Direction.SOUTH);
-
-			//Re-enable current cell blinking once moved to new cell
-			tmrCellBlink.Enabled = true;
-
-			//Output surrounding cells
-			OutputAroundPlayer(true);
-		}
-
-		//-----------------------------------------------------------------------------------------------------
-		#endregion
-		//-----------------------------------------------------------------------------------------------------
 
 
-		//This method outputs the types of the 4 cells surrounding the current cell
-		//-----------------------------------------------------------------------------------------------------
+		#region [ Movement Check/Buttons ]
+
 		public void CheckMovement(int currentX, int currentY)
 		{
 			//Movement validation checks the bounds of the passed x and y
@@ -412,29 +260,250 @@ namespace Thief_Escape
 		}
 
 		//-----------------------------------------------------------------------------------------------------
-		public void OutputAroundPlayer(bool clear)
+		public void Surroundings(int currentX, int currentY, Direction direction)
 		{
-			if(clear)
-				lstOutput.Items.Clear( );
+			//this method outputs the types of walls surrounding the player to the textbox
+			//MIGHT WANT TO REMOVE
+			//NOT REALLY NEEDED WITH THE MAP
+			//-----------------------------------------------------------------------------------------------------
+			CellType cell = CellType.GENERIC;
 
-			Surroundings(player.CurrentCellX, player.CurrentCellY, Direction.NORTH);
-			Surroundings(player.CurrentCellX, player.CurrentCellY, Direction.SOUTH);
-			Surroundings(player.CurrentCellX, player.CurrentCellY, Direction.WEST);
-			Surroundings(player.CurrentCellX, player.CurrentCellY, Direction.EAST);
-			//Place a blank line
-			lstOutput.Items.Add("");
+			switch(direction)
+			{
 
-			//Select the last item in the list
-			lstOutput.SelectedIndex = lstOutput.Items.Count - 1;
+				case Direction.NORTH:
+					//North is Y - 1
+					if(currentY - 1 < mapCells.MapSize)
+					{
+						cell = mapCells.GetCellType(currentX, currentY - 1);
+					}
+					break;
+
+				case Direction.SOUTH:
+					//North is Y + 1
+					if(currentY + 1 < mapCells.MapSize)
+					{
+						cell = mapCells.GetCellType(currentX, currentY + 1);
+					}
+					break;
+
+				case Direction.EAST:
+					//North is X + 1
+					if(currentY + 1 < mapCells.MapSize)
+					{
+						cell = mapCells.GetCellType(currentX + 1, currentY);
+					}
+					break;
+
+				case Direction.WEST:
+					//North is X - 1
+					if(currentY - 1 < mapCells.MapSize)
+					{
+						cell = mapCells.GetCellType(currentX - 1, currentY);
+					}
+					break;
+
+				//default:
+				//	break;
+			}
+
+			//Add the output to the listbox
+			lstOutput.Items.Add(String.Format("There is a {0} {1} of you.",
+			cell.ToString( ).ToLower( ), direction.ToString( ).ToLower( )));
 		}
 
 		//-----------------------------------------------------------------------------------------------------
+		private void btnMoveNorth_Click(object sender, EventArgs e)
+		{
+			//disable current cell blink till movement to new cell in completed
+			tmrCellBlink.Enabled = false;
+
+			//Move the player north, (y axis - 1 )
+			player.SetCurrentCell(
+			player.CurrentCellX,
+			(player.CurrentCellY - 1)
+			);
+
+			//Remake Fog of war on movement
+			FogOfWar(Direction.NORTH);
+
+			//Check new movements
+			CheckMovement(player.CurrentCellX, player.CurrentCellY);
+
+			//Change map image possition
+			// X and Y is the moved to cell
+			//prevcolor function returns the color that should be left in the moved from cell
+			//Direction of button passed as arg
+			MoveCurrentPos(
+			player.CurrentCellX,
+			player.CurrentCellY,
+			WhatIsPrevCellColor(Direction.NORTH),
+			Direction.NORTH);
+
+			//Re-enable current cell blinking once moved to new cell
+			tmrCellBlink.Enabled = true;
+
+			//Output surrounding cell types in text output
+			OutputAroundPlayer(true);
+		}
+
+		//-----------------------------------------------------------------------------------------------------
+		private void btnMoveWest_Click(object sender, EventArgs e)
+		{
+			//disable current cell blink till movement to new cell in completed
+			tmrCellBlink.Enabled = false;
+
+			//Move the player west, (x axis - 1)
+			player.SetCurrentCell(
+			(player.CurrentCellX - 1),
+			player.CurrentCellY
+			);
+
+			//Remake Fog of war on movement
+			FogOfWar(Direction.WEST);
+
+			//Check new movements
+			CheckMovement(player.CurrentCellX, player.CurrentCellY);
+
+			//Change map image possition
+			// X and Y is the moved to cell
+			//prevcolor function returns the color that should be left in the moved from cell
+			//Direction of button passed as arg
+			MoveCurrentPos(
+			player.CurrentCellX,
+			player.CurrentCellY,
+			WhatIsPrevCellColor(Direction.WEST),
+			Direction.WEST);
+
+			//Re-enable current cell blinking once moved to new cell
+			tmrCellBlink.Enabled = true;
+
+			//Output surrounding cells
+			OutputAroundPlayer(true);
+		}
+
+		//-----------------------------------------------------------------------------------------------------
+		private void btnMoveEast_Click(object sender, EventArgs e)
+		{
+			//disable current cell blink till movement to new cell in completed
+			tmrCellBlink.Enabled = false;
+
+			//Move the player east, (x axis + 1)
+			player.SetCurrentCell(
+			(player.CurrentCellX + 1),
+			player.CurrentCellY
+			);
+
+			//Remake Fog of war on movement
+			FogOfWar(Direction.EAST);
+
+			//Check new movements
+			CheckMovement(player.CurrentCellX, player.CurrentCellY);
+
+			//Change map image possition
+			// X and Y is the moved to cell
+			//prevcolor function returns the color that should be left in the moved from cell
+			//Direction of button passed as arg
+			MoveCurrentPos(
+			player.CurrentCellX,
+			player.CurrentCellY,
+			WhatIsPrevCellColor(Direction.EAST),
+			Direction.EAST);
+
+			//Re-enable current cell blinking once moved to new cell
+			tmrCellBlink.Enabled = true;
+
+			//Output surrounding cells
+			OutputAroundPlayer(true);
+		}
+
+		//-----------------------------------------------------------------------------------------------------
+		private void btnMoveSouth_Click(object sender, EventArgs e)
+		{
+			//disable current cell blink till movement to new cell in completed
+			tmrCellBlink.Enabled = false;
+
+			//Move the player south, (y axis + 1 )
+			player.SetCurrentCell(
+			player.CurrentCellX,
+			(player.CurrentCellY + 1)
+			);
+
+			//Remake Fog of war on movement
+			FogOfWar(Direction.SOUTH);
+
+			//Check new movements
+			CheckMovement(player.CurrentCellX, player.CurrentCellY);
+
+			//Change map image possition
+			// X and Y is the moved to cell
+			//prevcolor function returns the color that should be left in the moved from cell
+			//Direction of button passed as arg
+			MoveCurrentPos(
+			player.CurrentCellX,
+			player.CurrentCellY,
+			WhatIsPrevCellColor(Direction.SOUTH),
+			Direction.SOUTH);
+
+			//Re-enable current cell blinking once moved to new cell
+			tmrCellBlink.Enabled = true;
+
+			//Output surrounding cells
+			OutputAroundPlayer(true);
+		}
+
+		//-----------------------------------------------------------------------------------------------------
+		#endregion
+
+
 		#region [ Change Visual Map Cell Functions ]
-		//-----------------------------------------------------------------------------------------------------
-		//Returns the moved from cell's map color.
-		//-----------------------------------------------------------------------------------------------------
+
+		#region [ Blink Current Cell]
+
+		private void tmrCellBlink_Tick(object sender, EventArgs e)
+		{
+			//The tick event function for the tmrCellBlink timer
+			//for each tick count gets increased
+			//current cell is changed to a different color depending on
+			//if counter is even or odd
+			counter++;
+
+			if((counter % 2) != 0)
+			{
+				BlinkCurrentCellBack( );
+			}
+			if((counter % 2) == 0)
+			{
+				BlinkCurrentCell( );
+
+			}
+		}
+
+		
+		public void BlinkCurrentCell( )
+		{
+			//When counter is odd this method is called
+			//-----------------------------------------------------------------------------------------------------
+
+			grdconMap[(player.CurrentCellY + 1), (player.CurrentCellX + 1)].BackColor = Color.DimGray;
+
+		}
+
+		
+		public void BlinkCurrentCellBack( )
+		{
+			//when counter is even this method is called
+			//-----------------------------------------------------------------------------------------------------
+			grdconMap[(player.CurrentCellY + 1), (player.CurrentCellX + 1)].BackColor = Color.Orange;
+
+		}
+
+		#endregion
+
 		private Color WhatIsPrevCellColor(Direction direction)
 		{
+			//Returns the moved from cell's map color.
+			//-----------------------------------------------------------------------------------------------------
 			//method scoped variables needed for the logic statements
 			Color color = Color.Brown;
 			CellType cell = CellType.GENERIC;
@@ -619,7 +688,6 @@ namespace Thief_Escape
 
 		}
 
-
 		//-----------------------------------------------------------------------------------------------------
 		public void FogOfWar(Direction direction)
 		{
@@ -627,103 +695,216 @@ namespace Thief_Escape
 			Image blackoutImage = Image.FromFile("CellBlackoutImage.png");
 			Image wallImage = Image.FromFile("CellWallImage.png");
 
+			//Version 3 of Fog of War
+			//Will only reveal and fill correct lines of cells relative to movement direction
+			switch(direction)
+			{
+				#region North
+					case Direction.NORTH:
+						//Reveal north lines of cells upon movement
+						for(int x = (player.CurrentCellX - 1); x < (player.CurrentCellX + 4); x++)
+						{
+							int y = (player.CurrentCellY - 1);
 
-			//Version 1 of Fog of War
-			////loop to blackout all cells before a portion is removed by remove blackout
-			//for(int x = 1; x < (mapCells.MapSize + 1); x++)
+							//removes the background image for that cell
+							grdconMap[y, x].ResetBackgroundImage( );
+
+							//checks if current cell is out of range of the cell object array
+							if((((x - 1) >= 0) && ((y - 1) >= 0))
+								& ((x <= mapCells.MapSize) && (y <= mapCells.MapSize)))
+							{
+								//if statement to check if the current cell is a wall
+								//if so then it assigns that cell the wall background image
+								if(mapCells.GetCellType((x - 1), (y - 1)) == CellType.WALL)
+								{
+									grdconMap[y, x].BackgroundImage = wallImage;
+								}
+							}
+						}
+
+						//Blackout southern cell line upon movement
+						for(int x = (player.CurrentCellX - 1); x < (player.CurrentCellX + 4); x++)
+						{
+							int y = (player.CurrentCellY + 4);
+
+							//Black out image applied
+							grdconMap[y, x].BackgroundImage = blackoutImage;
+						}
+				#endregion
+				break;
+
+				#region South
+					case Direction.SOUTH:
+					//Reveal south lines of cells upon movement
+					for(int x = (player.CurrentCellX - 1); x < (player.CurrentCellX + 4); x++)
+					{
+						int y = (player.CurrentCellY + 3);
+
+						//removes the background image for that cell
+						grdconMap[y, x].ResetBackgroundImage( );
+
+						//checks if current cell is out of range of the cell object array
+						if((((x - 1) >= 0) && ((y - 1) >= 0))
+							& ((x <= mapCells.MapSize) && (y <= mapCells.MapSize)))
+						{
+							//if statement to check if the current cell is a wall
+							//if so then it assigns that cell the wall background image
+							if(mapCells.GetCellType((x - 1), (y - 1)) == CellType.WALL)
+							{
+								grdconMap[y, x].BackgroundImage = wallImage;
+							}
+						}
+					}
+
+					//Blackout northern cell line upon movement
+					for(int x = (player.CurrentCellX - 1); x < (player.CurrentCellX + 4); x++)
+					{
+						int y = (player.CurrentCellY - 2);
+
+						//Black out image applied
+						grdconMap[y, x].BackgroundImage = blackoutImage;
+					}
+				#endregion
+				break;
+
+				#region East
+					case Direction.EAST:
+					//Reveal east line of cells upon movement
+					for(int y = (player.CurrentCellY - 1); y < (player.CurrentCellY + 4); y++)
+					{
+						int x = (player.CurrentCellX + 3);
+
+						//removes the background image for that cell
+						grdconMap[y, x].ResetBackgroundImage( );
+
+						//checks if current cell is out of range of the cell object array
+						if((((x - 1) >= 0) && ((y - 1) >= 0))
+							& ((x <= mapCells.MapSize) && (y <= mapCells.MapSize)))
+						{
+							//if statement to check if the current cell is a wall
+							//if so then it assigns that cell the wall background image
+							if(mapCells.GetCellType((x - 1), (y - 1)) == CellType.WALL)
+							{
+								grdconMap[y, x].BackgroundImage = wallImage;
+							}
+						}
+					}
+
+					//Blackout western cell line upon movement
+					for(int y = (player.CurrentCellY - 1); y < (player.CurrentCellY + 4); y++)
+					{
+						int x = (player.CurrentCellX - 2);
+
+						//Black out image applied
+						grdconMap[y, x].BackgroundImage = blackoutImage;
+					}
+				#endregion
+				break;
+
+				#region West
+					case Direction.WEST:
+					//Reveal east line of cells upon movement
+					for(int y = (player.CurrentCellY - 1); y < (player.CurrentCellY + 4); y++)
+					{
+						int x = (player.CurrentCellX - 1);
+
+						//removes the background image for that cell
+						grdconMap[y, x].ResetBackgroundImage( );
+
+						//checks if current cell is out of range of the cell object array
+						if((((x - 1) >= 0) && ((y - 1) >= 0))
+							& ((x <= mapCells.MapSize) && (y <= mapCells.MapSize)))
+						{
+							//if statement to check if the current cell is a wall
+							//if so then it assigns that cell the wall background image
+							if(mapCells.GetCellType((x - 1), (y - 1)) == CellType.WALL)
+							{
+								grdconMap[y, x].BackgroundImage = wallImage;
+							}
+						}
+					}
+
+					//Blackout western cell line upon movement
+					for(int y = (player.CurrentCellY - 1); y < (player.CurrentCellY + 4); y++)
+					{
+						int x = (player.CurrentCellX + 4);
+
+						//Black out image applied
+						grdconMap[y, x].BackgroundImage = blackoutImage;
+					}
+				#endregion
+				break;
+
+				//case Direction.GENERIC:
+				//	break;
+				//default:
+				//	break;
+			}
+
+
+			//Version 2 of Fog of War
+			//For loops backout all surrounding cells outside of viewable area
+			//for(int x = 1; x < (player.CurrentCellX - 1); x++)
+			//{
+			//	for(int y = 1; y < (player.CurrentCellY - 1); y++)
+			//	{
+			//		grdconMap[y, x].BackgroundImage = blackoutImage;
+			//	}
+				
+			//}
+
+			//for(int x = (player.CurrentCellX + 4); x < (mapCells.MapSize + 1); x++)
 			//{
 			//	for(int y = 1; y < (mapCells.MapSize + 1); y++)
 			//	{
 			//		grdconMap[y, x].BackgroundImage = blackoutImage;
 			//	}
-
 			//}
 
+			//for(int x = 1; x < (mapCells.MapSize + 1); x++)
+			//{
+			//	for(int y = (player.CurrentCellY + 4); y < (mapCells.MapSize + 1); y++)
+			//	{
+			//		grdconMap[y, x].BackgroundImage = blackoutImage;
+			//	}
+			//}
 
-			//Version 2 of Fog of War
-			//For loops backout all surrounding cells outside of viewable area
-			for(int x = 1; x < (player.CurrentCellX - 1); x++)
-			{
-				for(int y = 1; y < (player.CurrentCellY - 1); y++)
-				{
-					grdconMap[y, x].BackgroundImage = blackoutImage;
-				}
-				
-			}
+			//for(int x = 1; x < (player.CurrentCellX - 1); x++)
+			//{
+			//	for(int y = (player.CurrentCellY - 1); y < (mapCells.MapSize + 1); y++)
+			//	{
+			//		grdconMap[y, x].BackgroundImage = blackoutImage;
+			//	}
+			//}
 
-			for(int x = (player.CurrentCellX + 4); x < (mapCells.MapSize + 1); x++)
+			//for(int x = 1; x < (player.CurrentCellX + 4); x++)
+			//{
+			//	for(int y = 1; y < (player.CurrentCellY - 1); y++)
+			//	{
+			//		grdconMap[y, x].BackgroundImage = blackoutImage;
+			//	}
+			//}
+		}
+
+		//-----------------------------------------------------------------------------------------------------
+		public void InitialFogOfWar( )
+		{
+			Image blackoutImage = Image.FromFile("CellBlackoutImage.png");
+			Image wallImage = Image.FromFile("CellWallImage.png");
+
+			////loop to blackout all cells before a portion is removed by remove blackout
+			for(int x = 1; x < (mapCells.MapSize + 1); x++)
 			{
 				for(int y = 1; y < (mapCells.MapSize + 1); y++)
 				{
 					grdconMap[y, x].BackgroundImage = blackoutImage;
 				}
+
 			}
-
-			for(int x = 1; x < (mapCells.MapSize + 1); x++)
-			{
-				for(int y = (player.CurrentCellY + 4); y < (mapCells.MapSize + 1); y++)
-				{
-					grdconMap[y, x].BackgroundImage = blackoutImage;
-				}
-			}
-
-			for(int x = 1; x < (player.CurrentCellX - 1); x++)
-			{
-				for(int y = (player.CurrentCellY - 1); y < (mapCells.MapSize + 1); y++)
-				{
-					grdconMap[y, x].BackgroundImage = blackoutImage;
-				}
-			}
-
-			for(int x = 1; x < (player.CurrentCellX + 4); x++)
-			{
-				for(int y = 1; y < (player.CurrentCellY - 1); y++)
-				{
-					grdconMap[y, x].BackgroundImage = blackoutImage;
-				}
-			}
-
-			////loops to create a ring of transparency cells on outerborder of visual range
- 			////horizontal lines
-			////Image blackout60Image = Image.FromFile("Cell60prcBlackout.png");
-
-
-			//for(int x = (player.CurrentCellX - 2); x < (player.CurrentCellX + 6); x++)
-			//{
-			//	int y;
-			//	y = (player.CurrentCellY - 2);
-			//	grdconMap[y, x].BackgroundImage = blackout60Image;
-			//}
-
-			//for(int x = (player.CurrentCellX - 2); x < (player.CurrentCellX + 6); x++)
-			//{
-			//	int y;
-			//	y = (player.CurrentCellY + 5);
-			//	grdconMap[y, x].BackgroundImage = blackout60Image;
-			//}
-
-			////Vertical line
-			//for(int y = (player.CurrentCellY - 2); y < (player.CurrentCellY + 5); y++)
-			//{
-			//	int x;
-			//	x = (player.CurrentCellX - 2);
-			//	grdconMap[y, x].BackgroundImage = blackout60Image;
-			//}
-
-			//for(int y = (player.CurrentCellY - 2); y < (player.CurrentCellY + 5); y++)
-			//{
-			//	int x;
-			//	x = (player.CurrentCellX + 5);
-			//	grdconMap[y, x].BackgroundImage = blackout60Image;
-			//}
-
-
-			//Removes blackout for cells player can see
 
 			//pair of loops that will remove blackout for viewable area
 			for(int x = (player.CurrentCellX - 1); x < (player.CurrentCellX + 4); x++)
 			{
-
 				for(int y = (player.CurrentCellY - 1); y < (player.CurrentCellY + 4); y++)
 				{
 					//removes the background image for that cell
@@ -742,56 +923,28 @@ namespace Thief_Escape
 					}
 				}
 			}
-
-		}
-
-		//-----------------------------------------------------------------------------------------------------
-		#region [ Blink Current Cell]
-	
-		//The tick event function for the tmrCellBlink timer
-		private void tmrCellBlink_Tick(object sender, EventArgs e)
-		{
-			//for each tick count gets increased
-			//current cell is changed to a different color depending on
-			//if counter is even or odd
-			counter++;
-
-			if((counter % 2) != 0)
-			{
-				BlinkCurrentCellBack( );
-			}
-			if((counter % 2) == 0)
-			{
-				BlinkCurrentCell( );
-
-			}
-		}
-
-		//When counter is odd this method is called
-		//-----------------------------------------------------------------------------------------------------
-		public void BlinkCurrentCell( )
-		{
-
-			grdconMap[(player.CurrentCellY + 1), (player.CurrentCellX + 1)].BackColor = Color.DimGray;
-
-		}
-
-		//when counter is even this method is called
-		public void BlinkCurrentCellBack( )
-		{
-
-			grdconMap[(player.CurrentCellY + 1), (player.CurrentCellX + 1)].BackColor = Color.Orange;
-
 		}
 
 		#endregion
-	
-		#endregion
 
-		#endregion
-		
 
 		#region [ Methods ]
+		public void OutputAroundPlayer(bool clear)
+		{
+			if(clear)
+				lstOutput.Items.Clear( );
+
+			Surroundings(player.CurrentCellX, player.CurrentCellY, Direction.NORTH);
+			Surroundings(player.CurrentCellX, player.CurrentCellY, Direction.SOUTH);
+			Surroundings(player.CurrentCellX, player.CurrentCellY, Direction.WEST);
+			Surroundings(player.CurrentCellX, player.CurrentCellY, Direction.EAST);
+			//Place a blank line
+			lstOutput.Items.Add("");
+
+			//Select the last item in the list
+			lstOutput.SelectedIndex = lstOutput.Items.Count - 1;
+		}
+
 		//starting dialog
 		public void InitalPrompt( )
 		{
@@ -803,58 +956,6 @@ namespace Thief_Escape
 		public void PardonDust( )
 		{
 			MessageBox.Show("Pardon our dust, we're still under construction.");
-		}
-
-		//this method outputs the types of walls surrounding the player to the textbox
-		//MIGHT WANT TO REMOVE
-		//NOT REALLY NEEDED WITH THE MAP
-		//-----------------------------------------------------------------------------------------------------
-		public void Surroundings(int currentX, int currentY, Direction direction)
-		{
-			CellType cell = CellType.GENERIC;
-
-			switch(direction)
-			{
-
-				case Direction.NORTH:
-					//North is Y - 1
-					if(currentY - 1 < mapCells.MapSize)
-					{
-						cell = mapCells.GetCellType(currentX, currentY - 1);
-					}
-					break;
-
-				case Direction.SOUTH:
-					//North is Y + 1
-					if(currentY + 1 < mapCells.MapSize)
-					{
-						cell = mapCells.GetCellType(currentX, currentY + 1);
-					}
-					break;
-
-				case Direction.EAST:
-					//North is X + 1
-					if(currentY + 1 < mapCells.MapSize)
-					{
-						cell = mapCells.GetCellType(currentX + 1, currentY);
-					}
-					break;
-
-				case Direction.WEST:
-					//North is X - 1
-					if(currentY - 1 < mapCells.MapSize)
-					{
-						cell = mapCells.GetCellType(currentX - 1, currentY);
-					}
-					break;
-
-				//default:
-				//	break;
-			}
-
-			//Add the output to the listbox
-			lstOutput.Items.Add(String.Format("There is a {0} {1} of you.",
-			cell.ToString( ).ToLower( ), direction.ToString( ).ToLower( )));
 		}
 
 		#endregion
@@ -914,11 +1015,11 @@ namespace Thief_Escape
 
 		private void btnMainMenu_Click(object sender, EventArgs e)
 		{
-            //Change the exit bool to false;
-            exit = false;
+			//Change the exit bool to false;
+			exit = false;
 			//Load the menu form
-            FormMainMenu frm = new FormMainMenu();
-            frm.Show();
+			FormMainMenu frm = new FormMainMenu();
+			frm.Show();
 
 			//Close this form
 			this.Close( );
@@ -1235,15 +1336,15 @@ namespace Thief_Escape
 		#endregion
 
 
-        #region [ Close Event ]
+		#region [ Close Event ]
 
-         private void FormGame_FormClosed(object sender, FormClosedEventArgs e)
-        {
-             if (exit)
-            Application.Exit();
-        }       
+		 private void FormGame_FormClosed(object sender, FormClosedEventArgs e)
+		{
+			 if (exit)
+			Application.Exit();
+		}       
 
-        #endregion
+		#endregion
 
 
 		
