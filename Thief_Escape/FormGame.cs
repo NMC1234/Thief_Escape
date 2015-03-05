@@ -29,6 +29,10 @@ namespace Thief_Escape
 		string name;
 		int counter;
 
+        //Exit bool is used to prevent unwanted shutdowns 
+        //  when going to the main menu.
+        bool exit = true;
+
 		#endregion
 		
 
@@ -49,6 +53,9 @@ namespace Thief_Escape
 		{
 			// TODO: Complete member initialization
 			InitializeComponent( );
+
+            //Defaut constructor creates name of "User"
+            name = "User";
 		}
 		#endregion
 		
@@ -788,7 +795,7 @@ namespace Thief_Escape
 		//starting dialog
 		public void InitalPrompt( )
 		{
-			lstDialog.Items.Add(string.Format("Hello, {0}, welcome to the game", name));
+			lstDialog.Items.Add(string.Format("Hello {0}, welcome to the game", name));
 			lstDialog.Items.Add("Help Robbie get out of the house with all his treasures!");
 			lstDialog.Items.Add("");
 		}
@@ -907,9 +914,11 @@ namespace Thief_Escape
 
 		private void btnMainMenu_Click(object sender, EventArgs e)
 		{
+            //Change the exit bool to false;
+            exit = false;
 			//Load the menu form
-			//FormMenu frm = new FormMenu();
-			//frm.Show();
+            FormMainMenu frm = new FormMainMenu();
+            frm.Show();
 
 			//Close this form
 			this.Close( );
@@ -919,6 +928,7 @@ namespace Thief_Escape
 		
 
 		#region [ Menu Buttons Hover ]
+
 		private void btnLoadGame_MouseHover(object sender, EventArgs e)
 		{
 			lblMenuHover.Text = "This feature is not yet implemented.";
@@ -1223,6 +1233,19 @@ namespace Thief_Escape
 		}
 
 		#endregion
+
+
+        #region [ Close Event ]
+
+         private void FormGame_FormClosed(object sender, FormClosedEventArgs e)
+        {
+             if (exit)
+            Application.Exit();
+        }       
+
+        #endregion
+
+
 		
 
 	}

@@ -10,39 +10,49 @@ using System.Windows.Forms;
 
 namespace Thief_Escape
 {
-	//-----------------------------------------------------------------------------------------------------
-	public partial class FormName : Form
-	{
-		//-----------------------------------------------------------------------------------------------------
-		public FormName()
-		{
-			InitializeComponent();
-		}
+    //-----------------------------------------------------------------------------------------------------
+    public partial class FormName : Form
+    {
+        //-----------------------------------------------------------------------------------------------------
+        public FormName()
+        {
+            InitializeComponent();
+        }
 
-		//-----------------------------------------------------------------------------------------------------
-		private void btnPlay_Click(object sender, EventArgs e)
-		{
-			//Get the text from the the textbox and
-			//Launch the second form, that contains the game interface
-			FormGame frm1 = new FormGame(txtName.Text);
+        //-----------------------------------------------------------------------------------------------------
+        private void btnPlay_Click(object sender, EventArgs e)
+        {
+            FormGame frm1 = null;
+            //If the textbox is not blank, create FormGame with user-name
+            if (txtName.Text.Trim() != String.Empty)
+            {
+                //Get the text from the the textbox and
+                //Launch the second form, that contains the game interface
+                frm1 = new FormGame(txtName.Text);
+            }
+                //Else create it with generic "User"
+            else
+            {
+                frm1 = new FormGame();
+            }
 
-			frm1.Show();
+            frm1.Show();
 
-			//Hide this form
-			this.Hide();
-		}
+            //Close this form
+            this.Close();
+        }
 
-		//-----------------------------------------------------------------------------------------------------
-		private void btnBack_Click(object sender, EventArgs e)
-		{
-			FormMainMenu frm2 = new FormMainMenu();
+        //-----------------------------------------------------------------------------------------------------
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            FormMainMenu frm2 = new FormMainMenu();
 
-			frm2.Show();
+            frm2.Show();
 
-			//Hide this form
-			this.Hide();
-		}
-	}
+            //Close this form
+            this.Close();
+        }
+    }
 }
 
 
