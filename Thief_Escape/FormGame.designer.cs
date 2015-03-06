@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
 			this.components = new System.ComponentModel.Container();
-			Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle5 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
-			Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle6 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
-			Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle7 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
-			Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle8 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
+			Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle9 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
+			Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle10 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
+			Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle11 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
+			Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle12 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
 			this.lstOutput = new System.Windows.Forms.ListBox();
 			this.grpMovement = new System.Windows.Forms.GroupBox();
 			this.btnMoveWest = new System.Windows.Forms.Button();
@@ -52,6 +52,8 @@
 			this.lblMenuHover = new System.Windows.Forms.Label();
 			this.lstDialog = new System.Windows.Forms.ListBox();
 			this.grpboxLegend = new System.Windows.Forms.GroupBox();
+			this.lblKey = new System.Windows.Forms.Label();
+			this.txtKey = new System.Windows.Forms.TextBox();
 			this.picbWallImage = new System.Windows.Forms.PictureBox();
 			this.label2 = new System.Windows.Forms.Label();
 			this.txtBejeweledKitten = new System.Windows.Forms.TextBox();
@@ -77,8 +79,6 @@
 			this.tabDirection = new System.Windows.Forms.TabPage();
 			this.tabInventory = new System.Windows.Forms.TabPage();
 			this.lstInventory = new System.Windows.Forms.ListBox();
-			this.lblKey = new System.Windows.Forms.Label();
-			this.txtKey = new System.Windows.Forms.TextBox();
 			this.grpMovement.SuspendLayout();
 			this.grpActions.SuspendLayout();
 			this.grpboxLegend.SuspendLayout();
@@ -212,14 +212,15 @@
 			// btnUseKey
 			// 
 			this.btnUseKey.BackColor = System.Drawing.Color.DarkGray;
-			this.btnUseKey.Enabled = false;
-			this.btnUseKey.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnUseKey.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnUseKey.ForeColor = System.Drawing.Color.DarkGreen;
 			this.btnUseKey.Location = new System.Drawing.Point(22, 75);
 			this.btnUseKey.Name = "btnUseKey";
 			this.btnUseKey.Size = new System.Drawing.Size(74, 50);
 			this.btnUseKey.TabIndex = 7;
 			this.btnUseKey.Text = "Use Key";
 			this.btnUseKey.UseVisualStyleBackColor = false;
+			this.btnUseKey.Click += new System.EventHandler(this.btnUseKey_Click);
 			// 
 			// btnAction3
 			// 
@@ -248,14 +249,15 @@
 			// btnPickupKey
 			// 
 			this.btnPickupKey.BackColor = System.Drawing.Color.DarkGray;
-			this.btnPickupKey.Enabled = false;
-			this.btnPickupKey.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnPickupKey.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnPickupKey.ForeColor = System.Drawing.Color.DarkGreen;
 			this.btnPickupKey.Location = new System.Drawing.Point(22, 19);
 			this.btnPickupKey.Name = "btnPickupKey";
 			this.btnPickupKey.Size = new System.Drawing.Size(74, 50);
 			this.btnPickupKey.TabIndex = 4;
 			this.btnPickupKey.Text = "Pickup Key";
 			this.btnPickupKey.UseVisualStyleBackColor = false;
+			this.btnPickupKey.Click += new System.EventHandler(this.btnPickupKey_Click);
 			// 
 			// btnMainMenu
 			// 
@@ -355,6 +357,24 @@
 			this.grpboxLegend.TabIndex = 13;
 			this.grpboxLegend.TabStop = false;
 			this.grpboxLegend.Text = "Legend";
+			// 
+			// lblKey
+			// 
+			this.lblKey.AutoSize = true;
+			this.lblKey.Location = new System.Drawing.Point(28, 255);
+			this.lblKey.Name = "lblKey";
+			this.lblKey.Size = new System.Drawing.Size(31, 13);
+			this.lblKey.TabIndex = 19;
+			this.lblKey.Text = "- Key";
+			// 
+			// txtKey
+			// 
+			this.txtKey.BackColor = System.Drawing.Color.SpringGreen;
+			this.txtKey.Location = new System.Drawing.Point(6, 252);
+			this.txtKey.Name = "txtKey";
+			this.txtKey.ReadOnly = true;
+			this.txtKey.Size = new System.Drawing.Size(21, 20);
+			this.txtKey.TabIndex = 18;
 			// 
 			// picbWallImage
 			// 
@@ -524,30 +544,30 @@
 			this.grdconMap.AllowIncreaseSmallChange = false;
 			this.grdconMap.AllowSelection = Syncfusion.Windows.Forms.Grid.GridSelectionFlags.None;
 			this.grdconMap.BackColor = System.Drawing.Color.Black;
-			gridBaseStyle5.Name = "Header";
-			gridBaseStyle5.StyleInfo.Borders.Bottom = new Syncfusion.Windows.Forms.Grid.GridBorder(Syncfusion.Windows.Forms.Grid.GridBorderStyle.None);
-			gridBaseStyle5.StyleInfo.Borders.Left = new Syncfusion.Windows.Forms.Grid.GridBorder(Syncfusion.Windows.Forms.Grid.GridBorderStyle.None);
-			gridBaseStyle5.StyleInfo.Borders.Right = new Syncfusion.Windows.Forms.Grid.GridBorder(Syncfusion.Windows.Forms.Grid.GridBorderStyle.None);
-			gridBaseStyle5.StyleInfo.Borders.Top = new Syncfusion.Windows.Forms.Grid.GridBorder(Syncfusion.Windows.Forms.Grid.GridBorderStyle.None);
-			gridBaseStyle5.StyleInfo.CellType = "Header";
-			gridBaseStyle5.StyleInfo.Font.Bold = true;
-			gridBaseStyle5.StyleInfo.Interior = new Syncfusion.Drawing.BrushInfo(Syncfusion.Drawing.GradientStyle.Vertical, System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(199)))), ((int)(((byte)(184))))), System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(234)))), ((int)(((byte)(216))))));
-			gridBaseStyle5.StyleInfo.VerticalAlignment = Syncfusion.Windows.Forms.Grid.GridVerticalAlignment.Middle;
-			gridBaseStyle6.Name = "Standard";
-			gridBaseStyle6.StyleInfo.Font.Facename = "Tahoma";
-			gridBaseStyle6.StyleInfo.Interior = new Syncfusion.Drawing.BrushInfo(System.Drawing.SystemColors.Window);
-			gridBaseStyle7.Name = "Column Header";
-			gridBaseStyle7.StyleInfo.BaseStyle = "Header";
-			gridBaseStyle7.StyleInfo.HorizontalAlignment = Syncfusion.Windows.Forms.Grid.GridHorizontalAlignment.Center;
-			gridBaseStyle8.Name = "Row Header";
-			gridBaseStyle8.StyleInfo.BaseStyle = "Header";
-			gridBaseStyle8.StyleInfo.HorizontalAlignment = Syncfusion.Windows.Forms.Grid.GridHorizontalAlignment.Left;
-			gridBaseStyle8.StyleInfo.Interior = new Syncfusion.Drawing.BrushInfo(Syncfusion.Drawing.GradientStyle.Horizontal, System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(199)))), ((int)(((byte)(184))))), System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(234)))), ((int)(((byte)(216))))));
+			gridBaseStyle9.Name = "Header";
+			gridBaseStyle9.StyleInfo.Borders.Bottom = new Syncfusion.Windows.Forms.Grid.GridBorder(Syncfusion.Windows.Forms.Grid.GridBorderStyle.None);
+			gridBaseStyle9.StyleInfo.Borders.Left = new Syncfusion.Windows.Forms.Grid.GridBorder(Syncfusion.Windows.Forms.Grid.GridBorderStyle.None);
+			gridBaseStyle9.StyleInfo.Borders.Right = new Syncfusion.Windows.Forms.Grid.GridBorder(Syncfusion.Windows.Forms.Grid.GridBorderStyle.None);
+			gridBaseStyle9.StyleInfo.Borders.Top = new Syncfusion.Windows.Forms.Grid.GridBorder(Syncfusion.Windows.Forms.Grid.GridBorderStyle.None);
+			gridBaseStyle9.StyleInfo.CellType = "Header";
+			gridBaseStyle9.StyleInfo.Font.Bold = true;
+			gridBaseStyle9.StyleInfo.Interior = new Syncfusion.Drawing.BrushInfo(Syncfusion.Drawing.GradientStyle.Vertical, System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(199)))), ((int)(((byte)(184))))), System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(234)))), ((int)(((byte)(216))))));
+			gridBaseStyle9.StyleInfo.VerticalAlignment = Syncfusion.Windows.Forms.Grid.GridVerticalAlignment.Middle;
+			gridBaseStyle10.Name = "Standard";
+			gridBaseStyle10.StyleInfo.Font.Facename = "Tahoma";
+			gridBaseStyle10.StyleInfo.Interior = new Syncfusion.Drawing.BrushInfo(System.Drawing.SystemColors.Window);
+			gridBaseStyle11.Name = "Column Header";
+			gridBaseStyle11.StyleInfo.BaseStyle = "Header";
+			gridBaseStyle11.StyleInfo.HorizontalAlignment = Syncfusion.Windows.Forms.Grid.GridHorizontalAlignment.Center;
+			gridBaseStyle12.Name = "Row Header";
+			gridBaseStyle12.StyleInfo.BaseStyle = "Header";
+			gridBaseStyle12.StyleInfo.HorizontalAlignment = Syncfusion.Windows.Forms.Grid.GridHorizontalAlignment.Left;
+			gridBaseStyle12.StyleInfo.Interior = new Syncfusion.Drawing.BrushInfo(Syncfusion.Drawing.GradientStyle.Horizontal, System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(199)))), ((int)(((byte)(184))))), System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(234)))), ((int)(((byte)(216))))));
 			this.grdconMap.BaseStylesMap.AddRange(new Syncfusion.Windows.Forms.Grid.GridBaseStyle[] {
-            gridBaseStyle5,
-            gridBaseStyle6,
-            gridBaseStyle7,
-            gridBaseStyle8});
+            gridBaseStyle9,
+            gridBaseStyle10,
+            gridBaseStyle11,
+            gridBaseStyle12});
 			this.grdconMap.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
 			this.grdconMap.ColCount = 24;
 			this.grdconMap.ColWidthEntries.AddRange(new Syncfusion.Windows.Forms.Grid.GridColWidth[] {
@@ -644,24 +664,6 @@
 			this.lstInventory.Name = "lstInventory";
 			this.lstInventory.Size = new System.Drawing.Size(409, 225);
 			this.lstInventory.TabIndex = 0;
-			// 
-			// lblKey
-			// 
-			this.lblKey.AutoSize = true;
-			this.lblKey.Location = new System.Drawing.Point(28, 255);
-			this.lblKey.Name = "lblKey";
-			this.lblKey.Size = new System.Drawing.Size(31, 13);
-			this.lblKey.TabIndex = 19;
-			this.lblKey.Text = "- Key";
-			// 
-			// txtKey
-			// 
-			this.txtKey.BackColor = System.Drawing.Color.SpringGreen;
-			this.txtKey.Location = new System.Drawing.Point(6, 252);
-			this.txtKey.Name = "txtKey";
-			this.txtKey.ReadOnly = true;
-			this.txtKey.Size = new System.Drawing.Size(21, 20);
-			this.txtKey.TabIndex = 18;
 			// 
 			// FormGame
 			// 

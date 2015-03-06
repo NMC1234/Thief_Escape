@@ -26,6 +26,8 @@ namespace Thief_Escape
 		//Declaration of Cell objects & Misc. vars
 		Grid mapCells;
 		Player player;
+		List<Item> Inventory;
+		Item key, kitten;
 		string name;
 		int counter;
 		Direction keyDirection;
@@ -79,6 +81,14 @@ namespace Thief_Escape
 			player = new Player(name);
 			//player = new Player( );
 
+			//standard item instantiation
+			key = new Item(Item.ItemType.Key);
+			kitten = new Item(Item.ItemType.JewelKitten);
+
+			//Inventory list instantiation and call to initial inventory
+			Inventory = new List<Item>( );
+			InitialInventory(0, Inventory);
+
 			//Sets the first starting point by asking the grid for it's preset,
 			//by array creation method
 			player.SetCurrentCell(mapCells.WhatIsStartingCellX, mapCells.WhatIsStartingCellY);
@@ -129,7 +139,6 @@ namespace Thief_Escape
 			== (DoorType.DOORLOCKED)))
 			{
 				btnMoveNorth.Enabled = false;
-				btnUseKey.Enabled = true;
 			}
 			else if(currentY - 1 < mapCells.MapSize
 			&& (mapCells.GetCellType(currentX, currentY - 1)
@@ -175,7 +184,6 @@ namespace Thief_Escape
 			== DoorType.DOORLOCKED))
 			{
 				btnMoveSouth.Enabled = false;
-				btnUseKey.Enabled = true;
 			}
 			else if(currentY + 1 < mapCells.MapSize
 			&& (mapCells.GetCellType(currentX, currentY + 1)
@@ -221,7 +229,6 @@ namespace Thief_Escape
 			== DoorType.DOORLOCKED))
 			{
 				btnMoveWest.Enabled = false;
-				btnUseKey.Enabled = true;
 			}
 			else if(currentX - 1 < mapCells.MapSize
 			&& (mapCells.GetCellType(currentX - 1, currentY)
@@ -268,7 +275,6 @@ namespace Thief_Escape
 			== DoorType.DOORLOCKED))
 			{
 				btnMoveEast.Enabled = false;
-				btnUseKey.Enabled = true;
 			}
 			else if(currentX + 1 < mapCells.MapSize
 			&& (mapCells.GetCellType(currentX + 1, currentY)
@@ -973,6 +979,148 @@ namespace Thief_Escape
 
 		#endregion
 
+		#region [ Item manipulation ]
+
+		private void btnPickupKey_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		private void btnUseKey_Click(object sender, EventArgs e)
+		{
+			if(Inventory.Contains(key))
+			{
+				OpenDoor( );
+				RemoveKey( );
+			}
+			else
+				MessageBox.Show("You don't have any Keys", "Can't Unlock Door");
+
+		}
+
+		private void RemoveKey( )
+		{
+			Inventory.Remove(key);
+			UpdateInventory( );
+		}
+
+		private void OpenDoor( )
+		{
+			Direction doorDirection;
+			doorDirection = LookForLockedDoor(player.CurrentCellX, player.CurrentCellY);
+
+			switch(doorDirection)
+			{
+				case Direction.NORTH:
+					if((mapCells.GetDoorType(player.CurrentCellX, (player.CurrentCellY - 1))
+					== (DoorType.DOORLOCKED)))
+					{
+						mapCells.SetDoorType(player.CurrentCellX, (player.CurrentCellY - 1), DoorType.DOORUNLOCKED);
+						grdconMap[player.CurrentCellY, (player.CurrentCellX + 1)].BackColor = Color.Blue;
+					}
+					break;
+
+				case Direction.SOUTH:
+					if((mapCells.GetDoorType(player.CurrentCellX, (player.CurrentCellY + 1))
+					== DoorType.DOORLOCKED))
+					{
+						mapCells.SetDoorType(player.CurrentCellX, (player.CurrentCellY + 1), DoorType.DOORUNLOCKED);
+						grdconMap[(player.CurrentCellY + 2), (player.CurrentCellX + 1)].BackColor = Color.Blue;
+					}
+					break;
+
+				case Direction.EAST:
+					if((mapCells.GetDoorType((player.CurrentCellX - 1), player.CurrentCellY)
+					== DoorType.DOORLOCKED))
+					{
+						mapCells.SetDoorType((player.CurrentCellX - 1), player.CurrentCellY, DoorType.DOORUNLOCKED);
+						grdconMap[(player.CurrentCellY + 1), (player.CurrentCellX)].BackColor = Color.Blue;
+					}
+					break;
+
+				case Direction.WEST:
+					if((mapCells.GetDoorType((player.CurrentCellX + 1), player.CurrentCellY)
+					== DoorType.DOORLOCKED))
+					{
+						mapCells.SetDoorType((player.CurrentCellX + 1), player.CurrentCellY, DoorType.DOORUNLOCKED);
+						grdconMap[(player.CurrentCellY + 1), (player.CurrentCellX + 2)].BackColor = Color.Blue;
+					}
+					break;
+				//case Direction.GENERIC:
+				//	break;
+				//default:
+				//	break;
+			}
+
+		}
+
+		private Direction LookForLockedDoor(int currentX, int currentY)
+		{
+			Direction doorDirection = Direction.GENERIC;
+
+			//north
+			if((mapCells.GetDoorType(currentX, currentY - 1)
+			== (DoorType.DOORLOCKED)))
+			{
+				doorDirection = Direction.NORTH;
+			}
+
+			//south
+			if((mapCells.GetDoorType(currentX, currentY + 1)
+			== DoorType.DOORLOCKED))
+			{
+				doorDirection = Direction.SOUTH;
+			}
+
+			//west
+			if((mapCells.GetDoorType(currentX - 1, currentY)
+			== DoorType.DOORLOCKED))
+			{
+				doorDirection = Direction.WEST;
+			}
+
+			//east
+			if((mapCells.GetDoorType(currentX + 1, currentY)
+			== DoorType.DOORLOCKED))
+			{
+				doorDirection = Direction.EAST;
+			}
+
+
+			return doorDirection;
+		}
+
+
+		private void InitialInventory(int style, List<Item> currentInv)
+		{
+			//add keys for testing
+			currentInv.Add(key);
+			currentInv.Add(key);
+			currentInv.Add(key);
+			currentInv.Add(key);
+
+
+			Inventory = currentInv;
+
+			UpdateInventory( );
+
+		}
+
+		private void UpdateInventory( )
+		{
+			lstInventory.Items.Clear( );
+			foreach(Item inv in Inventory)
+			{
+				lstInventory.Items.Add(inv.ToString( ));
+				lstInventory.Items.Add(" ");
+
+			}
+
+		}
+
+		#endregion
+
+
 
 		#region [ Methods ]
 		public void OutputAroundPlayer(bool clear)
@@ -1011,6 +1159,8 @@ namespace Thief_Escape
 		//-----------------------------------------------------------------------------------------------------
 
 		//-----------------------------------------------------------------------------------------------------
+
+		
 
 		private void btnAction2_Click(object sender, EventArgs e)
 		{
@@ -1277,6 +1427,10 @@ namespace Thief_Escape
 		}       
 
 		#endregion
+
+		
+
+		
 
 
 		
