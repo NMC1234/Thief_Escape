@@ -117,4 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="lblStory.Text" xml:space="preserve">
+    <value>Robbie McRobber has broken into Patricia 
+McPolitician's mansion to steal her jewel 
+encrusted kittens.
+
+Can you help Robbie find all four kittens and 
+get out of the mansion alive?  
+
+Enter your name here if you dare:</value>
+  </data>
 </root>
