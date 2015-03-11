@@ -979,12 +979,56 @@ namespace Thief_Escape
 
 		#endregion
 
+
 		#region [ Item manipulation ]
 
 		private void btnPickupKey_Click(object sender, EventArgs e)
 		{
-
+            int[] key = CheckForNearbyKey();
+            if (key[0] != 0)
+            {
+                 Inventory.Add(mapCells.PickUpKey(key[1], key[2]));
+                 UpdateInventory();
+            }
+            else
+            {
+                lstDialog.Items.Add("There is no key nearby!");
+                lstDialog.SelectedIndex = lstDialog.Items.Count - 1;
+                lstDialog.SelectedIndex = -1;
+            }
 		}
+
+        private int[] CheckForNearbyKey()
+        {
+            //The array defined as (bool,x-coord,y-coord). Bool is 0-false 1-true, with default of false.
+            int[] result = { 0, 0, 0 };
+            
+            //Creates starting point for search, 1 cell up and 1 cell left.
+            int x = player.CurrentCellX - 1;
+            int y = player.CurrentCellY - 1;
+
+            //Goes through each "column" of the search area
+            for (int ix = 0; ix < 3; ix++)
+            {
+                //Goes through each "row" of the column
+                for (int iy = 0; iy < 3; iy++)
+                {
+                    //If the cell has a key, return true.
+                    if (mapCells.IsKey((x+ix),(y+iy)))
+                    {
+                        //Bool true
+                        result[0] = 1;
+                        //Key's x-coord
+                        result[1] = (x + ix);
+                        //Key's y-coord
+                        result[2] = (y + iy);
+                    }
+                }
+            }
+
+            return result;
+
+        }
 
 		private void btnUseKey_Click(object sender, EventArgs e)
 		{
@@ -1119,7 +1163,6 @@ namespace Thief_Escape
 		}
 
 		#endregion
-
 
 
 		#region [ Methods ]

@@ -54,7 +54,7 @@
             // 
             this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnExit.BackColor = System.Drawing.Color.DarkGray;
-            this.btnExit.Cursor = System.Windows.Forms.Cursors.No;
+            this.btnExit.Cursor = System.Windows.Forms.Cursors.Default;
             this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExit.ForeColor = System.Drawing.Color.MidnightBlue;
             this.btnExit.Location = new System.Drawing.Point(503, 385);

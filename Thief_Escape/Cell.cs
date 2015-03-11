@@ -430,6 +430,7 @@ namespace Thief_Escape
 			_keyType = KeyType.PICKEDUP;
 			_isKey = false;
 			_itemType = ItemType.PICKEDUP;
+            _floor = FloorType.FLOORGENERAL;
 
 			return _item;
 
