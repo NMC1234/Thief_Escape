@@ -264,7 +264,20 @@ namespace Thief_Escape
 		//-----------------------------------------------------------------------------------------------------
 		public Cell( )
 		{
-
+			_cell = CellType.GENERIC;
+			_door = DoorType.GENERIC;
+			_floor = FloorType.GENERIC;
+			_wall = WallType.GENERIC;
+			_itemType = ItemType.GENERIC;
+			_keyType = KeyType.GENERIC;
+			_kittenType = KittenType.GENERIC;
+			_stairs = StairsType.GENERIC;
+			_hasItem = false;
+			_isBejeweledKitten = false;
+			_isKey = false;
+			_startingCell = false;
+			
+			
 		}
 
 		//-----------------------------------------------------------------------------------------------------
@@ -430,7 +443,7 @@ namespace Thief_Escape
 			_keyType = KeyType.PICKEDUP;
 			_isKey = false;
 			_itemType = ItemType.PICKEDUP;
-            _floor = FloorType.FLOORGENERAL;
+			_floor = FloorType.FLOORGENERAL;
 
 			return _item;
 

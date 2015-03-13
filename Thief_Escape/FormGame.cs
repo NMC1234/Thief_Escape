@@ -984,57 +984,69 @@ namespace Thief_Escape
 
 		private void btnPickupKey_Click(object sender, EventArgs e)
 		{
-            int[] key = CheckForNearbyKey();
-            if (key[0] != 0)
-            {
-                 Inventory.Add(mapCells.PickUpKey(key[1], key[2]));
-                 UpdateInventory();
-            }
-            else
-            {
-                lstDialog.Items.Add("There is no key nearby!");
-                lstDialog.SelectedIndex = lstDialog.Items.Count - 1;
-                lstDialog.SelectedIndex = -1;
-            }
+			int[] key = CheckForNearbyKey();
+			if (key[0] != 0)
+			{
+				 Inventory.Add(mapCells.PickUpKey(key[1], key[2]));
+				 UpdateInventory();
+				PickedUpKeyMapCellChange(key[1], key[2]);
+			}
+			else
+			{
+				lstDialog.Items.Add("There is no key nearby!");
+				lstDialog.SelectedIndex = lstDialog.Items.Count - 1;
+				lstDialog.SelectedIndex = -1;
+			}
 		}
 
-        private int[] CheckForNearbyKey()
-        {
-            //The array defined as (bool,x-coord,y-coord). Bool is 0-false 1-true, with default of false.
-            int[] result = { 0, 0, 0 };
-            
-            //Creates starting point for search, 1 cell up and 1 cell left.
-            int x = player.CurrentCellX - 1;
-            int y = player.CurrentCellY - 1;
+		private void PickedUpKeyMapCellChange( int x, int y)
+		{
+			grdconMap[(y + 1), (x + 1)].BackColor = Color.White;
+		}
 
-            //Goes through each "column" of the search area
-            for (int ix = 0; ix < 3; ix++)
-            {
-                //Goes through each "row" of the column
-                for (int iy = 0; iy < 3; iy++)
-                {
-                    //If the cell has a key, return true.
-                    if (mapCells.IsKey((x+ix),(y+iy)))
-                    {
-                        //Bool true
-                        result[0] = 1;
-                        //Key's x-coord
-                        result[1] = (x + ix);
-                        //Key's y-coord
-                        result[2] = (y + iy);
-                    }
-                }
-            }
+		private int[] CheckForNearbyKey()
+		{
+			//The array defined as (bool,x-coord,y-coord). Bool is 0-false 1-true, with default of false.
+			int[] result = { 0, 0, 0 };
+			
+			//Creates starting point for search, 1 cell up and 1 cell left.
+			int x = player.CurrentCellX - 1;
+			int y = player.CurrentCellY - 1;
 
-            return result;
+			//Goes through each "column" of the search area
+			for (int ix = 0; ix < 3; ix++)
+			{
+				//Goes through each "row" of the column
+				for (int iy = 0; iy < 3; iy++)
+				{
+					//If the cell has a key, return true.
+					if (mapCells.IsKey((x+ix),(y+iy)))
+					{
+						//Bool true
+						result[0] = 1;
+						//Key's x-coord
+						result[1] = (x + ix);
+						//Key's y-coord
+						result[2] = (y + iy);
+					}
+				}
+			}
 
-        }
+			return result;
+
+		}
 
 		private void btnUseKey_Click(object sender, EventArgs e)
 		{
+			//Event called when the Use Key button is pressed
+			//First checks if there is a key object in the inventory
+			//If so then it opens that door
+			//Then re-checks movement options to allow movement to now unlocked door
+			//Then removes the used key from inventory
 			if(Inventory.Contains(key))
 			{
 				OpenDoor( );
+				CheckMovement(player.CurrentCellX, player.CurrentCellY);
 				RemoveKey( );
 			}
 			else
@@ -1044,54 +1056,43 @@ namespace Thief_Escape
 
 		private void RemoveKey( )
 		{
+			//Removes a used key from the inventory then updates the listbox
 			Inventory.Remove(key);
 			UpdateInventory( );
 		}
 
 		private void OpenDoor( )
 		{
+			//Gets direction of door then sets the door type for that cell to DoorType.UNLOCKED
+			//Then changes that cell's mapcell to the unlocked door color
 			Direction doorDirection;
 			doorDirection = LookForLockedDoor(player.CurrentCellX, player.CurrentCellY);
 
 			switch(doorDirection)
 			{
 				case Direction.NORTH:
-					if((mapCells.GetDoorType(player.CurrentCellX, (player.CurrentCellY - 1))
-					== (DoorType.DOORLOCKED)))
-					{
-						mapCells.SetDoorType(player.CurrentCellX, (player.CurrentCellY - 1), DoorType.DOORUNLOCKED);
-						grdconMap[player.CurrentCellY, (player.CurrentCellX + 1)].BackColor = Color.Blue;
-					}
+					mapCells.SetDoorType(player.CurrentCellX, (player.CurrentCellY - 1), DoorType.DOORUNLOCKED);
+					grdconMap[player.CurrentCellY, (player.CurrentCellX + 1)].BackColor = Color.Blue;
 					break;
 
 				case Direction.SOUTH:
-					if((mapCells.GetDoorType(player.CurrentCellX, (player.CurrentCellY + 1))
-					== DoorType.DOORLOCKED))
-					{
-						mapCells.SetDoorType(player.CurrentCellX, (player.CurrentCellY + 1), DoorType.DOORUNLOCKED);
-						grdconMap[(player.CurrentCellY + 2), (player.CurrentCellX + 1)].BackColor = Color.Blue;
-					}
+					mapCells.SetDoorType(player.CurrentCellX, (player.CurrentCellY + 1), DoorType.DOORUNLOCKED);
+					grdconMap[(player.CurrentCellY + 2), (player.CurrentCellX + 1)].BackColor = Color.Blue;
 					break;
 
 				case Direction.EAST:
-					if((mapCells.GetDoorType((player.CurrentCellX - 1), player.CurrentCellY)
-					== DoorType.DOORLOCKED))
-					{
-						mapCells.SetDoorType((player.CurrentCellX - 1), player.CurrentCellY, DoorType.DOORUNLOCKED);
-						grdconMap[(player.CurrentCellY + 1), (player.CurrentCellX)].BackColor = Color.Blue;
-					}
+					mapCells.SetDoorType((player.CurrentCellX + 1), player.CurrentCellY, DoorType.DOORUNLOCKED);
+					grdconMap[(player.CurrentCellY + 1), (player.CurrentCellX + 2)].BackColor = Color.Blue;
 					break;
 
 				case Direction.WEST:
-					if((mapCells.GetDoorType((player.CurrentCellX + 1), player.CurrentCellY)
-					== DoorType.DOORLOCKED))
-					{
-						mapCells.SetDoorType((player.CurrentCellX + 1), player.CurrentCellY, DoorType.DOORUNLOCKED);
-						grdconMap[(player.CurrentCellY + 1), (player.CurrentCellX + 2)].BackColor = Color.Blue;
-					}
+					mapCells.SetDoorType((player.CurrentCellX - 1), player.CurrentCellY, DoorType.DOORUNLOCKED);
+					grdconMap[(player.CurrentCellY + 1), (player.CurrentCellX)].BackColor = Color.Blue;
 					break;
-				//case Direction.GENERIC:
-				//	break;
+				case Direction.GENERIC:
+					MessageBox.Show("OpenDoor method was given a direction of Direction.GENERIC.  This should not happen.",
+						"This should not show up");
+				break;
 				//default:
 				//	break;
 			}
@@ -1100,6 +1101,8 @@ namespace Thief_Escape
 
 		private Direction LookForLockedDoor(int currentX, int currentY)
 		{
+			//Checks the four directions around the current cell and looks for a locked door
+			//If it finds a locked door then LookForLockedDoor returns the direction of it
 			Direction doorDirection = Direction.GENERIC;
 
 			//north
@@ -1137,6 +1140,13 @@ namespace Thief_Escape
 
 		private void InitialInventory(int style, List<Item> currentInv)
 		{
+			//First argument is used in deciding which default items to load on map-load if any
+			//Second argument is a copy of the inventory as currentinv
+			//Then adds any default items to currentinv
+			//re-assigns currentinv to inventory
+			//Then updates the inventory listbox
+
+
 			//add keys for testing
 			currentInv.Add(key);
 			currentInv.Add(key);
@@ -1152,10 +1162,13 @@ namespace Thief_Escape
 
 		private void UpdateInventory( )
 		{
+			//Clears out the inventory list box
+			//Then with a loop adds each object back to the inventory list box
 			lstInventory.Items.Clear( );
 			foreach(Item inv in Inventory)
 			{
 				lstInventory.Items.Add(inv.ToString( ));
+				//To add a line space between items in list box
 				lstInventory.Items.Add(" ");
 
 			}
@@ -1166,6 +1179,116 @@ namespace Thief_Escape
 
 
 		#region [ Methods ]
+
+		private void WhenKeyIsPressed(KeyEventArgs e)
+		{
+			//When a key is pressed, switch will decide which key and call specific action
+			//used for keyboard shortcuts to game buttons
+			switch(e.KeyCode)
+			{
+				case Keys.Left:
+					btnMoveWest.PerformClick( );
+					break;
+				case Keys.Right:
+					btnMoveEast.PerformClick( );
+					break;
+				case Keys.Up:
+					btnMoveNorth.PerformClick( );
+					break;
+				case Keys.Down:
+					btnMoveSouth.PerformClick( );
+					break;
+
+				case Keys.W:
+					btnMoveNorth.PerformClick( );
+					break;
+				case Keys.A:
+					btnMoveWest.PerformClick( );
+					break;
+				case Keys.S:
+					btnMoveSouth.PerformClick( );
+					break;
+				case Keys.D:
+					btnMoveEast.PerformClick( );
+					break;
+
+				case Keys.K:
+					btnUseKey.PerformClick( );
+					break;
+				case Keys.P:
+					btnPickupKey.PerformClick( );
+					break;
+
+
+				case Keys.NumPad0:
+					break;
+				case Keys.NumPad1:
+					break;
+				case Keys.NumPad2:
+					btnMoveSouth.PerformClick( );
+					break;
+				case Keys.NumPad3:
+					break;
+				case Keys.NumPad4:
+					btnMoveWest.PerformClick( );
+					break;
+				case Keys.NumPad5:
+					break;
+				case Keys.NumPad6:
+					btnMoveEast.PerformClick( );
+					break;
+				case Keys.NumPad7:
+					break;
+				case Keys.NumPad8:
+					btnMoveNorth.PerformClick( );
+					break;
+				case Keys.NumPad9:
+					break;
+
+				case Keys.Enter:
+					break;
+				case Keys.Escape:
+					Application.Exit( );
+					break;
+
+				case Keys.F1:
+					break;
+				case Keys.F10:
+					break;
+				case Keys.F11:
+					break;
+				case Keys.F12:
+					break;
+				case Keys.F2:
+					break;
+				case Keys.F3:
+					break;
+				case Keys.F4:
+					break;
+				case Keys.F5:
+					break;
+				case Keys.F6:
+					break;
+				case Keys.F7:
+					break;
+				case Keys.F8:
+					break;
+				case Keys.F9:
+					break;
+
+				case Keys.PageDown:
+					break;
+				case Keys.PageUp:
+					break;
+
+				case Keys.Tab:
+					break;
+
+				default:
+					break;
+			}
+		}
+
 		public void OutputAroundPlayer(bool clear)
 		{
 			if(clear)
@@ -1255,41 +1378,88 @@ namespace Thief_Escape
 			this.Close( );
 		}
 
+		private void FormGame_KeyDown(object sender, KeyEventArgs e)
+		{
+			WhenKeyIsPressed(e);
+		}
+
 		# endregion
 		
 
 		#region [ Menu Buttons Hover ]
+
+		private void PrimaryMouseLeaveEvent(object sender, EventArgs e)
+		{
+			lblMenuHover.Text = "";
+		}
 
 		private void btnLoadGame_MouseHover(object sender, EventArgs e)
 		{
 			lblMenuHover.Text = "This feature is not yet implemented.";
 		}
 
-		private void btnLoadGame_MouseLeave(object sender, EventArgs e)
-		{
-			lblMenuHover.Text = "";
-		}
 
 		private void btnSaveGame_MouseHover(object sender, EventArgs e)
 		{
 			lblMenuHover.Text = "This feature is not yet implemented.";
 		}
 
-		private void btnSaveGame_MouseLeave(object sender, EventArgs e)
-		{
-			lblMenuHover.Text = "";
-		}
 
 		private void btnMainMenu_MouseHover(object sender, EventArgs e)
 		{
 			lblMenuHover.Text = "Return to Main Menu.";
 		}
 
-		private void btnMainMenu_MouseLeave(object sender, EventArgs e)
+		private void btnUseKey_MouseHover(object sender, EventArgs e)
 		{
-			lblMenuHover.Text = "";
+			lblMenuHover.Text = "Use a Key to Unlock a Door.";
 		}
 
+		private void btnPickupKey_MouseHover(object sender, EventArgs e)
+		{
+			lblMenuHover.Text = "Picks up a Key, Adds to Inventory.";
+		}
+
+		private void btnMoveNorth_MouseHover(object sender, EventArgs e)
+		{
+			lblMenuHover.Text = "Moves Thief Up One Cell.";
+
+		}
+
+		private void btnMoveWest_MouseHover(object sender, EventArgs e)
+		{
+			lblMenuHover.Text = "Moves Thief Left One Cell.";
+		}
+
+		private void btnMoveEast_MouseHover(object sender, EventArgs e)
+		{
+			lblMenuHover.Text = "Moves Thief Right One Cell.";
+		}
+
+		private void btnMoveSouth_MouseHover(object sender, EventArgs e)
+		{
+			lblMenuHover.Text = "Moves Thief Down One Cell.";
+		}
+
+		private void grdconMap_MouseHover(object sender, EventArgs e)
+		{
+			lblMenuHover.Text = "Displays Possition and Imidiate Surroundings.";
+		}
+
+		private void lstDialog_MouseHover(object sender, EventArgs e)
+		{
+			lblMenuHover.Text = "Dialog History.";
+		}
+
+		private void lstOutput_MouseHover(object sender, EventArgs e)
+		{
+			lblMenuHover.Text = "Description of What's Around You.";
+		}
+
+		private void lstInventory_MouseHover(object sender, EventArgs e)
+		{
+			lblMenuHover.Text = "The Items Currrently In Your Inventory.";
+		}
 		#endregion
 		
 
@@ -1461,15 +1631,35 @@ namespace Thief_Escape
 		#endregion
 
 
+		#region [ Stock Events ]
+		private void PrimaryKeyDownEvent(object sender, KeyEventArgs e)
+		{
+			WhenKeyIsPressed(e);
+		}
+		#endregion
+
+
 		#region [ Close Event ]
 
-		 private void FormGame_FormClosed(object sender, FormClosedEventArgs e)
+		private void FormGame_FormClosed(object sender, FormClosedEventArgs e)
 		{
 			 if (exit)
 			Application.Exit();
 		}       
 
 		#endregion
+
+	
+
+		 
+
+
+
+
+		 
+
+		 
+		
 
 		
 
