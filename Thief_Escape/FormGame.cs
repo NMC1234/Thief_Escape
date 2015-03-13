@@ -16,13 +16,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Globalization;
 
 namespace Thief_Escape
 {
 	//-----------------------------------------------------------------------------------------------------
 	public partial class FormGame : Form
 	{
+		//-----------------------------------------------------------------------------------------------------
 		#region [ Globals ]
+		//-----------------------------------------------------------------------------------------------------
 		//Declaration of Cell objects & Misc. vars
 		Grid mapCells;
 		Player player;
@@ -32,16 +35,20 @@ namespace Thief_Escape
 		int counter;
 		Direction keyDirection;
 
-		//Exit bool is used to prevent unwanted shutdowns 
+		//Exit bool is used to prevent unwanted shutdowns
 		//  when going to the main menu.
 		bool exit = true;
 
+		//-----------------------------------------------------------------------------------------------------
 		#endregion
-		
+		//-----------------------------------------------------------------------------------------------------
 
+		//-----------------------------------------------------------------------------------------------------
 		#region [ Constructors ]
+		//-----------------------------------------------------------------------------------------------------
 
 		// Overloaded FormGame constructor to pass in name from name form
+		//-----------------------------------------------------------------------------------------------------
 		public FormGame(string playername)
 		{
 			InitializeComponent( );
@@ -60,13 +67,20 @@ namespace Thief_Escape
 			//Defaut constructor creates name of "User"
 			name = "User";
 		}
+		//-----------------------------------------------------------------------------------------------------
 		#endregion
-		
+		//-----------------------------------------------------------------------------------------------------
 
+		//-----------------------------------------------------------------------------------------------------
 		#region [ LoadEvent ]
+		//-----------------------------------------------------------------------------------------------------
+
+		//-----------------------------------------------------------------------------------------------------
 		private void FormGamePlay_Load(object sender, EventArgs e)
 		{
+			//-----------------------------------------------------------------------------------------------------
 			#region [ ToolTips ]
+			//-----------------------------------------------------------------------------------------------------
 			ToolTip movOptions = new ToolTip( );
 			movOptions.InitialDelay = 500;
 			movOptions.IsBalloon = false;
@@ -74,10 +88,12 @@ namespace Thief_Escape
 			movOptions.UseFading = false;
 			movOptions.ToolTipTitle = "Movement Options";
 			movOptions.ShowAlways = true;
+			movOptions.ToolTipIcon = ToolTipIcon.Info;
 			movOptions.SetToolTip(this.btnMoveNorth, "Moves Character North. Keybind: W/UP/Num-8.");
 			movOptions.SetToolTip(this.btnMoveEast, "Moves Character East, Keybinds: D/RIGHT/Num-6.");
 			movOptions.SetToolTip(this.btnMoveSouth, "Moves Character South, Keybinds: S/DOWN/Num-2.");
 			movOptions.SetToolTip(this.btnMoveWest, "Moves Character West, Keybinds: A/LEFT/Num-4.");
+			
 
 			ToolTip useKey = new ToolTip( );
 			useKey.AutomaticDelay = 300;
@@ -86,7 +102,8 @@ namespace Thief_Escape
 			useKey.UseFading = false;
 			useKey.ShowAlways = true;
 			useKey.ToolTipTitle = "Use Key";
-			useKey.SetToolTip(this.btnUseKey, "Press to use up a Key and Unlock a Door Around You.  Keybinds: K");
+			movOptions.ToolTipIcon = ToolTipIcon.Info;
+			useKey.SetToolTip(this.btnUseKey, "Press to use up a Key and Unlock a Door Around You.  Keybinds: K/Num-9");
 
 			ToolTip pickupKey = new ToolTip( );
 			pickupKey.AutomaticDelay = 300;
@@ -95,7 +112,8 @@ namespace Thief_Escape
 			pickupKey.UseFading = false;
 			pickupKey.ShowAlways = true;
 			pickupKey.ToolTipTitle = "Pickup Key";
-			pickupKey.SetToolTip(this.btnPickupKey, "Press to Pickup a Key Around You and Add to Inventory. Keybinds: P");
+			movOptions.ToolTipIcon = ToolTipIcon.Info;
+			pickupKey.SetToolTip(this.btnPickupKey, "Press to Pickup a Key Around You and Add to Inventory. Keybinds: P/Num-7");
 
 			ToolTip map = new ToolTip( );
 			map.AutomaticDelay = 300;
@@ -103,7 +121,8 @@ namespace Thief_Escape
 			map.UseAnimation = false;
 			map.UseFading = false;
 			map.ShowAlways = true;
-			map.ToolTipTitle = "Visual Map of Surroundings";
+			map.ToolTipTitle = "Mansion Map";
+			movOptions.ToolTipIcon = ToolTipIcon.Info;
 			map.SetToolTip(this.grdconMap, "A Visual Map of the Current Floor");
 
 			ToolTip options = new ToolTip( );
@@ -113,9 +132,21 @@ namespace Thief_Escape
 			options.UseFading = false;
 			options.ShowAlways = true;
 			options.ToolTipTitle = "Menu Options";
-			options.SetToolTip(this.btnMainMenu, "Select to Return to Main Menu");
-			options.SetToolTip(this.btnLoadGame, "Select to Load a Previously Saved Game.");
-			options.SetToolTip(this.btnSaveGame, "Select to Save Your Game.");
+			options.SetToolTip(this.btnMainMenu, "Select to Return to Main Menu. Keybinds: F1");
+			options.SetToolTip(this.btnLoadGame, "Select to Load a Previously Saved Game. Keybinds: F3");
+			options.SetToolTip(this.btnSaveGame, "Select to Save Your Game. Keybinds: F2");
+
+			ToolTip invalidOptions = new ToolTip( );
+			invalidOptions.AutomaticDelay = 300;
+			invalidOptions.IsBalloon = false;
+			invalidOptions.UseAnimation = false;
+			invalidOptions.UseFading = false;
+			invalidOptions.ShowAlways = true;
+			invalidOptions.ToolTipTitle = "These Menu Options Do Not Work!";
+			invalidOptions.ToolTipIcon = ToolTipIcon.Warning;
+			invalidOptions.SetToolTip(this.btnLoadGame, "Select to Load a Previously Saved Game. Keybinds: F3");
+			invalidOptions.SetToolTip(this.btnSaveGame, "Select to Save Your Game. Keybinds: F2");
+
 
 			ToolTip legend = new ToolTip( );
 			legend.AutomaticDelay = 300;
@@ -124,6 +155,7 @@ namespace Thief_Escape
 			legend.UseFading = false;
 			legend.ShowAlways = true;
 			legend.ToolTipTitle = "Map Legend";
+			movOptions.ToolTipIcon = ToolTipIcon.Info;
 			legend.SetToolTip(this.grpboxLegend, "A Legend of the Various Objects on the Map.");
 
 			ToolTip lists = new ToolTip( );
@@ -133,12 +165,15 @@ namespace Thief_Escape
 			lists.UseFading = false;
 			lists.ShowAlways = true;
 			lists.ToolTipTitle = "Information Output Display";
+			movOptions.ToolTipIcon = ToolTipIcon.Info;
 			lists.SetToolTip(this.lstDialog, "Dialog From and About the Game");
 			lists.SetToolTip(this.tabDialog, "Tabs the Will Display Past Dialog, What is Surrounding You, and Your Current Inventory.");
 			lists.SetToolTip(this.lstOutput, "What Types of Things are Around You.");
 			lists.SetToolTip(this.lstInventory, "What You Currently Have In Your Inventory.");
 
+			//-----------------------------------------------------------------------------------------------------
 			#endregion
+			//-----------------------------------------------------------------------------------------------------
 
 			//Instantiation of the grid object
 			//mapCells = new Grid();
@@ -183,18 +218,24 @@ namespace Thief_Escape
 			keyDirection = Direction.GENERIC;
 		}
 
+		//-----------------------------------------------------------------------------------------------------
 		#endregion
+		//-----------------------------------------------------------------------------------------------------
 
-
+		//-----------------------------------------------------------------------------------------------------
 		#region [ Movement Check/Buttons ]
+		//-----------------------------------------------------------------------------------------------------
 
+		//-----------------------------------------------------------------------------------------------------
 		public void CheckMovement(int currentX, int currentY)
 		{
 			//Movement validation checks the bounds of the passed x and y
 			//Checks if cell type is a floor or a DoorType.Unlocked
 			//if not that button is disabled
 
+			//-----------------------------------------------------------------------------------------------------
 			#region [Check for Northern Movement]
+			//-----------------------------------------------------------------------------------------------------
 
 			if(currentY - 1 < mapCells.MapSize
 			&& (mapCells.GetCellType(currentX, currentY - 1)
@@ -216,7 +257,7 @@ namespace Thief_Escape
 			}
 			else if(currentY - 1 < mapCells.MapSize
 			&& (mapCells.GetCellType(currentX, currentY - 1)
-			== (CellType.BEJEWELEDKITTEN)))
+			== (CellType.ITEM)))
 			{
 				btnMoveNorth.Enabled = false;
 			}
@@ -226,21 +267,26 @@ namespace Thief_Escape
 			{
 				btnMoveNorth.Enabled = true;
 			}
-			else if(currentY - 1 < mapCells.MapSize
-			&& (mapCells.GetCellType(currentX, currentY - 1)
-			== (CellType.KEY)))
-			{
-				btnPickupKey.Enabled = true;
-				btnMoveNorth.Enabled = false;
-				keyDirection = Direction.NORTH;
-			}
+			//else if(currentY - 1 < mapCells.MapSize
+			//&& (mapCells.GetCellType(currentX, currentY - 1)
+			//== (CellType.KEY)))
+			//{
+			//	btnPickupKey.Enabled = true;
+			//	btnMoveNorth.Enabled = false;
+			//	keyDirection = Direction.NORTH;
+			//}
 			else
 			{
 				btnMoveNorth.Enabled = false;
 			}
+			//-----------------------------------------------------------------------------------------------------
 			#endregion
+			//-----------------------------------------------------------------------------------------------------
 
+			//-----------------------------------------------------------------------------------------------------
 			#region [Check for Southern Movement]
+			//-----------------------------------------------------------------------------------------------------
+
 			if(currentY + 1 < mapCells.MapSize
 			&& (mapCells.GetCellType(currentX, currentY + 1)
 			== CellType.FLOOR))
@@ -261,7 +307,7 @@ namespace Thief_Escape
 			}
 			else if(currentY + 1 < mapCells.MapSize
 			&& (mapCells.GetCellType(currentX, currentY + 1)
-			== (CellType.BEJEWELEDKITTEN)))
+			== (CellType.ITEM)))
 			{
 				btnMoveNorth.Enabled = false;
 			}
@@ -271,21 +317,26 @@ namespace Thief_Escape
 			{
 				btnMoveNorth.Enabled = true;
 			}
-			else if(currentY + 1 < mapCells.MapSize
-			&& (mapCells.GetCellType(currentX, currentY + 1)
-			== (CellType.KEY)))
-			{
-				btnMoveNorth.Enabled = false;
-				btnPickupKey.Enabled = true;
-				keyDirection = Direction.SOUTH;
-			}
+			//else if(currentY + 1 < mapCells.MapSize
+			//&& (mapCells.GetCellType(currentX, currentY + 1)
+			//== (CellType.KEY)))
+			//{
+			//	btnMoveNorth.Enabled = false;
+			//	btnPickupKey.Enabled = true;
+			//	keyDirection = Direction.SOUTH;
+			//}
 			else
 			{
 				btnMoveSouth.Enabled = false;
 			}
+			//-----------------------------------------------------------------------------------------------------
 			#endregion
+			//-----------------------------------------------------------------------------------------------------
 
+			//-----------------------------------------------------------------------------------------------------
 			#region [Check for Western Movement]
+			//-----------------------------------------------------------------------------------------------------
+
 			if(currentX - 1 < mapCells.MapSize
 			&& (mapCells.GetCellType(currentX - 1, currentY)
 			== CellType.FLOOR))
@@ -306,7 +357,7 @@ namespace Thief_Escape
 			}
 			else if(currentX - 1 < mapCells.MapSize
 			&& (mapCells.GetCellType(currentX - 1, currentY)
-			== CellType.BEJEWELEDKITTEN))
+			== CellType.ITEM))
 			{
 				btnMoveWest.Enabled = false;
 			}
@@ -316,21 +367,25 @@ namespace Thief_Escape
 			{
 				btnMoveWest.Enabled = true;
 			}
-			else if(currentX - 1 < mapCells.MapSize
-			&& (mapCells.GetCellType(currentX - 1, currentY)
-			== CellType.KEY))
-			{
-				btnMoveWest.Enabled = true;
-				btnPickupKey.Enabled = true;
-				keyDirection = Direction.WEST;
-			}
+			//else if(currentX - 1 < mapCells.MapSize
+			//&& (mapCells.GetCellType(currentX - 1, currentY)
+			//== CellType.KEY))
+			//{
+			//	btnMoveWest.Enabled = true;
+			//	btnPickupKey.Enabled = true;
+			//	keyDirection = Direction.WEST;
+			//}
 			else
 			{
 				btnMoveWest.Enabled = false;
 			}
+			//-----------------------------------------------------------------------------------------------------
 			#endregion
+			//-----------------------------------------------------------------------------------------------------
 
+			//-----------------------------------------------------------------------------------------------------
 			#region [Check for Eastern Movement]
+			//-----------------------------------------------------------------------------------------------------
 
 			if(currentX + 1 < mapCells.MapSize
 			&& (mapCells.GetCellType(currentX + 1, currentY)
@@ -352,7 +407,7 @@ namespace Thief_Escape
 			}
 			else if(currentX + 1 < mapCells.MapSize
 			&& (mapCells.GetCellType(currentX + 1, currentY)
-			== CellType.BEJEWELEDKITTEN))
+			== CellType.ITEM))
 			{
 				btnMoveWest.Enabled = false;
 			}
@@ -362,75 +417,25 @@ namespace Thief_Escape
 			{
 				btnMoveWest.Enabled = true;
 			}
-			else if(currentX + 1 < mapCells.MapSize
-			&& (mapCells.GetCellType(currentX + 1, currentY)
-			== CellType.KEY))
-			{
-				btnMoveWest.Enabled = true;
-				btnPickupKey.Enabled = true;
-				keyDirection = Direction.EAST;
-			}
+			//else if(currentX + 1 < mapCells.MapSize
+			//&& (mapCells.GetCellType(currentX + 1, currentY)
+			//== CellType.KEY))
+			//{
+			//	btnMoveWest.Enabled = true;
+			//	btnPickupKey.Enabled = true;
+			//	keyDirection = Direction.EAST;
+			//}
 			else
 			{
 				btnMoveEast.Enabled = false;
 			}
 
-			#endregion
-
-		}
-
-		//-----------------------------------------------------------------------------------------------------
-		public void Surroundings(int currentX, int currentY, Direction direction)
-		{
-			//this method outputs the types of walls surrounding the player to the textbox
-			//MIGHT WANT TO REMOVE
-			//NOT REALLY NEEDED WITH THE MAP
 			//-----------------------------------------------------------------------------------------------------
-			CellType cell = CellType.GENERIC;
+			#endregion
+			//-----------------------------------------------------------------------------------------------------
 
-			switch(direction)
-			{
-
-				case Direction.NORTH:
-					//North is Y - 1
-					if(currentY - 1 < mapCells.MapSize)
-					{
-						cell = mapCells.GetCellType(currentX, currentY - 1);
-					}
-					break;
-
-				case Direction.SOUTH:
-					//North is Y + 1
-					if(currentY + 1 < mapCells.MapSize)
-					{
-						cell = mapCells.GetCellType(currentX, currentY + 1);
-					}
-					break;
-
-				case Direction.EAST:
-					//North is X + 1
-					if(currentY + 1 < mapCells.MapSize)
-					{
-						cell = mapCells.GetCellType(currentX + 1, currentY);
-					}
-					break;
-
-				case Direction.WEST:
-					//North is X - 1
-					if(currentY - 1 < mapCells.MapSize)
-					{
-						cell = mapCells.GetCellType(currentX - 1, currentY);
-					}
-					break;
-
-				//default:
-				//	break;
-			}
-
-			//Add the output to the listbox
-			lstOutput.Items.Add(String.Format("There is a {0} {1} of you.",
-			cell.ToString( ).ToLower( ), direction.ToString( ).ToLower( )));
 		}
+
 
 		//-----------------------------------------------------------------------------------------------------
 		private void btnMoveNorth_Click(object sender, EventArgs e)
@@ -465,6 +470,7 @@ namespace Thief_Escape
 
 			//Output surrounding cell types in text output
 			OutputAroundPlayer(true);
+
 			this.Focus( );
 		}
 
@@ -501,6 +507,7 @@ namespace Thief_Escape
 
 			//Output surrounding cells
 			OutputAroundPlayer(true);
+
 			this.Focus( );
 		}
 
@@ -537,6 +544,7 @@ namespace Thief_Escape
 
 			//Output surrounding cells
 			OutputAroundPlayer(true);
+
 			this.Focus( );
 		}
 
@@ -573,17 +581,19 @@ namespace Thief_Escape
 
 			//Output surrounding cells
 			OutputAroundPlayer(true);
+
 			this.Focus( );
 		}
 
 		//-----------------------------------------------------------------------------------------------------
 		#endregion
+		//-----------------------------------------------------------------------------------------------------
 
-
-		#region [ Change Visual Map Cell Functions ]
-
+		//-----------------------------------------------------------------------------------------------------
 		#region [ Blink Current Cell]
+		//-----------------------------------------------------------------------------------------------------
 
+		//-----------------------------------------------------------------------------------------------------
 		private void tmrCellBlink_Tick(object sender, EventArgs e)
 		{
 			//The tick event function for the tmrCellBlink timer
@@ -603,31 +613,35 @@ namespace Thief_Escape
 			}
 		}
 
-		
+		//-----------------------------------------------------------------------------------------------------
 		public void BlinkCurrentCell( )
 		{
 			//When counter is odd this method is called
-			//-----------------------------------------------------------------------------------------------------
 
 			grdconMap[(player.CurrentCellY + 1), (player.CurrentCellX + 1)].BackColor = Color.DimGray;
 
 		}
 
-		
+		//-----------------------------------------------------------------------------------------------------
 		public void BlinkCurrentCellBack( )
 		{
 			//when counter is even this method is called
-			//-----------------------------------------------------------------------------------------------------
 			grdconMap[(player.CurrentCellY + 1), (player.CurrentCellX + 1)].BackColor = Color.Orange;
 
 		}
 
+		//-----------------------------------------------------------------------------------------------------
 		#endregion
+		//-----------------------------------------------------------------------------------------------------
 
+		//-----------------------------------------------------------------------------------------------------
+		#region [ Change Visual Map Cell Functions ]
+		//-----------------------------------------------------------------------------------------------------
+
+		//-----------------------------------------------------------------------------------------------------
 		private Color WhatIsPrevCellColor(Direction direction)
 		{
 			//Returns the moved from cell's map color.
-			//-----------------------------------------------------------------------------------------------------
 			//method scoped variables needed for the logic statements
 			Color color = Color.Brown;
 			CellType cell = CellType.GENERIC;
@@ -662,6 +676,14 @@ namespace Thief_Escape
 					{
 						stairs = mapCells.GetStairsType(player.CurrentCellX, (player.CurrentCellY + 1));
 					}
+
+					if(cell == CellType.ITEM)
+					{
+						if(mapCells.IsBejeweledKitten(player.CurrentCellX, (player.CurrentCellY + 1)))
+							isBejeweledKitten = true;
+						else if(mapCells.IsKey(player.CurrentCellX, (player.CurrentCellY + 1)))
+							isKey = true;
+					}
 					break;
 
 				case Direction.SOUTH:
@@ -679,6 +701,14 @@ namespace Thief_Escape
 					else if(cell == CellType.STAIRS)
 					{
 						stairs = mapCells.GetStairsType(player.CurrentCellX, (player.CurrentCellY - 1));
+					}
+
+					if(cell == CellType.ITEM)
+					{
+						if(mapCells.IsBejeweledKitten(player.CurrentCellX, (player.CurrentCellY - 1)))
+							isBejeweledKitten = true;
+						else if(mapCells.IsKey(player.CurrentCellX, (player.CurrentCellY - 1)))
+							isKey = true;
 					}
 					break;
 
@@ -698,6 +728,14 @@ namespace Thief_Escape
 					{
 						stairs = mapCells.GetStairsType((player.CurrentCellX - 1), player.CurrentCellY);
 					}
+
+					if(cell == CellType.ITEM)
+					{
+						if(mapCells.IsBejeweledKitten((player.CurrentCellX - 1), player.CurrentCellY))
+							isBejeweledKitten = true;
+						else if(mapCells.IsKey((player.CurrentCellX - 1), player.CurrentCellY))
+							isKey = true;
+					}
 					break;
 
 				case Direction.WEST:
@@ -715,6 +753,14 @@ namespace Thief_Escape
 					else if(cell == CellType.STAIRS)
 					{
 						stairs = mapCells.GetStairsType((player.CurrentCellX + 1), player.CurrentCellY);
+					}
+
+					if(cell == CellType.ITEM)
+					{
+						if(mapCells.IsBejeweledKitten((player.CurrentCellX + 1), player.CurrentCellY))
+							isBejeweledKitten = true;
+						else if(mapCells.IsKey((player.CurrentCellX + 1), player.CurrentCellY))
+							isKey = true;
 					}
 					break;
 
@@ -758,15 +804,22 @@ namespace Thief_Escape
 							color = Color.Salmon;
 						break;
 
-					case CellType.BEJEWELEDKITTEN:
-						isBejeweledKitten = true;
-						color = Color.Purple;
+					case CellType.ITEM:
+						if(isBejeweledKitten)
+							color = Color.Purple;
+						else if(isKey)
+							color = Color.SpringGreen;
 						break;
 
-					case CellType.KEY:
-						isKey = true;
-						color = Color.SpringGreen;
-						break;
+					//case CellType.BEJEWELEDKITTEN:
+					//	isBejeweledKitten = true;
+					//	color = Color.Purple;
+					//	break;
+
+					//case CellType.KEY:
+					//	isKey = true;
+					//	color = Color.SpringGreen;
+					//	break;
 
 					//default:
 					//	break;
@@ -829,42 +882,48 @@ namespace Thief_Escape
 			//Will only reveal and fill correct lines of cells relative to movement direction
 			switch(direction)
 			{
+				//-----------------------------------------------------------------------------------------------------
 				#region North
-					case Direction.NORTH:
-						//Reveal north lines of cells upon movement
-						for(int x = (player.CurrentCellX - 1); x < (player.CurrentCellX + 4); x++)
+				//-----------------------------------------------------------------------------------------------------
+				case Direction.NORTH:
+					//Reveal north lines of cells upon movement
+					for(int x = (player.CurrentCellX - 1); x < (player.CurrentCellX + 4); x++)
+					{
+						int y = (player.CurrentCellY - 1);
+
+						//removes the background image for that cell
+						grdconMap[y, x].ResetBackgroundImage( );
+
+						//checks if current cell is out of range of the cell object array
+						if((((x - 1) >= 0) && ((y - 1) >= 0))
+						& ((x <= mapCells.MapSize) && (y <= mapCells.MapSize)))
 						{
-							int y = (player.CurrentCellY - 1);
-
-							//removes the background image for that cell
-							grdconMap[y, x].ResetBackgroundImage( );
-
-							//checks if current cell is out of range of the cell object array
-							if((((x - 1) >= 0) && ((y - 1) >= 0))
-								& ((x <= mapCells.MapSize) && (y <= mapCells.MapSize)))
+							//if statement to check if the current cell is a wall
+							//if so then it assigns that cell the wall background image
+							if(mapCells.GetCellType((x - 1), (y - 1)) == CellType.WALL)
 							{
-								//if statement to check if the current cell is a wall
-								//if so then it assigns that cell the wall background image
-								if(mapCells.GetCellType((x - 1), (y - 1)) == CellType.WALL)
-								{
-									grdconMap[y, x].BackgroundImage = wallImage;
-								}
+								grdconMap[y, x].BackgroundImage = wallImage;
 							}
 						}
+					}
 
-						//Blackout southern cell line upon movement
-						for(int x = (player.CurrentCellX - 1); x < (player.CurrentCellX + 4); x++)
-						{
-							int y = (player.CurrentCellY + 4);
+					//Blackout southern cell line upon movement
+					for(int x = (player.CurrentCellX - 1); x < (player.CurrentCellX + 4); x++)
+					{
+						int y = (player.CurrentCellY + 4);
 
-							//Black out image applied
-							grdconMap[y, x].BackgroundImage = blackoutImage;
-						}
+						//Black out image applied
+						grdconMap[y, x].BackgroundImage = blackoutImage;
+					}
+					//-----------------------------------------------------------------------------------------------------
 				#endregion
-				break;
+					//-----------------------------------------------------------------------------------------------------
+					break;
 
+				//-----------------------------------------------------------------------------------------------------
 				#region South
-					case Direction.SOUTH:
+				//-----------------------------------------------------------------------------------------------------
+				case Direction.SOUTH:
 					//Reveal south lines of cells upon movement
 					for(int x = (player.CurrentCellX - 1); x < (player.CurrentCellX + 4); x++)
 					{
@@ -875,7 +934,7 @@ namespace Thief_Escape
 
 						//checks if current cell is out of range of the cell object array
 						if((((x - 1) >= 0) && ((y - 1) >= 0))
-							& ((x <= mapCells.MapSize) && (y <= mapCells.MapSize)))
+						& ((x <= mapCells.MapSize) && (y <= mapCells.MapSize)))
 						{
 							//if statement to check if the current cell is a wall
 							//if so then it assigns that cell the wall background image
@@ -894,11 +953,15 @@ namespace Thief_Escape
 						//Black out image applied
 						grdconMap[y, x].BackgroundImage = blackoutImage;
 					}
+					//-----------------------------------------------------------------------------------------------------
 				#endregion
-				break;
+					//-----------------------------------------------------------------------------------------------------
+					break;
 
+				//-----------------------------------------------------------------------------------------------------
 				#region East
-					case Direction.EAST:
+				//-----------------------------------------------------------------------------------------------------
+				case Direction.EAST:
 					//Reveal east line of cells upon movement
 					for(int y = (player.CurrentCellY - 1); y < (player.CurrentCellY + 4); y++)
 					{
@@ -909,7 +972,7 @@ namespace Thief_Escape
 
 						//checks if current cell is out of range of the cell object array
 						if((((x - 1) >= 0) && ((y - 1) >= 0))
-							& ((x <= mapCells.MapSize) && (y <= mapCells.MapSize)))
+						& ((x <= mapCells.MapSize) && (y <= mapCells.MapSize)))
 						{
 							//if statement to check if the current cell is a wall
 							//if so then it assigns that cell the wall background image
@@ -928,11 +991,15 @@ namespace Thief_Escape
 						//Black out image applied
 						grdconMap[y, x].BackgroundImage = blackoutImage;
 					}
+					//-----------------------------------------------------------------------------------------------------
 				#endregion
-				break;
+					//-----------------------------------------------------------------------------------------------------
+					break;
 
+				//-----------------------------------------------------------------------------------------------------
 				#region West
-					case Direction.WEST:
+				//-----------------------------------------------------------------------------------------------------
+				case Direction.WEST:
 					//Reveal east line of cells upon movement
 					for(int y = (player.CurrentCellY - 1); y < (player.CurrentCellY + 4); y++)
 					{
@@ -943,7 +1010,7 @@ namespace Thief_Escape
 
 						//checks if current cell is out of range of the cell object array
 						if((((x - 1) >= 0) && ((y - 1) >= 0))
-							& ((x <= mapCells.MapSize) && (y <= mapCells.MapSize)))
+						& ((x <= mapCells.MapSize) && (y <= mapCells.MapSize)))
 						{
 							//if statement to check if the current cell is a wall
 							//if so then it assigns that cell the wall background image
@@ -962,15 +1029,16 @@ namespace Thief_Escape
 						//Black out image applied
 						grdconMap[y, x].BackgroundImage = blackoutImage;
 					}
+					//-----------------------------------------------------------------------------------------------------
 				#endregion
-				break;
+					//-----------------------------------------------------------------------------------------------------
+					break;
 
 				//case Direction.GENERIC:
 				//	break;
 				//default:
 				//	break;
 			}
-
 
 			//Version 2 of Fog of War
 			//For loops backout all surrounding cells outside of viewable area
@@ -980,7 +1048,7 @@ namespace Thief_Escape
 			//	{
 			//		grdconMap[y, x].BackgroundImage = blackoutImage;
 			//	}
-				
+
 			//}
 
 			//for(int x = (player.CurrentCellX + 4); x < (mapCells.MapSize + 1); x++)
@@ -1042,7 +1110,7 @@ namespace Thief_Escape
 
 					//checks if current cell is out of range of the cell object array
 					if((((x - 1) >= 0) && ((y - 1) >= 0))
-						& ((x <= mapCells.MapSize) && (y <= mapCells.MapSize)))
+					& ((x <= mapCells.MapSize) && (y <= mapCells.MapSize)))
 					{
 						//if statement to check if the current cell is a wall
 						//if so then it assigns that cell the wall background image
@@ -1055,66 +1123,78 @@ namespace Thief_Escape
 			}
 		}
 
-		#endregion
-
-
-		#region [ Item manipulation ]
-
-		private void btnPickupKey_Click(object sender, EventArgs e)
-		{
-			int[] key = CheckForNearbyKey();
-			if (key[0] != 0)
-			{
-				 Inventory.Add(mapCells.PickUpKey(key[1], key[2]));
-				 UpdateInventory();
-				PickedUpKeyMapCellChange(key[1], key[2]);
-			}
-			else
-			{
-				lstDialog.Items.Add("There is no key nearby!");
-				lstDialog.SelectedIndex = lstDialog.Items.Count - 1;
-				lstDialog.SelectedIndex = -1;
-			}
-			grpMovement.Focus( );
-		}
-
-		private void PickedUpKeyMapCellChange( int x, int y)
+		//-----------------------------------------------------------------------------------------------------
+		private void PickedUpItemMapCellChange(int x, int y)
 		{
 			grdconMap[(y + 1), (x + 1)].BackColor = Color.White;
 		}
 
-		private int[] CheckForNearbyKey()
+		//-----------------------------------------------------------------------------------------------------
+		#endregion
+		//-----------------------------------------------------------------------------------------------------
+
+		//-----------------------------------------------------------------------------------------------------
+		#region [ Item Manipulation ]
+		//-----------------------------------------------------------------------------------------------------
+
+		//-----------------------------------------------------------------------------------------------------
+		private void InitialInventory(int style, List<Item> currentInv)
 		{
-			//The array defined as (bool,x-coord,y-coord). Bool is 0-false 1-true, with default of false.
-			int[] result = { 0, 0, 0 };
-			
-			//Creates starting point for search, 1 cell up and 1 cell left.
-			int x = player.CurrentCellX - 1;
-			int y = player.CurrentCellY - 1;
+			//First argument is used in deciding which default items to load on map-load if any
+			//Second argument is a copy of the inventory as currentinv
+			//Then adds any default items to currentinv
+			//re-assigns currentinv to inventory
+			//Then updates the inventory listbox
 
-			//Goes through each "column" of the search area
-			for (int ix = 0; ix < 3; ix++)
-			{
-				//Goes through each "row" of the column
-				for (int iy = 0; iy < 3; iy++)
-				{
-					//If the cell has a key, return true.
-					if (mapCells.IsKey((x+ix),(y+iy)))
-					{
-						//Bool true
-						result[0] = 1;
-						//Key's x-coord
-						result[1] = (x + ix);
-						//Key's y-coord
-						result[2] = (y + iy);
-					}
-				}
-			}
+			//add keys for testing
+			currentInv.Add(key);
+			currentInv.Add(key);
+			currentInv.Add(key);
+			currentInv.Add(key);
+			currentInv.Add(kitten);
 
-			return result;
+			Inventory = currentInv;
+
+			UpdateInventory( );
 
 		}
 
+		//-----------------------------------------------------------------------------------------------------
+		private void UpdateInventory( )
+		{
+			//Clears out the inventory list box
+			//Then with a loop adds each object back to the inventory list box
+			int numberKeys = 0;
+			int numberKittens = 0;
+			lstInventory.Items.Clear( );
+			foreach(Item inv in Inventory)
+			{
+				lstInventory.Items.Add(inv.ToString( ));
+				//To add a line space between items in list box
+				lstInventory.Items.Add(" ");
+
+				if(inv == key)
+					numberKeys++;
+				else if(inv == kitten)
+					numberKittens++;
+
+			}
+
+			txtNumberOfKeys.Text = Convert.ToString(numberKeys);
+			txtNumberOfKittens.Text = Convert.ToString(numberKittens);
+
+		}
+
+		//-----------------------------------------------------------------------------------------------------
+		private void btnPickupKey_Click(object sender, EventArgs e)
+		{
+
+			PickUpItem( );
+
+			this.Focus( );
+		}
+
+		//-----------------------------------------------------------------------------------------------------
 		private void btnUseKey_Click(object sender, EventArgs e)
 		{
 			//Event called when the Use Key button is pressed
@@ -1122,6 +1202,7 @@ namespace Thief_Escape
 			//If so then it opens that door
 			//Then re-checks movement options to allow movement to now unlocked door
 			//Then removes the used key from inventory
+			UpdateInventory( );
 			if(Inventory.Contains(key))
 			{
 				OpenDoor( );
@@ -1131,55 +1212,53 @@ namespace Thief_Escape
 			else
 				MessageBox.Show("You don't have any Keys", "Can't Unlock Door");
 
-			grpMovement.Focus( );
+			this.Focus( );
 		}
 
-		private void RemoveKey( )
+		//-----------------------------------------------------------------------------------------------------
+		private int[ ] LookForNearbyItem( )
 		{
-			//Removes a used key from the inventory then updates the listbox
-			Inventory.Remove(key);
-			UpdateInventory( );
-		}
+			//The array defined as (bool,x-coord,y-coord). Bool is 0-false 1-true, with default of false.
+			int[ ] result = { 0, 0, 0, 0, 0, 0 };
 
-		private void OpenDoor( )
-		{
-			//Gets direction of door then sets the door type for that cell to DoorType.UNLOCKED
-			//Then changes that cell's mapcell to the unlocked door color
-			Direction doorDirection;
-			doorDirection = LookForLockedDoor(player.CurrentCellX, player.CurrentCellY);
+			//Creates starting point for search, 1 cell up and 1 cell left.
+			int x = player.CurrentCellX - 1;
+			int y = player.CurrentCellY - 1;
 
-			switch(doorDirection)
+			//Goes through each "column" of the search area
+			for(int ix = 0; ix < 3; ix++)
 			{
-				case Direction.NORTH:
-					mapCells.SetDoorType(player.CurrentCellX, (player.CurrentCellY - 1), DoorType.DOORUNLOCKED);
-					grdconMap[player.CurrentCellY, (player.CurrentCellX + 1)].BackColor = Color.Blue;
-					break;
-
-				case Direction.SOUTH:
-					mapCells.SetDoorType(player.CurrentCellX, (player.CurrentCellY + 1), DoorType.DOORUNLOCKED);
-					grdconMap[(player.CurrentCellY + 2), (player.CurrentCellX + 1)].BackColor = Color.Blue;
-					break;
-
-				case Direction.EAST:
-					mapCells.SetDoorType((player.CurrentCellX + 1), player.CurrentCellY, DoorType.DOORUNLOCKED);
-					grdconMap[(player.CurrentCellY + 1), (player.CurrentCellX + 2)].BackColor = Color.Blue;
-					break;
-
-				case Direction.WEST:
-					mapCells.SetDoorType((player.CurrentCellX - 1), player.CurrentCellY, DoorType.DOORUNLOCKED);
-					grdconMap[(player.CurrentCellY + 1), (player.CurrentCellX)].BackColor = Color.Blue;
-					break;
-				case Direction.GENERIC:
-					MessageBox.Show("OpenDoor method was given a direction of Direction.GENERIC.  This should not happen.",
-						"This should not show up");
-				break;
-				//default:
-				//	break;
+				//Goes through each "row" of the column
+				for(int iy = 0; iy < 3; iy++)
+				{
+					//If the cell has a key, return true.
+					if(mapCells.IsKey((x + ix), (y + iy)))
+					{
+						//is key
+						result[0] = 1;
+						//Key's x-coord
+						result[1] = (x + ix);
+						//Key's y-coord
+						result[2] = (y + iy);
+					}
+					else if((mapCells.IsBejeweledKitten((x + ix), (y + iy))))
+					{
+						//is kitten
+						result[3] = 1;
+						//Key's x-coord
+						result[4] = (x + ix);
+						//Key's y-coord
+						result[5] = (y + iy);
+					}
+				}
 			}
 
+			return result;
+
 		}
 
-		private Direction LookForLockedDoor(int currentX, int currentY)
+		//-----------------------------------------------------------------------------------------------------
+		private Direction LookForNearbyLockedDoor(int currentX, int currentY)
 		{
 			//Checks the four directions around the current cell and looks for a locked door
 			//If it finds a locked door then LookForLockedDoor returns the direction of it
@@ -1213,162 +1292,91 @@ namespace Thief_Escape
 				doorDirection = Direction.EAST;
 			}
 
-
 			return doorDirection;
 		}
 
-
-		private void InitialInventory(int style, List<Item> currentInv)
+		//-----------------------------------------------------------------------------------------------------
+		private void OpenDoor( )
 		{
-			//First argument is used in deciding which default items to load on map-load if any
-			//Second argument is a copy of the inventory as currentinv
-			//Then adds any default items to currentinv
-			//re-assigns currentinv to inventory
-			//Then updates the inventory listbox
+			//Gets direction of door then sets the door type for that cell to DoorType.UNLOCKED
+			//Then changes that cell's mapcell to the unlocked door color
+			Direction doorDirection;
+			doorDirection = LookForNearbyLockedDoor(player.CurrentCellX, player.CurrentCellY);
 
+			switch(doorDirection)
+			{
+				case Direction.NORTH:
+					mapCells.SetDoorType(player.CurrentCellX, (player.CurrentCellY - 1), DoorType.DOORUNLOCKED);
+					grdconMap[player.CurrentCellY, (player.CurrentCellX + 1)].BackColor = Color.Blue;
+					break;
 
-			//add keys for testing
-			currentInv.Add(key);
-			currentInv.Add(key);
-			currentInv.Add(key);
-			currentInv.Add(key);
+				case Direction.SOUTH:
+					mapCells.SetDoorType(player.CurrentCellX, (player.CurrentCellY + 1), DoorType.DOORUNLOCKED);
+					grdconMap[(player.CurrentCellY + 2), (player.CurrentCellX + 1)].BackColor = Color.Blue;
+					break;
 
+				case Direction.EAST:
+					mapCells.SetDoorType((player.CurrentCellX + 1), player.CurrentCellY, DoorType.DOORUNLOCKED);
+					grdconMap[(player.CurrentCellY + 1), (player.CurrentCellX + 2)].BackColor = Color.Blue;
+					break;
 
-			Inventory = currentInv;
+				case Direction.WEST:
+					mapCells.SetDoorType((player.CurrentCellX - 1), player.CurrentCellY, DoorType.DOORUNLOCKED);
+					grdconMap[(player.CurrentCellY + 1), (player.CurrentCellX)].BackColor = Color.Blue;
+					break;
+				//case Direction.GENERIC:
+				//	MessageBox.Show("OpenDoor method was given a direction of Direction.GENERIC.  This should not happen.",
+				//		"This should not show up");
+				//break;
+				//default:
+				//	break;
+			}
 
+		}
+
+		//-----------------------------------------------------------------------------------------------------
+		private void PickUpItem( )
+		{
+			int[ ] item = LookForNearbyItem( );
+			if(item[0] == 1)
+			{
+				//Inventory.Add(mapCells.PickUpKey(key[1], key[2]));
+				Inventory.Add(mapCells.PickUpItem(item[1], item[2]));
+				UpdateInventory( );
+				PickedUpItemMapCellChange(item[1], item[2]);
+			}
+			else if(item[3] == 1)
+			{
+				Inventory.Add(mapCells.PickUpItem(item[4], item[5]));
+				//Inventory.Add(mapCells.PickUpItem(key[1], key[2]));
+				UpdateInventory( );
+				PickedUpItemMapCellChange(item[4], item[5]);
+			}
+			else
+			{
+				lstDialog.Items.Add("There is no key or Kitten nearby!");
+				lstDialog.SelectedIndex = lstDialog.Items.Count - 1;
+				lstDialog.SelectedIndex = -1;
+			}
+		}
+
+		//-----------------------------------------------------------------------------------------------------
+		private void RemoveKey( )
+		{
+			//Removes a used key from the inventory then updates the listbox
+			Inventory.Remove(key);
 			UpdateInventory( );
-
 		}
 
-		private void UpdateInventory( )
-		{
-			//Clears out the inventory list box
-			//Then with a loop adds each object back to the inventory list box
-			lstInventory.Items.Clear( );
-			foreach(Item inv in Inventory)
-			{
-				lstInventory.Items.Add(inv.ToString( ));
-				//To add a line space between items in list box
-				lstInventory.Items.Add(" ");
-
-			}
-
-		}
-
+		//-----------------------------------------------------------------------------------------------------
 		#endregion
+		//-----------------------------------------------------------------------------------------------------
 
+		//-----------------------------------------------------------------------------------------------------
+		#region [ Dialog/Message Methods ]
+		//-----------------------------------------------------------------------------------------------------
 
-		#region [ Methods ]
-
-		private void WhenKeyIsPressed(KeyEventArgs e)
-		{
-			//When a key is pressed, switch will decide which key and call specific action
-			//used for keyboard shortcuts to game buttons
-			switch(e.KeyCode)
-			{
-				case Keys.Left:
-					btnMoveWest.PerformClick( );
-					break;
-				case Keys.Right:
-					btnMoveEast.PerformClick( );
-					break;
-				case Keys.Up:
-					btnMoveNorth.PerformClick( );
-					break;
-				case Keys.Down:
-					btnMoveSouth.PerformClick( );
-					break;
-
-				case Keys.W:
-					btnMoveNorth.PerformClick( );
-					break;
-				case Keys.A:
-					btnMoveWest.PerformClick( );
-					break;
-				case Keys.S:
-					btnMoveSouth.PerformClick( );
-					break;
-				case Keys.D:
-					btnMoveEast.PerformClick( );
-					break;
-
-				case Keys.K:
-					btnUseKey.PerformClick( );
-					break;
-				case Keys.P:
-					btnPickupKey.PerformClick( );
-					break;
-
-
-				case Keys.NumPad0:
-					break;
-				case Keys.NumPad1:
-					break;
-				case Keys.NumPad2:
-					btnMoveSouth.PerformClick( );
-					break;
-				case Keys.NumPad3:
-					break;
-				case Keys.NumPad4:
-					btnMoveWest.PerformClick( );
-					break;
-				case Keys.NumPad5:
-					break;
-				case Keys.NumPad6:
-					btnMoveEast.PerformClick( );
-					break;
-				case Keys.NumPad7:
-					break;
-				case Keys.NumPad8:
-					btnMoveNorth.PerformClick( );
-					break;
-				case Keys.NumPad9:
-					break;
-
-				case Keys.Enter:
-					break;
-				case Keys.Escape:
-					Application.Exit( );
-					break;
-
-				case Keys.F1:
-					break;
-				case Keys.F10:
-					break;
-				case Keys.F11:
-					break;
-				case Keys.F12:
-					break;
-				case Keys.F2:
-					break;
-				case Keys.F3:
-					break;
-				case Keys.F4:
-					break;
-				case Keys.F5:
-					break;
-				case Keys.F6:
-					break;
-				case Keys.F7:
-					break;
-				case Keys.F8:
-					break;
-				case Keys.F9:
-					break;
-
-				case Keys.PageDown:
-					break;
-				case Keys.PageUp:
-					break;
-
-				case Keys.Tab:
-					break;
-
-				default:
-					break;
-			}
-		}
-
+		//-----------------------------------------------------------------------------------------------------
 		public void OutputAroundPlayer(bool clear)
 		{
 			if(clear)
@@ -1378,14 +1386,78 @@ namespace Thief_Escape
 			Surroundings(player.CurrentCellX, player.CurrentCellY, Direction.SOUTH);
 			Surroundings(player.CurrentCellX, player.CurrentCellY, Direction.WEST);
 			Surroundings(player.CurrentCellX, player.CurrentCellY, Direction.EAST);
-			//Place a blank line
-			lstOutput.Items.Add("");
+			
 
 			//Select the last item in the list
 			lstOutput.SelectedIndex = lstOutput.Items.Count - 1;
 		}
 
+		//-----------------------------------------------------------------------------------------------------
+		public void Surroundings(int currentX, int currentY, Direction direction)
+		{
+			//this method outputs the types of walls surrounding the player to the textbox
+			//MIGHT WANT TO REMOVE
+			//NOT REALLY NEEDED WITH THE MAP
+			//CellType cell = CellType.GENERIC;
+			string cellDescription = "";
+
+			switch(direction)
+			{
+
+				case Direction.NORTH:
+					//North is Y - 1
+					if(currentY - 1 < mapCells.MapSize)
+					{
+						//cell = mapCells.GetCellType(currentX, (currentY - 1));
+						cellDescription = mapCells.CellDescription(currentX, (currentY - 1));
+					}
+					break;
+
+				case Direction.SOUTH:
+					//North is Y + 1
+					if(currentY + 1 < mapCells.MapSize)
+					{
+						//cell = mapCells.GetCellType(currentX, (currentY + 1));
+						cellDescription = mapCells.CellDescription(currentX, (currentY + 1));
+					}
+					break;
+
+				case Direction.EAST:
+					//North is X + 1
+					if(currentY + 1 < mapCells.MapSize)
+					{
+						//cell = mapCells.GetCellType((currentX + 1), currentY);
+						cellDescription = mapCells.CellDescription((currentX + 1), currentY);
+					}
+					break;
+
+				case Direction.WEST:
+					//North is X - 1
+					if(currentY - 1 < mapCells.MapSize)
+					{
+						//cell = mapCells.GetCellType((currentX - 1), currentY);
+						cellDescription = mapCells.CellDescription((currentX - 1), currentY);
+					}
+					break;
+
+				//default:
+				//	break;
+			}
+
+			//Add the output to the listbox
+			TextInfo ti = CultureInfo.CurrentCulture.TextInfo;
+			cellDescription = cellDescription.Insert(0, (Convert.ToString(direction).ToLower( ) + ": "));
+			cellDescription = ti.ToTitleCase(cellDescription);
+
+			//Place a blank line
+			lstOutput.Items.Add(" ");
+			lstOutput.Items.Add(" ");
+			lstOutput.Items.Add(cellDescription);
+			
+		}
+
 		//starting dialog
+		//-----------------------------------------------------------------------------------------------------
 		public void InitalPrompt( )
 		{
 			lstDialog.Items.Add(string.Format("Hello {0}, welcome to the game", name));
@@ -1393,31 +1465,34 @@ namespace Thief_Escape
 			lstDialog.Items.Add("");
 		}
 
+		//-----------------------------------------------------------------------------------------------------
 		public void PardonDust( )
 		{
 			MessageBox.Show("Pardon our dust, we're still under construction.");
 		}
 
+		//-----------------------------------------------------------------------------------------------------
 		#endregion
-		
+		//-----------------------------------------------------------------------------------------------------
 
+		//-----------------------------------------------------------------------------------------------------
 		#region [ Action Buttons Click ]
 		//-----------------------------------------------------------------------------------------------------
 
+
 		//-----------------------------------------------------------------------------------------------------
-
-		
-
 		private void btnAction2_Click(object sender, EventArgs e)
 		{
 			PardonDust( );
 		}
 
+		//-----------------------------------------------------------------------------------------------------
 		private void btnAction3_Click(object sender, EventArgs e)
 		{
 			PardonDust( );
 		}
 
+		//-----------------------------------------------------------------------------------------------------
 		private void btnAction5_Click(object sender, EventArgs e)
 		{
 			PardonDust( );
@@ -1430,39 +1505,48 @@ namespace Thief_Escape
 			PardonDust( );
 		}
 
+		//-----------------------------------------------------------------------------------------------------
 		#endregion
-		
+		//-----------------------------------------------------------------------------------------------------
 
+		//-----------------------------------------------------------------------------------------------------
 		#region [ Menu Buttons Click ]
+		//-----------------------------------------------------------------------------------------------------
+
+		//-----------------------------------------------------------------------------------------------------
 		private void btnLoadGame_Click(object sender, EventArgs e)
 		{
 			//to-do
 			//Planned feature: Load a game from a save file
 		}
 
+		//-----------------------------------------------------------------------------------------------------
 		private void btnSaveGame_Click(object sender, EventArgs e)
 		{
 			//to-do
 			//Planned feature: Save a gamestate to file
 		}
 
+		//-----------------------------------------------------------------------------------------------------
 		private void btnMainMenu_Click(object sender, EventArgs e)
 		{
 			//Change the exit bool to false;
 			exit = false;
 			//Load the menu form
-			FormMainMenu frm = new FormMainMenu();
-			frm.Show();
+			FormMainMenu frm = new FormMainMenu( );
+			frm.Show( );
 
 			//Close this form
 			this.Close( );
 		}
 
-
 		# endregion
-		
 
+		//-----------------------------------------------------------------------------------------------------
 		#region [ Creation of Image Map]
+		//-----------------------------------------------------------------------------------------------------
+
+		//-----------------------------------------------------------------------------------------------------
 		public void CreateTestMapBig( )
 		{
 
@@ -1484,7 +1568,6 @@ namespace Thief_Escape
 			//starting Cell
 			grdconMap[2, 2].BackColor = startingCellColor;
 
-		
 			//-----------------------------------------------------------------------------------------------------
 			#region doors
 			//-----------------------------------------------------------------------------------------------------
@@ -1621,18 +1704,29 @@ namespace Thief_Escape
 			#endregion
 			//-----------------------------------------------------------------------------------------------------
 
+			//-----------------------------------------------------------------------------------------------------
 			#region [ Items ]
+			//-----------------------------------------------------------------------------------------------------
 			grdconMap[8, 10].BackColor = Key;
 
+			//-----------------------------------------------------------------------------------------------------
 			#endregion
+			//-----------------------------------------------------------------------------------------------------
 		}
 
+		//-----------------------------------------------------------------------------------------------------
 		#endregion
+		//-----------------------------------------------------------------------------------------------------
 
-
+		//-----------------------------------------------------------------------------------------------------
 		#region [ Stock Events ]
+		//-----------------------------------------------------------------------------------------------------
+
+		//-----------------------------------------------------------------------------------------------------
 		private void PrimaryKeyDownEvent(object sender, KeyEventArgs e)
 		{
+			//The event used by many controls on the FormGame to respond to keyboard key down event
+			//Switch statement will then click the corresponding button
 			switch(e.KeyCode)
 			{
 				case Keys.Left:
@@ -1668,7 +1762,6 @@ namespace Thief_Escape
 					btnPickupKey.PerformClick( );
 					break;
 
-
 				case Keys.NumPad0:
 					break;
 				case Keys.NumPad1:
@@ -1687,11 +1780,13 @@ namespace Thief_Escape
 					btnMoveEast.PerformClick( );
 					break;
 				case Keys.NumPad7:
+					btnPickupKey.PerformClick( );
 					break;
 				case Keys.NumPad8:
 					btnMoveNorth.PerformClick( );
 					break;
 				case Keys.NumPad9:
+					btnUseKey.PerformClick( );
 					break;
 
 				case Keys.Enter:
@@ -1701,16 +1796,13 @@ namespace Thief_Escape
 					break;
 
 				case Keys.F1:
-					break;
-				case Keys.F10:
-					break;
-				case Keys.F11:
-					break;
-				case Keys.F12:
+					btnMainMenu.PerformClick( );
 					break;
 				case Keys.F2:
+					btnSaveGame.PerformClick( );
 					break;
 				case Keys.F3:
+					btnLoadGame.PerformClick( );
 					break;
 				case Keys.F4:
 					break;
@@ -1723,6 +1815,12 @@ namespace Thief_Escape
 				case Keys.F8:
 					break;
 				case Keys.F9:
+					break;
+				case Keys.F10:
+					break;
+				case Keys.F11:
+					break;
+				case Keys.F12:
 					break;
 
 				case Keys.PageDown:
@@ -1737,37 +1835,25 @@ namespace Thief_Escape
 					break;
 			}
 		}
+
+		//-----------------------------------------------------------------------------------------------------
 		#endregion
+		//-----------------------------------------------------------------------------------------------------
 
-
+		//-----------------------------------------------------------------------------------------------------
 		#region [ Close Event ]
+		//-----------------------------------------------------------------------------------------------------
 
+		//-----------------------------------------------------------------------------------------------------
 		private void FormGame_FormClosed(object sender, FormClosedEventArgs e)
 		{
-			 if (exit)
-			Application.Exit();
-		}       
+			if(exit)
+				Application.Exit( );
+		}
 
+		//-----------------------------------------------------------------------------------------------------
 		#endregion
-
-	
-
-		 
-
-
-
-
-		 
-
-		 
-		
-
-		
-
-		
-
-
-		
+		//-----------------------------------------------------------------------------------------------------
 
 	}
 }

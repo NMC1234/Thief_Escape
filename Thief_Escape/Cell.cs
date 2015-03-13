@@ -24,6 +24,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Globalization;
 
 namespace Thief_Escape
 {
@@ -41,9 +42,7 @@ namespace Thief_Escape
 		DOOR,
 		GENERIC,
 		STAIRS,
-		BEJEWELEDKITTEN,
-		KEY
-
+		ITEM
 	}
 
 	//The different floor types
@@ -53,7 +52,6 @@ namespace Thief_Escape
 		FLOORGENERAL,
 		FLOORITEM,
 		FLOORSECRET,
-		FLOORKEY,
 		GENERIC
 
 	}
@@ -65,7 +63,6 @@ namespace Thief_Escape
 		WALLGENERAL,
 		WALLITEM,
 		WALLSECRET,
-		WALLKEY,
 		GENERIC
 
 	}
@@ -132,9 +129,10 @@ namespace Thief_Escape
 		private FloorType _floor;
 		private DoorType _door;
 		private StairsType _stairs;
-		private KeyType _keyType;
+		
 
 		//Specialized Cell types
+		private KeyType _keyType;
 		private KittenType _kittenType;
 		private ItemType _itemType;
 
@@ -281,9 +279,9 @@ namespace Thief_Escape
 		//Method to set cell object as starting cell
 		//-----------------------------------------------------------------------------------------------------
 
-		private void CreateItem(Item item)
+		private void CreateFloorItem(Item item)
 		{
-			_cell = CellType.FLOOR;
+			_cell = CellType.ITEM;
 			_floor = FloorType.FLOORITEM;
 			_itemType = ItemType.AVAILABLE;
 			_hasItem = true;
@@ -385,9 +383,8 @@ namespace Thief_Escape
 		public void CreateKey(Item item)
 		{
 			
-			CreateItem(item);
+			CreateFloorItem(item);
 
-			_cell = CellType.KEY;
 			_keyType = KeyType.AVAILABLE;
 			_isKey = true;
 
@@ -396,9 +393,8 @@ namespace Thief_Escape
 		//-----------------------------------------------------------------------------------------------------
 		public void CreateBejeweledKitten(Item item )
 		{
-			CreateItem(item);
+			CreateFloorItem(item);
 
-			_cell = CellType.BEJEWELEDKITTEN;
 			_kittenType = KittenType.AVAILABLE;
 			_isBejeweledKitten = true;
 			
@@ -407,38 +403,98 @@ namespace Thief_Escape
 		//-----------------------------------------------------------------------------------------------------
 		public Item PickUpItem( )
 		{
-			_itemType = ItemType.PICKEDUP;
+			//copy the cells item to a temp var
+			Item currentItem = _item;
+			
 
-			return _item;
+			if(_isKey == true)
+			{
+				_cell = CellType.FLOOR;
+				_keyType = KeyType.PICKEDUP;
+				_itemType = ItemType.PICKEDUP;
+				_floor = FloorType.FLOORGENERAL;
+				_isKey = false;
+				_hasItem = false;
+			}
+			else if(_isBejeweledKitten == true)
+			{
+				_cell = CellType.FLOOR;
+				_kittenType = KittenType.PICKEDUP;
+				_itemType = ItemType.PICKEDUP;
+				_floor = FloorType.FLOORGENERAL;
+				_isBejeweledKitten = false;
+				_hasItem = false;
+			}
+			else
+				throw new MemberAccessException("There is no Item in the cell which you are trying to pick something up from.");
+
+
+			//Empty out the _item var since the item is being picked up
+			_item = null;
+			//return temp var of cell's item
+			return currentItem;
 		}
 
-		//Sets current cell object as bejeweled kitten
-		
-
-		//-----------------------------------------------------------------------------------------------------
-		public Item PickUpKitten( )
-		{
-			_kittenType = KittenType.PICKEDUP;
-			_isBejeweledKitten = false;
-			_itemType = ItemType.PICKEDUP;
-
-			return _item;
-		}
-
-		//-----------------------------------------------------------------------------------------------------
-
-		public Item PickUpKey( )
-		{
-			_keyType = KeyType.PICKEDUP;
-			_isKey = false;
-			_itemType = ItemType.PICKEDUP;
-			_floor = FloorType.FLOORGENERAL;
-
-			return _item;
-
-		}
+	
 		#endregion
 		//-----------------------------------------------------------------------------------------------------
+
+		#region [ Overridden Methods ]
+
+		public override string ToString( )
+		{
+			string cellDescription = "There is a " + Convert.ToString(_cell).ToLower( ) + " that way";
+			//TextInfo ti = CultureInfo.CurrentCulture.TextInfo;
+			//cellDescription = ti.ToTitleCase(cellDescription);
+
+			switch(_cell)
+			{
+				case CellType.FLOOR:
+					cellDescription += " which is a " + Convert.ToString(_floor).ToLower( ) + ".";
+					break;
+				case CellType.WALL:
+					cellDescription += " which is a " + Convert.ToString(_wall).ToLower( ) + ".";
+					break;
+				case CellType.DOOR:
+					if(_door == DoorType.DOORLOCKED)
+						cellDescription += " that is Locked.";
+					else if(_door == DoorType.DOORUNLOCKED)
+						cellDescription += " That is Unlocked.";
+					break;
+				case CellType.GENERIC:
+					break;
+				case CellType.STAIRS:
+					cellDescription = "There is a set of " + Convert.ToString(_cell).ToLower( ) + " that way";
+					if(_stairs == StairsType.STAIRSUP)
+						cellDescription += " which go up.";
+					else if(_stairs == StairsType.STAIRSDOWN)
+						cellDescription += " which go down.";
+					break;
+
+				case CellType.ITEM:
+					if(_itemType == ItemType.AVAILABLE)
+					{
+						if(_isBejeweledKitten)
+							cellDescription = "There is a Bejeweled Kitten that way which is " + Convert.ToString(_kittenType).ToLower( ) + ".";
+						else if(_isKey)
+							cellDescription = "There is a Key that way which is " + Convert.ToString(_keyType).ToLower( ) + ".";
+					}
+					else if(_itemType == ItemType.PICKEDUP)
+						cellDescription += " which you already picked up.";
+					break;
+				//case CellType.BEJEWELEDKITTEN:
+				//	break;
+				//case CellType.KEY:
+				//	break;
+				//default:
+				//	break;
+			}
+
+			
+			return cellDescription;
+		}
+
+		#endregion
 
 	}
 

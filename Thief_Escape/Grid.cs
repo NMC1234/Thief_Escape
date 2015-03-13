@@ -44,6 +44,7 @@ namespace Thief_Escape
 
 		private int _startingCellX = 0;
 		private int _startingCellY = 0;
+		private int _X, _Y;
 
 		#endregion
 
@@ -236,6 +237,7 @@ namespace Thief_Escape
 			#region [Floors]
 			//-----------------------------------------------------------------------------------------------------
 
+			_map[1, 1].CreateFloor(FloorType.FLOORGENERAL);
 			_map[1, 2].CreateFloor(FloorType.FLOORGENERAL);
 			_map[1, 4].CreateFloor(FloorType.FLOORGENERAL);
 			_map[1, 6].CreateFloor(FloorType.FLOORGENERAL);
@@ -243,6 +245,7 @@ namespace Thief_Escape
 			_map[1, 9].CreateFloor(FloorType.FLOORGENERAL);
 			_map[1, 10].CreateFloor(FloorType.FLOORGENERAL);
 			_map[1, 11].CreateFloor(FloorType.FLOORGENERAL);
+			_map[1, 14].CreateFloor(FloorType.FLOORGENERAL);
 
 			_map[2, 1].CreateFloor(FloorType.FLOORGENERAL);
 			_map[2, 2].CreateFloor(FloorType.FLOORGENERAL);
@@ -345,7 +348,7 @@ namespace Thief_Escape
 			_map[13, 13].CreateFloor(FloorType.FLOORGENERAL);
 			_map[13, 14].CreateFloor(FloorType.FLOORGENERAL);
 
-			_map[14, 1].CreateFloor(FloorType.FLOORGENERAL);
+			//_map[14, 1].CreateFloor(FloorType.FLOORGENERAL);
 			_map[14, 2].CreateFloor(FloorType.FLOORGENERAL);
 			_map[14, 3].CreateFloor(FloorType.FLOORGENERAL);
 			_map[14, 4].CreateFloor(FloorType.FLOORGENERAL);
@@ -398,7 +401,10 @@ namespace Thief_Escape
 
 			#region [ Items ]
 			Item tempKey = new Item(Item.ItemType.Key);
+			Item tempKitten = new Item(Item.ItemType.JewelKitten);
+
 			_map[9, 7].CreateKey(tempKey);
+			_map[14, 1].CreateBejeweledKitten(tempKitten);
 
 			#endregion
 
@@ -434,17 +440,17 @@ namespace Thief_Escape
 
 		//Picks up the kitten by changing the kitten cell type
 		//-----------------------------------------------------------------------------------------------------
-		public Item PickUpKitten(int x, int y)
-		{
-			return _map[x, y].PickUpKitten( );
-		}
+		//public Item PickUpKitten(int x, int y)
+		//{
+		//	return _map[x, y].PickUpKitten( );
+		//}
 
 		//Picks up the Key by changing the Key cell type
 		//-----------------------------------------------------------------------------------------------------
-		public Item PickUpKey(int x, int y)
-		{
-			return _map[x, y].PickUpKey( );
-		}
+		//public Item PickUpKey(int x, int y)
+		//{
+		//	return _map[x, y].PickUpKey( );
+		//}
 
 		//Picks up Item
 		//-----------------------------------------------------------------------------------------------------
@@ -534,7 +540,25 @@ namespace Thief_Escape
 		}
 
 		#endregion
+
+		#region [ Overrided ToString Methods ]
+
+		public string CellDescription(int x, int y)
+		{
+			_X = x;
+			_Y = y;
+
+			return ToString( );
+		}
+
+		public override string ToString( )
+		{
+			return _map[_X, _Y].ToString( );
+		}
+
 		
+
+		#endregion
 
 	}
 }

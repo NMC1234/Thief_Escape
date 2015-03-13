@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
 			this.components = new System.ComponentModel.Container();
-			Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle21 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
-			Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle22 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
-			Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle23 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
-			Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle24 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
+			Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle41 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
+			Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle42 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
+			Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle43 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
+			Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle44 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
 			this.lstOutput = new System.Windows.Forms.ListBox();
 			this.grpMovement = new System.Windows.Forms.GroupBox();
 			this.btnMoveWest = new System.Windows.Forms.Button();
@@ -78,6 +78,10 @@
 			this.tabDirection = new System.Windows.Forms.TabPage();
 			this.tabInventory = new System.Windows.Forms.TabPage();
 			this.lstInventory = new System.Windows.Forms.ListBox();
+			this.lblNumberOfKeys = new System.Windows.Forms.Label();
+			this.txtNumberOfKeys = new System.Windows.Forms.TextBox();
+			this.txtNumberOfKittens = new System.Windows.Forms.TextBox();
+			this.lblNumberOfKittens = new System.Windows.Forms.Label();
 			this.grpMovement.SuspendLayout();
 			this.grpActions.SuspendLayout();
 			this.grpboxLegend.SuspendLayout();
@@ -92,12 +96,13 @@
 			// lstOutput
 			// 
 			this.lstOutput.BackColor = System.Drawing.Color.DarkKhaki;
-			this.lstOutput.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lstOutput.Font = new System.Drawing.Font("Rockwell", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lstOutput.FormattingEnabled = true;
-			this.lstOutput.ItemHeight = 19;
-			this.lstOutput.Location = new System.Drawing.Point(3, 3);
+			this.lstOutput.HorizontalScrollbar = true;
+			this.lstOutput.ItemHeight = 15;
+			this.lstOutput.Location = new System.Drawing.Point(0, 0);
 			this.lstOutput.Name = "lstOutput";
-			this.lstOutput.Size = new System.Drawing.Size(410, 232);
+			this.lstOutput.Size = new System.Drawing.Size(444, 259);
 			this.lstOutput.TabIndex = 0;
 			// 
 			// grpMovement
@@ -109,9 +114,9 @@
 			this.grpMovement.Controls.Add(this.btnMoveNorth);
 			this.grpMovement.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.grpMovement.ForeColor = System.Drawing.Color.MidnightBlue;
-			this.grpMovement.Location = new System.Drawing.Point(819, 230);
+			this.grpMovement.Location = new System.Drawing.Point(819, 198);
 			this.grpMovement.Name = "grpMovement";
-			this.grpMovement.Size = new System.Drawing.Size(283, 147);
+			this.grpMovement.Size = new System.Drawing.Size(283, 130);
 			this.grpMovement.TabIndex = 0;
 			this.grpMovement.TabStop = false;
 			this.grpMovement.Text = "Movement";
@@ -181,9 +186,9 @@
 			this.grpActions.Controls.Add(this.btnAction2);
 			this.grpActions.Controls.Add(this.btnPickupKey);
 			this.grpActions.ForeColor = System.Drawing.Color.MidnightBlue;
-			this.grpActions.Location = new System.Drawing.Point(819, 82);
+			this.grpActions.Location = new System.Drawing.Point(819, 63);
 			this.grpActions.Name = "grpActions";
-			this.grpActions.Size = new System.Drawing.Size(283, 142);
+			this.grpActions.Size = new System.Drawing.Size(283, 129);
 			this.grpActions.TabIndex = 1;
 			this.grpActions.TabStop = false;
 			this.grpActions.Text = "Actions";
@@ -312,12 +317,12 @@
 			// lstDialog
 			// 
 			this.lstDialog.BackColor = System.Drawing.Color.DarkKhaki;
-			this.lstDialog.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lstDialog.Font = new System.Drawing.Font("Rockwell", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lstDialog.FormattingEnabled = true;
-			this.lstDialog.ItemHeight = 19;
-			this.lstDialog.Location = new System.Drawing.Point(6, 6);
+			this.lstDialog.ItemHeight = 15;
+			this.lstDialog.Location = new System.Drawing.Point(0, 3);
 			this.lstDialog.Name = "lstDialog";
-			this.lstDialog.Size = new System.Drawing.Size(407, 213);
+			this.lstDialog.Size = new System.Drawing.Size(444, 259);
 			this.lstDialog.TabIndex = 9;
 			// 
 			// grpboxLegend
@@ -536,30 +541,30 @@
 			this.grdconMap.AllowIncreaseSmallChange = false;
 			this.grdconMap.AllowSelection = Syncfusion.Windows.Forms.Grid.GridSelectionFlags.None;
 			this.grdconMap.BackColor = System.Drawing.Color.Black;
-			gridBaseStyle21.Name = "Header";
-			gridBaseStyle21.StyleInfo.Borders.Bottom = new Syncfusion.Windows.Forms.Grid.GridBorder(Syncfusion.Windows.Forms.Grid.GridBorderStyle.None);
-			gridBaseStyle21.StyleInfo.Borders.Left = new Syncfusion.Windows.Forms.Grid.GridBorder(Syncfusion.Windows.Forms.Grid.GridBorderStyle.None);
-			gridBaseStyle21.StyleInfo.Borders.Right = new Syncfusion.Windows.Forms.Grid.GridBorder(Syncfusion.Windows.Forms.Grid.GridBorderStyle.None);
-			gridBaseStyle21.StyleInfo.Borders.Top = new Syncfusion.Windows.Forms.Grid.GridBorder(Syncfusion.Windows.Forms.Grid.GridBorderStyle.None);
-			gridBaseStyle21.StyleInfo.CellType = "Header";
-			gridBaseStyle21.StyleInfo.Font.Bold = true;
-			gridBaseStyle21.StyleInfo.Interior = new Syncfusion.Drawing.BrushInfo(Syncfusion.Drawing.GradientStyle.Vertical, System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(199)))), ((int)(((byte)(184))))), System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(234)))), ((int)(((byte)(216))))));
-			gridBaseStyle21.StyleInfo.VerticalAlignment = Syncfusion.Windows.Forms.Grid.GridVerticalAlignment.Middle;
-			gridBaseStyle22.Name = "Standard";
-			gridBaseStyle22.StyleInfo.Font.Facename = "Tahoma";
-			gridBaseStyle22.StyleInfo.Interior = new Syncfusion.Drawing.BrushInfo(System.Drawing.SystemColors.Window);
-			gridBaseStyle23.Name = "Column Header";
-			gridBaseStyle23.StyleInfo.BaseStyle = "Header";
-			gridBaseStyle23.StyleInfo.HorizontalAlignment = Syncfusion.Windows.Forms.Grid.GridHorizontalAlignment.Center;
-			gridBaseStyle24.Name = "Row Header";
-			gridBaseStyle24.StyleInfo.BaseStyle = "Header";
-			gridBaseStyle24.StyleInfo.HorizontalAlignment = Syncfusion.Windows.Forms.Grid.GridHorizontalAlignment.Left;
-			gridBaseStyle24.StyleInfo.Interior = new Syncfusion.Drawing.BrushInfo(Syncfusion.Drawing.GradientStyle.Horizontal, System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(199)))), ((int)(((byte)(184))))), System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(234)))), ((int)(((byte)(216))))));
+			gridBaseStyle41.Name = "Header";
+			gridBaseStyle41.StyleInfo.Borders.Bottom = new Syncfusion.Windows.Forms.Grid.GridBorder(Syncfusion.Windows.Forms.Grid.GridBorderStyle.None);
+			gridBaseStyle41.StyleInfo.Borders.Left = new Syncfusion.Windows.Forms.Grid.GridBorder(Syncfusion.Windows.Forms.Grid.GridBorderStyle.None);
+			gridBaseStyle41.StyleInfo.Borders.Right = new Syncfusion.Windows.Forms.Grid.GridBorder(Syncfusion.Windows.Forms.Grid.GridBorderStyle.None);
+			gridBaseStyle41.StyleInfo.Borders.Top = new Syncfusion.Windows.Forms.Grid.GridBorder(Syncfusion.Windows.Forms.Grid.GridBorderStyle.None);
+			gridBaseStyle41.StyleInfo.CellType = "Header";
+			gridBaseStyle41.StyleInfo.Font.Bold = true;
+			gridBaseStyle41.StyleInfo.Interior = new Syncfusion.Drawing.BrushInfo(Syncfusion.Drawing.GradientStyle.Vertical, System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(199)))), ((int)(((byte)(184))))), System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(234)))), ((int)(((byte)(216))))));
+			gridBaseStyle41.StyleInfo.VerticalAlignment = Syncfusion.Windows.Forms.Grid.GridVerticalAlignment.Middle;
+			gridBaseStyle42.Name = "Standard";
+			gridBaseStyle42.StyleInfo.Font.Facename = "Tahoma";
+			gridBaseStyle42.StyleInfo.Interior = new Syncfusion.Drawing.BrushInfo(System.Drawing.SystemColors.Window);
+			gridBaseStyle43.Name = "Column Header";
+			gridBaseStyle43.StyleInfo.BaseStyle = "Header";
+			gridBaseStyle43.StyleInfo.HorizontalAlignment = Syncfusion.Windows.Forms.Grid.GridHorizontalAlignment.Center;
+			gridBaseStyle44.Name = "Row Header";
+			gridBaseStyle44.StyleInfo.BaseStyle = "Header";
+			gridBaseStyle44.StyleInfo.HorizontalAlignment = Syncfusion.Windows.Forms.Grid.GridHorizontalAlignment.Left;
+			gridBaseStyle44.StyleInfo.Interior = new Syncfusion.Drawing.BrushInfo(Syncfusion.Drawing.GradientStyle.Horizontal, System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(199)))), ((int)(((byte)(184))))), System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(234)))), ((int)(((byte)(216))))));
 			this.grdconMap.BaseStylesMap.AddRange(new Syncfusion.Windows.Forms.Grid.GridBaseStyle[] {
-            gridBaseStyle21,
-            gridBaseStyle22,
-            gridBaseStyle23,
-            gridBaseStyle24});
+            gridBaseStyle41,
+            gridBaseStyle42,
+            gridBaseStyle43,
+            gridBaseStyle44});
 			this.grdconMap.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
 			this.grdconMap.ColCount = 24;
 			this.grdconMap.ColWidthEntries.AddRange(new Syncfusion.Windows.Forms.Grid.GridColWidth[] {
@@ -594,7 +599,7 @@
 			this.grdconMap.SelectCellsMouseButtonsMask = System.Windows.Forms.MouseButtons.None;
 			this.grdconMap.SerializeCellsBehavior = Syncfusion.Windows.Forms.Grid.GridSerializeCellsBehavior.SerializeAsRangeStylesIntoCode;
 			this.grdconMap.ShowCurrentCellBorderBehavior = Syncfusion.Windows.Forms.Grid.GridShowCurrentCellBorder.HideAlways;
-			this.grdconMap.Size = new System.Drawing.Size(632, 638);
+			this.grdconMap.Size = new System.Drawing.Size(632, 629);
 			this.grdconMap.SmartSizeBox = false;
 			this.grdconMap.SpreadsheetLikeSelection = false;
 			this.grdconMap.TabIndex = 7;
@@ -618,11 +623,11 @@
 			this.tabDialog.Controls.Add(this.tabDialogs);
 			this.tabDialog.Controls.Add(this.tabDirection);
 			this.tabDialog.Controls.Add(this.tabInventory);
-			this.tabDialog.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.tabDialog.Location = new System.Drawing.Point(681, 383);
+			this.tabDialog.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.tabDialog.Location = new System.Drawing.Point(650, 334);
 			this.tabDialog.Name = "tabDialog";
 			this.tabDialog.SelectedIndex = 0;
-			this.tabDialog.Size = new System.Drawing.Size(421, 248);
+			this.tabDialog.Size = new System.Drawing.Size(452, 307);
 			this.tabDialog.TabIndex = 5;
 			// 
 			// tabDialogs
@@ -630,10 +635,10 @@
 			this.tabDialogs.BackColor = System.Drawing.Color.DarkKhaki;
 			this.tabDialogs.Controls.Add(this.lstDialog);
 			this.tabDialogs.ForeColor = System.Drawing.Color.Black;
-			this.tabDialogs.Location = new System.Drawing.Point(4, 32);
+			this.tabDialogs.Location = new System.Drawing.Point(4, 28);
 			this.tabDialogs.Name = "tabDialogs";
 			this.tabDialogs.Padding = new System.Windows.Forms.Padding(3);
-			this.tabDialogs.Size = new System.Drawing.Size(413, 212);
+			this.tabDialogs.Size = new System.Drawing.Size(444, 275);
 			this.tabDialogs.TabIndex = 0;
 			this.tabDialogs.Text = "Dialog";
 			// 
@@ -642,34 +647,84 @@
 			this.tabDirection.BackColor = System.Drawing.Color.DarkKhaki;
 			this.tabDirection.Controls.Add(this.lstOutput);
 			this.tabDirection.ForeColor = System.Drawing.Color.Black;
-			this.tabDirection.Location = new System.Drawing.Point(4, 32);
+			this.tabDirection.Location = new System.Drawing.Point(4, 28);
 			this.tabDirection.Name = "tabDirection";
 			this.tabDirection.Padding = new System.Windows.Forms.Padding(3);
-			this.tabDirection.Size = new System.Drawing.Size(413, 212);
+			this.tabDirection.Size = new System.Drawing.Size(444, 275);
 			this.tabDirection.TabIndex = 1;
 			this.tabDirection.Text = "Directional Help";
 			// 
 			// tabInventory
 			// 
 			this.tabInventory.BackColor = System.Drawing.Color.DarkKhaki;
+			this.tabInventory.Controls.Add(this.txtNumberOfKittens);
+			this.tabInventory.Controls.Add(this.lblNumberOfKittens);
+			this.tabInventory.Controls.Add(this.txtNumberOfKeys);
+			this.tabInventory.Controls.Add(this.lblNumberOfKeys);
 			this.tabInventory.Controls.Add(this.lstInventory);
 			this.tabInventory.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.tabInventory.ForeColor = System.Drawing.Color.Black;
-			this.tabInventory.Location = new System.Drawing.Point(4, 32);
+			this.tabInventory.Location = new System.Drawing.Point(4, 28);
 			this.tabInventory.Name = "tabInventory";
-			this.tabInventory.Size = new System.Drawing.Size(413, 212);
+			this.tabInventory.Size = new System.Drawing.Size(444, 275);
 			this.tabInventory.TabIndex = 2;
 			this.tabInventory.Text = "Inventory";
 			// 
 			// lstInventory
 			// 
 			this.lstInventory.BackColor = System.Drawing.Color.DarkKhaki;
+			this.lstInventory.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.lstInventory.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lstInventory.FormattingEnabled = true;
-			this.lstInventory.ItemHeight = 16;
-			this.lstInventory.Location = new System.Drawing.Point(4, 4);
+			this.lstInventory.HorizontalScrollbar = true;
+			this.lstInventory.ItemHeight = 15;
+			this.lstInventory.Location = new System.Drawing.Point(0, 27);
 			this.lstInventory.Name = "lstInventory";
-			this.lstInventory.Size = new System.Drawing.Size(409, 212);
+			this.lstInventory.SelectionMode = System.Windows.Forms.SelectionMode.None;
+			this.lstInventory.Size = new System.Drawing.Size(444, 244);
 			this.lstInventory.TabIndex = 0;
+			// 
+			// lblNumberOfKeys
+			// 
+			this.lblNumberOfKeys.AutoSize = true;
+			this.lblNumberOfKeys.Location = new System.Drawing.Point(315, 6);
+			this.lblNumberOfKeys.Name = "lblNumberOfKeys";
+			this.lblNumberOfKeys.Size = new System.Drawing.Size(99, 16);
+			this.lblNumberOfKeys.TabIndex = 1;
+			this.lblNumberOfKeys.Text = "Total # of Keys:";
+			// 
+			// txtNumberOfKeys
+			// 
+			this.txtNumberOfKeys.BackColor = System.Drawing.Color.DarkGray;
+			this.txtNumberOfKeys.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.txtNumberOfKeys.ForeColor = System.Drawing.Color.Black;
+			this.txtNumberOfKeys.Location = new System.Drawing.Point(410, 3);
+			this.txtNumberOfKeys.Name = "txtNumberOfKeys";
+			this.txtNumberOfKeys.ReadOnly = true;
+			this.txtNumberOfKeys.Size = new System.Drawing.Size(31, 23);
+			this.txtNumberOfKeys.TabIndex = 2;
+			this.txtNumberOfKeys.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			// 
+			// txtNumberOfKittens
+			// 
+			this.txtNumberOfKittens.BackColor = System.Drawing.Color.DarkGray;
+			this.txtNumberOfKittens.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.txtNumberOfKittens.ForeColor = System.Drawing.Color.Black;
+			this.txtNumberOfKittens.Location = new System.Drawing.Point(241, 3);
+			this.txtNumberOfKittens.Name = "txtNumberOfKittens";
+			this.txtNumberOfKittens.ReadOnly = true;
+			this.txtNumberOfKittens.Size = new System.Drawing.Size(31, 23);
+			this.txtNumberOfKittens.TabIndex = 4;
+			this.txtNumberOfKittens.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			// 
+			// lblNumberOfKittens
+			// 
+			this.lblNumberOfKittens.AutoSize = true;
+			this.lblNumberOfKittens.Location = new System.Drawing.Point(72, 6);
+			this.lblNumberOfKittens.Name = "lblNumberOfKittens";
+			this.lblNumberOfKittens.Size = new System.Drawing.Size(175, 16);
+			this.lblNumberOfKittens.TabIndex = 3;
+			this.lblNumberOfKittens.Text = "Total # of Bejeweled Kittens:";
 			// 
 			// FormGame
 			// 
@@ -704,6 +759,7 @@
 			this.tabDialogs.ResumeLayout(false);
 			this.tabDirection.ResumeLayout(false);
 			this.tabInventory.ResumeLayout(false);
+			this.tabInventory.PerformLayout();
 			this.ResumeLayout(false);
 
         }
@@ -755,5 +811,9 @@
         private System.Windows.Forms.ListBox lstInventory;
 		private System.Windows.Forms.Label lblKey;
 		private System.Windows.Forms.TextBox txtKey;
+		private System.Windows.Forms.TextBox txtNumberOfKittens;
+		private System.Windows.Forms.Label lblNumberOfKittens;
+		private System.Windows.Forms.TextBox txtNumberOfKeys;
+		private System.Windows.Forms.Label lblNumberOfKeys;
     }
 }
