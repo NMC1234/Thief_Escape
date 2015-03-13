@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
 			this.components = new System.ComponentModel.Container();
-			Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle1 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
-			Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle2 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
-			Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle3 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
-			Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle4 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
+			Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle21 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
+			Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle22 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
+			Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle23 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
+			Syncfusion.Windows.Forms.Grid.GridBaseStyle gridBaseStyle24 = new Syncfusion.Windows.Forms.Grid.GridBaseStyle();
 			this.lstOutput = new System.Windows.Forms.ListBox();
 			this.grpMovement = new System.Windows.Forms.GroupBox();
 			this.btnMoveWest = new System.Windows.Forms.Button();
@@ -49,7 +49,6 @@
 			this.btnMainMenu = new System.Windows.Forms.Button();
 			this.btnSaveGame = new System.Windows.Forms.Button();
 			this.btnLoadGame = new System.Windows.Forms.Button();
-			this.lblMenuHover = new System.Windows.Forms.Label();
 			this.lstDialog = new System.Windows.Forms.ListBox();
 			this.grpboxLegend = new System.Windows.Forms.GroupBox();
 			this.lblKey = new System.Windows.Forms.Label();
@@ -100,8 +99,6 @@
 			this.lstOutput.Name = "lstOutput";
 			this.lstOutput.Size = new System.Drawing.Size(410, 232);
 			this.lstOutput.TabIndex = 0;
-			this.lstOutput.MouseLeave += new System.EventHandler(this.PrimaryMouseLeaveEvent);
-			this.lstOutput.MouseHover += new System.EventHandler(this.lstOutput_MouseHover);
 			// 
 			// grpMovement
 			// 
@@ -132,8 +129,6 @@
 			this.btnMoveWest.UseVisualStyleBackColor = false;
 			this.btnMoveWest.Click += new System.EventHandler(this.btnMoveWest_Click);
 			this.btnMoveWest.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PrimaryKeyDownEvent);
-			this.btnMoveWest.MouseLeave += new System.EventHandler(this.PrimaryMouseLeaveEvent);
-			this.btnMoveWest.MouseHover += new System.EventHandler(this.btnMoveWest_MouseHover);
 			// 
 			// btnMoveEast
 			// 
@@ -148,8 +143,6 @@
 			this.btnMoveEast.UseVisualStyleBackColor = false;
 			this.btnMoveEast.Click += new System.EventHandler(this.btnMoveEast_Click);
 			this.btnMoveEast.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PrimaryKeyDownEvent);
-			this.btnMoveEast.MouseLeave += new System.EventHandler(this.PrimaryMouseLeaveEvent);
-			this.btnMoveEast.MouseHover += new System.EventHandler(this.btnMoveEast_MouseHover);
 			// 
 			// btnMoveSouth
 			// 
@@ -164,8 +157,6 @@
 			this.btnMoveSouth.UseVisualStyleBackColor = false;
 			this.btnMoveSouth.Click += new System.EventHandler(this.btnMoveSouth_Click);
 			this.btnMoveSouth.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PrimaryKeyDownEvent);
-			this.btnMoveSouth.MouseLeave += new System.EventHandler(this.PrimaryMouseLeaveEvent);
-			this.btnMoveSouth.MouseHover += new System.EventHandler(this.btnMoveSouth_MouseHover);
 			// 
 			// btnMoveNorth
 			// 
@@ -180,8 +171,6 @@
 			this.btnMoveNorth.UseVisualStyleBackColor = false;
 			this.btnMoveNorth.Click += new System.EventHandler(this.btnMoveNorth_Click);
 			this.btnMoveNorth.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PrimaryKeyDownEvent);
-			this.btnMoveNorth.MouseLeave += new System.EventHandler(this.PrimaryMouseLeaveEvent);
-			this.btnMoveNorth.MouseHover += new System.EventHandler(this.btnMoveNorth_MouseHover);
 			// 
 			// grpActions
 			// 
@@ -210,7 +199,6 @@
 			this.btnAction6.Text = "Action 6";
 			this.btnAction6.UseVisualStyleBackColor = false;
 			this.btnAction6.Click += new System.EventHandler(this.btnAction6_Click);
-			this.btnAction6.MouseLeave += new System.EventHandler(this.PrimaryMouseLeaveEvent);
 			// 
 			// btnAction5
 			// 
@@ -223,7 +211,6 @@
 			this.btnAction5.Text = "Action 5";
 			this.btnAction5.UseVisualStyleBackColor = false;
 			this.btnAction5.Click += new System.EventHandler(this.btnAction5_Click);
-			this.btnAction5.MouseLeave += new System.EventHandler(this.PrimaryMouseLeaveEvent);
 			// 
 			// btnUseKey
 			// 
@@ -238,8 +225,6 @@
 			this.btnUseKey.UseVisualStyleBackColor = false;
 			this.btnUseKey.Click += new System.EventHandler(this.btnUseKey_Click);
 			this.btnUseKey.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PrimaryKeyDownEvent);
-			this.btnUseKey.MouseLeave += new System.EventHandler(this.PrimaryMouseLeaveEvent);
-			this.btnUseKey.MouseHover += new System.EventHandler(this.btnUseKey_MouseHover);
 			// 
 			// btnAction3
 			// 
@@ -252,7 +237,6 @@
 			this.btnAction3.Text = "Action 3";
 			this.btnAction3.UseVisualStyleBackColor = false;
 			this.btnAction3.Click += new System.EventHandler(this.btnAction3_Click);
-			this.btnAction3.MouseLeave += new System.EventHandler(this.PrimaryMouseLeaveEvent);
 			// 
 			// btnAction2
 			// 
@@ -265,7 +249,6 @@
 			this.btnAction2.Text = "Action 2";
 			this.btnAction2.UseVisualStyleBackColor = false;
 			this.btnAction2.Click += new System.EventHandler(this.btnAction2_Click);
-			this.btnAction2.MouseLeave += new System.EventHandler(this.PrimaryMouseLeaveEvent);
 			// 
 			// btnPickupKey
 			// 
@@ -280,8 +263,6 @@
 			this.btnPickupKey.UseVisualStyleBackColor = false;
 			this.btnPickupKey.Click += new System.EventHandler(this.btnPickupKey_Click);
 			this.btnPickupKey.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PrimaryKeyDownEvent);
-			this.btnPickupKey.MouseLeave += new System.EventHandler(this.PrimaryMouseLeaveEvent);
-			this.btnPickupKey.MouseHover += new System.EventHandler(this.btnPickupKey_MouseHover);
 			// 
 			// btnMainMenu
 			// 
@@ -297,8 +278,6 @@
 			this.btnMainMenu.UseVisualStyleBackColor = false;
 			this.btnMainMenu.Click += new System.EventHandler(this.btnMainMenu_Click);
 			this.btnMainMenu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PrimaryKeyDownEvent);
-			this.btnMainMenu.MouseLeave += new System.EventHandler(this.PrimaryMouseLeaveEvent);
-			this.btnMainMenu.MouseHover += new System.EventHandler(this.btnMainMenu_MouseHover);
 			// 
 			// btnSaveGame
 			// 
@@ -314,8 +293,6 @@
 			this.btnSaveGame.UseVisualStyleBackColor = false;
 			this.btnSaveGame.Click += new System.EventHandler(this.btnSaveGame_Click);
 			this.btnSaveGame.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PrimaryKeyDownEvent);
-			this.btnSaveGame.MouseLeave += new System.EventHandler(this.PrimaryMouseLeaveEvent);
-			this.btnSaveGame.MouseHover += new System.EventHandler(this.btnSaveGame_MouseHover);
 			// 
 			// btnLoadGame
 			// 
@@ -331,20 +308,6 @@
 			this.btnLoadGame.UseVisualStyleBackColor = false;
 			this.btnLoadGame.Click += new System.EventHandler(this.btnLoadGame_Click);
 			this.btnLoadGame.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PrimaryKeyDownEvent);
-			this.btnLoadGame.MouseLeave += new System.EventHandler(this.PrimaryMouseLeaveEvent);
-			this.btnLoadGame.MouseHover += new System.EventHandler(this.btnLoadGame_MouseHover);
-			// 
-			// lblMenuHover
-			// 
-			this.lblMenuHover.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.lblMenuHover.AutoSize = true;
-			this.lblMenuHover.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lblMenuHover.ForeColor = System.Drawing.Color.Red;
-			this.lblMenuHover.Location = new System.Drawing.Point(816, 62);
-			this.lblMenuHover.Name = "lblMenuHover";
-			this.lblMenuHover.Size = new System.Drawing.Size(0, 15);
-			this.lblMenuHover.TabIndex = 46;
-			this.lblMenuHover.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
 			// lstDialog
 			// 
@@ -356,8 +319,6 @@
 			this.lstDialog.Name = "lstDialog";
 			this.lstDialog.Size = new System.Drawing.Size(407, 213);
 			this.lstDialog.TabIndex = 9;
-			this.lstDialog.MouseLeave += new System.EventHandler(this.PrimaryMouseLeaveEvent);
-			this.lstDialog.MouseHover += new System.EventHandler(this.lstDialog_MouseHover);
 			// 
 			// grpboxLegend
 			// 
@@ -397,7 +358,6 @@
 			this.lblKey.Size = new System.Drawing.Size(31, 13);
 			this.lblKey.TabIndex = 19;
 			this.lblKey.Text = "- Key";
-			this.lblKey.MouseLeave += new System.EventHandler(this.PrimaryMouseLeaveEvent);
 			// 
 			// txtKey
 			// 
@@ -407,7 +367,6 @@
 			this.txtKey.ReadOnly = true;
 			this.txtKey.Size = new System.Drawing.Size(21, 20);
 			this.txtKey.TabIndex = 18;
-			this.txtKey.MouseLeave += new System.EventHandler(this.PrimaryMouseLeaveEvent);
 			// 
 			// picbWallImage
 			// 
@@ -417,7 +376,6 @@
 			this.picbWallImage.Size = new System.Drawing.Size(21, 20);
 			this.picbWallImage.TabIndex = 14;
 			this.picbWallImage.TabStop = false;
-			this.picbWallImage.MouseLeave += new System.EventHandler(this.PrimaryMouseLeaveEvent);
 			// 
 			// label2
 			// 
@@ -427,7 +385,6 @@
 			this.label2.Size = new System.Drawing.Size(92, 13);
 			this.label2.TabIndex = 17;
 			this.label2.Text = "- Bejeweled Kitten";
-			this.label2.MouseLeave += new System.EventHandler(this.PrimaryMouseLeaveEvent);
 			// 
 			// txtBejeweledKitten
 			// 
@@ -437,7 +394,6 @@
 			this.txtBejeweledKitten.ReadOnly = true;
 			this.txtBejeweledKitten.Size = new System.Drawing.Size(21, 20);
 			this.txtBejeweledKitten.TabIndex = 16;
-			this.txtBejeweledKitten.MouseLeave += new System.EventHandler(this.PrimaryMouseLeaveEvent);
 			// 
 			// lblStairsDown
 			// 
@@ -447,7 +403,6 @@
 			this.lblStairsDown.Size = new System.Drawing.Size(83, 13);
 			this.lblStairsDown.TabIndex = 15;
 			this.lblStairsDown.Text = "- STAIRS Down";
-			this.lblStairsDown.MouseLeave += new System.EventHandler(this.PrimaryMouseLeaveEvent);
 			// 
 			// txtStairsDown
 			// 
@@ -457,7 +412,6 @@
 			this.txtStairsDown.ReadOnly = true;
 			this.txtStairsDown.Size = new System.Drawing.Size(21, 20);
 			this.txtStairsDown.TabIndex = 14;
-			this.txtStairsDown.MouseLeave += new System.EventHandler(this.PrimaryMouseLeaveEvent);
 			// 
 			// lblStairsUp
 			// 
@@ -467,7 +421,6 @@
 			this.lblStairsUp.Size = new System.Drawing.Size(69, 13);
 			this.lblStairsUp.TabIndex = 13;
 			this.lblStairsUp.Text = "- STAIRS Up";
-			this.lblStairsUp.MouseLeave += new System.EventHandler(this.PrimaryMouseLeaveEvent);
 			// 
 			// txtStairsUp
 			// 
@@ -477,7 +430,6 @@
 			this.txtStairsUp.ReadOnly = true;
 			this.txtStairsUp.Size = new System.Drawing.Size(21, 20);
 			this.txtStairsUp.TabIndex = 12;
-			this.txtStairsUp.MouseLeave += new System.EventHandler(this.PrimaryMouseLeaveEvent);
 			// 
 			// lblCurrentCell
 			// 
@@ -487,7 +439,6 @@
 			this.lblCurrentCell.Size = new System.Drawing.Size(67, 13);
 			this.lblCurrentCell.TabIndex = 11;
 			this.lblCurrentCell.Text = "- Current Cell";
-			this.lblCurrentCell.MouseLeave += new System.EventHandler(this.PrimaryMouseLeaveEvent);
 			// 
 			// txtCurrentCell
 			// 
@@ -497,7 +448,6 @@
 			this.txtCurrentCell.ReadOnly = true;
 			this.txtCurrentCell.Size = new System.Drawing.Size(21, 20);
 			this.txtCurrentCell.TabIndex = 10;
-			this.txtCurrentCell.MouseLeave += new System.EventHandler(this.PrimaryMouseLeaveEvent);
 			// 
 			// lblDoorOpen
 			// 
@@ -507,7 +457,6 @@
 			this.lblDoorOpen.Size = new System.Drawing.Size(94, 13);
 			this.lblDoorOpen.TabIndex = 9;
 			this.lblDoorOpen.Text = "- DOOR Unlocked";
-			this.lblDoorOpen.MouseLeave += new System.EventHandler(this.PrimaryMouseLeaveEvent);
 			// 
 			// textBox1
 			// 
@@ -517,7 +466,6 @@
 			this.textBox1.ReadOnly = true;
 			this.textBox1.Size = new System.Drawing.Size(21, 20);
 			this.textBox1.TabIndex = 8;
-			this.textBox1.MouseLeave += new System.EventHandler(this.PrimaryMouseLeaveEvent);
 			// 
 			// lblDoorLocked
 			// 
@@ -527,7 +475,6 @@
 			this.lblDoorLocked.Size = new System.Drawing.Size(84, 13);
 			this.lblDoorLocked.TabIndex = 7;
 			this.lblDoorLocked.Text = "- DOOR Locked";
-			this.lblDoorLocked.MouseLeave += new System.EventHandler(this.PrimaryMouseLeaveEvent);
 			// 
 			// txtDoorLocked
 			// 
@@ -537,7 +484,6 @@
 			this.txtDoorLocked.ReadOnly = true;
 			this.txtDoorLocked.Size = new System.Drawing.Size(21, 20);
 			this.txtDoorLocked.TabIndex = 6;
-			this.txtDoorLocked.MouseLeave += new System.EventHandler(this.PrimaryMouseLeaveEvent);
 			// 
 			// lblStarting
 			// 
@@ -547,7 +493,6 @@
 			this.lblStarting.Size = new System.Drawing.Size(55, 13);
 			this.lblStarting.TabIndex = 5;
 			this.lblStarting.Text = "- Start Cell";
-			this.lblStarting.MouseLeave += new System.EventHandler(this.PrimaryMouseLeaveEvent);
 			// 
 			// txtStarting
 			// 
@@ -557,7 +502,6 @@
 			this.txtStarting.ReadOnly = true;
 			this.txtStarting.Size = new System.Drawing.Size(21, 20);
 			this.txtStarting.TabIndex = 4;
-			this.txtStarting.MouseLeave += new System.EventHandler(this.PrimaryMouseLeaveEvent);
 			// 
 			// lblFloors
 			// 
@@ -576,7 +520,6 @@
 			this.txtFloors.ReadOnly = true;
 			this.txtFloors.Size = new System.Drawing.Size(21, 20);
 			this.txtFloors.TabIndex = 2;
-			this.txtFloors.MouseLeave += new System.EventHandler(this.PrimaryMouseLeaveEvent);
 			// 
 			// lblWall
 			// 
@@ -586,7 +529,6 @@
 			this.lblWall.Size = new System.Drawing.Size(39, 13);
 			this.lblWall.TabIndex = 1;
 			this.lblWall.Text = "- Walls";
-			this.lblWall.MouseLeave += new System.EventHandler(this.PrimaryMouseLeaveEvent);
 			// 
 			// grdconMap
 			// 
@@ -594,30 +536,30 @@
 			this.grdconMap.AllowIncreaseSmallChange = false;
 			this.grdconMap.AllowSelection = Syncfusion.Windows.Forms.Grid.GridSelectionFlags.None;
 			this.grdconMap.BackColor = System.Drawing.Color.Black;
-			gridBaseStyle1.Name = "Header";
-			gridBaseStyle1.StyleInfo.Borders.Bottom = new Syncfusion.Windows.Forms.Grid.GridBorder(Syncfusion.Windows.Forms.Grid.GridBorderStyle.None);
-			gridBaseStyle1.StyleInfo.Borders.Left = new Syncfusion.Windows.Forms.Grid.GridBorder(Syncfusion.Windows.Forms.Grid.GridBorderStyle.None);
-			gridBaseStyle1.StyleInfo.Borders.Right = new Syncfusion.Windows.Forms.Grid.GridBorder(Syncfusion.Windows.Forms.Grid.GridBorderStyle.None);
-			gridBaseStyle1.StyleInfo.Borders.Top = new Syncfusion.Windows.Forms.Grid.GridBorder(Syncfusion.Windows.Forms.Grid.GridBorderStyle.None);
-			gridBaseStyle1.StyleInfo.CellType = "Header";
-			gridBaseStyle1.StyleInfo.Font.Bold = true;
-			gridBaseStyle1.StyleInfo.Interior = new Syncfusion.Drawing.BrushInfo(Syncfusion.Drawing.GradientStyle.Vertical, System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(199)))), ((int)(((byte)(184))))), System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(234)))), ((int)(((byte)(216))))));
-			gridBaseStyle1.StyleInfo.VerticalAlignment = Syncfusion.Windows.Forms.Grid.GridVerticalAlignment.Middle;
-			gridBaseStyle2.Name = "Standard";
-			gridBaseStyle2.StyleInfo.Font.Facename = "Tahoma";
-			gridBaseStyle2.StyleInfo.Interior = new Syncfusion.Drawing.BrushInfo(System.Drawing.SystemColors.Window);
-			gridBaseStyle3.Name = "Column Header";
-			gridBaseStyle3.StyleInfo.BaseStyle = "Header";
-			gridBaseStyle3.StyleInfo.HorizontalAlignment = Syncfusion.Windows.Forms.Grid.GridHorizontalAlignment.Center;
-			gridBaseStyle4.Name = "Row Header";
-			gridBaseStyle4.StyleInfo.BaseStyle = "Header";
-			gridBaseStyle4.StyleInfo.HorizontalAlignment = Syncfusion.Windows.Forms.Grid.GridHorizontalAlignment.Left;
-			gridBaseStyle4.StyleInfo.Interior = new Syncfusion.Drawing.BrushInfo(Syncfusion.Drawing.GradientStyle.Horizontal, System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(199)))), ((int)(((byte)(184))))), System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(234)))), ((int)(((byte)(216))))));
+			gridBaseStyle21.Name = "Header";
+			gridBaseStyle21.StyleInfo.Borders.Bottom = new Syncfusion.Windows.Forms.Grid.GridBorder(Syncfusion.Windows.Forms.Grid.GridBorderStyle.None);
+			gridBaseStyle21.StyleInfo.Borders.Left = new Syncfusion.Windows.Forms.Grid.GridBorder(Syncfusion.Windows.Forms.Grid.GridBorderStyle.None);
+			gridBaseStyle21.StyleInfo.Borders.Right = new Syncfusion.Windows.Forms.Grid.GridBorder(Syncfusion.Windows.Forms.Grid.GridBorderStyle.None);
+			gridBaseStyle21.StyleInfo.Borders.Top = new Syncfusion.Windows.Forms.Grid.GridBorder(Syncfusion.Windows.Forms.Grid.GridBorderStyle.None);
+			gridBaseStyle21.StyleInfo.CellType = "Header";
+			gridBaseStyle21.StyleInfo.Font.Bold = true;
+			gridBaseStyle21.StyleInfo.Interior = new Syncfusion.Drawing.BrushInfo(Syncfusion.Drawing.GradientStyle.Vertical, System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(199)))), ((int)(((byte)(184))))), System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(234)))), ((int)(((byte)(216))))));
+			gridBaseStyle21.StyleInfo.VerticalAlignment = Syncfusion.Windows.Forms.Grid.GridVerticalAlignment.Middle;
+			gridBaseStyle22.Name = "Standard";
+			gridBaseStyle22.StyleInfo.Font.Facename = "Tahoma";
+			gridBaseStyle22.StyleInfo.Interior = new Syncfusion.Drawing.BrushInfo(System.Drawing.SystemColors.Window);
+			gridBaseStyle23.Name = "Column Header";
+			gridBaseStyle23.StyleInfo.BaseStyle = "Header";
+			gridBaseStyle23.StyleInfo.HorizontalAlignment = Syncfusion.Windows.Forms.Grid.GridHorizontalAlignment.Center;
+			gridBaseStyle24.Name = "Row Header";
+			gridBaseStyle24.StyleInfo.BaseStyle = "Header";
+			gridBaseStyle24.StyleInfo.HorizontalAlignment = Syncfusion.Windows.Forms.Grid.GridHorizontalAlignment.Left;
+			gridBaseStyle24.StyleInfo.Interior = new Syncfusion.Drawing.BrushInfo(Syncfusion.Drawing.GradientStyle.Horizontal, System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(199)))), ((int)(((byte)(184))))), System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(234)))), ((int)(((byte)(216))))));
 			this.grdconMap.BaseStylesMap.AddRange(new Syncfusion.Windows.Forms.Grid.GridBaseStyle[] {
-            gridBaseStyle1,
-            gridBaseStyle2,
-            gridBaseStyle3,
-            gridBaseStyle4});
+            gridBaseStyle21,
+            gridBaseStyle22,
+            gridBaseStyle23,
+            gridBaseStyle24});
 			this.grdconMap.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
 			this.grdconMap.ColCount = 24;
 			this.grdconMap.ColWidthEntries.AddRange(new Syncfusion.Windows.Forms.Grid.GridColWidth[] {
@@ -662,8 +604,6 @@
 			this.grdconMap.VerticalThumbTrack = true;
 			this.grdconMap.VScrollPixel = true;
 			this.grdconMap.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PrimaryKeyDownEvent);
-			this.grdconMap.MouseLeave += new System.EventHandler(this.PrimaryMouseLeaveEvent);
-			this.grdconMap.MouseHover += new System.EventHandler(this.grdconMap_MouseHover);
 			// 
 			// tmrCellBlink
 			// 
@@ -684,7 +624,6 @@
 			this.tabDialog.SelectedIndex = 0;
 			this.tabDialog.Size = new System.Drawing.Size(421, 248);
 			this.tabDialog.TabIndex = 5;
-			this.tabDialog.MouseLeave += new System.EventHandler(this.PrimaryMouseLeaveEvent);
 			// 
 			// tabDialogs
 			// 
@@ -731,8 +670,6 @@
 			this.lstInventory.Name = "lstInventory";
 			this.lstInventory.Size = new System.Drawing.Size(409, 212);
 			this.lstInventory.TabIndex = 0;
-			this.lstInventory.MouseLeave += new System.EventHandler(this.PrimaryMouseLeaveEvent);
-			this.lstInventory.MouseHover += new System.EventHandler(this.lstInventory_MouseHover);
 			// 
 			// FormGame
 			// 
@@ -741,7 +678,6 @@
 			this.BackColor = System.Drawing.Color.DarkKhaki;
 			this.CancelButton = this.btnMainMenu;
 			this.ClientSize = new System.Drawing.Size(1112, 653);
-			this.Controls.Add(this.lblMenuHover);
 			this.Controls.Add(this.tabDialog);
 			this.Controls.Add(this.grpboxLegend);
 			this.Controls.Add(this.grdconMap);
@@ -769,7 +705,6 @@
 			this.tabDirection.ResumeLayout(false);
 			this.tabInventory.ResumeLayout(false);
 			this.ResumeLayout(false);
-			this.PerformLayout();
 
         }
 
@@ -790,8 +725,7 @@
         private System.Windows.Forms.Button btnPickupKey;
         private System.Windows.Forms.Button btnMainMenu;
         private System.Windows.Forms.Button btnSaveGame;
-        private System.Windows.Forms.Button btnLoadGame;
-        private System.Windows.Forms.Label lblMenuHover;
+		private System.Windows.Forms.Button btnLoadGame;
         private System.Windows.Forms.ListBox lstDialog;
 		private System.Windows.Forms.GroupBox grpboxLegend;
 		private System.Windows.Forms.Label lblStairsUp;

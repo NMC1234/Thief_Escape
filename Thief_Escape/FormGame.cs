@@ -66,6 +66,80 @@ namespace Thief_Escape
 		#region [ LoadEvent ]
 		private void FormGamePlay_Load(object sender, EventArgs e)
 		{
+			#region [ ToolTips ]
+			ToolTip movOptions = new ToolTip( );
+			movOptions.InitialDelay = 500;
+			movOptions.IsBalloon = false;
+			movOptions.UseAnimation = false;
+			movOptions.UseFading = false;
+			movOptions.ToolTipTitle = "Movement Options";
+			movOptions.ShowAlways = true;
+			movOptions.SetToolTip(this.btnMoveNorth, "Moves Character North. Keybind: W/UP/Num-8.");
+			movOptions.SetToolTip(this.btnMoveEast, "Moves Character East, Keybinds: D/RIGHT/Num-6.");
+			movOptions.SetToolTip(this.btnMoveSouth, "Moves Character South, Keybinds: S/DOWN/Num-2.");
+			movOptions.SetToolTip(this.btnMoveWest, "Moves Character West, Keybinds: A/LEFT/Num-4.");
+
+			ToolTip useKey = new ToolTip( );
+			useKey.AutomaticDelay = 300;
+			useKey.IsBalloon = false;
+			useKey.UseAnimation = false;
+			useKey.UseFading = false;
+			useKey.ShowAlways = true;
+			useKey.ToolTipTitle = "Use Key";
+			useKey.SetToolTip(this.btnUseKey, "Press to use up a Key and Unlock a Door Around You.  Keybinds: K");
+
+			ToolTip pickupKey = new ToolTip( );
+			pickupKey.AutomaticDelay = 300;
+			pickupKey.IsBalloon = false;
+			pickupKey.UseAnimation = false;
+			pickupKey.UseFading = false;
+			pickupKey.ShowAlways = true;
+			pickupKey.ToolTipTitle = "Pickup Key";
+			pickupKey.SetToolTip(this.btnPickupKey, "Press to Pickup a Key Around You and Add to Inventory. Keybinds: P");
+
+			ToolTip map = new ToolTip( );
+			map.AutomaticDelay = 300;
+			map.IsBalloon = false;
+			map.UseAnimation = false;
+			map.UseFading = false;
+			map.ShowAlways = true;
+			map.ToolTipTitle = "Visual Map of Surroundings";
+			map.SetToolTip(this.grdconMap, "A Visual Map of the Current Floor");
+
+			ToolTip options = new ToolTip( );
+			options.AutomaticDelay = 300;
+			options.IsBalloon = false;
+			options.UseAnimation = false;
+			options.UseFading = false;
+			options.ShowAlways = true;
+			options.ToolTipTitle = "Menu Options";
+			options.SetToolTip(this.btnMainMenu, "Select to Return to Main Menu");
+			options.SetToolTip(this.btnLoadGame, "Select to Load a Previously Saved Game.");
+			options.SetToolTip(this.btnSaveGame, "Select to Save Your Game.");
+
+			ToolTip legend = new ToolTip( );
+			legend.AutomaticDelay = 300;
+			legend.IsBalloon = false;
+			legend.UseAnimation = false;
+			legend.UseFading = false;
+			legend.ShowAlways = true;
+			legend.ToolTipTitle = "Map Legend";
+			legend.SetToolTip(this.grpboxLegend, "A Legend of the Various Objects on the Map.");
+
+			ToolTip lists = new ToolTip( );
+			lists.AutomaticDelay = 300;
+			lists.IsBalloon = false;
+			lists.UseAnimation = false;
+			lists.UseFading = false;
+			lists.ShowAlways = true;
+			lists.ToolTipTitle = "Information Output Display";
+			lists.SetToolTip(this.lstDialog, "Dialog From and About the Game");
+			lists.SetToolTip(this.tabDialog, "Tabs the Will Display Past Dialog, What is Surrounding You, and Your Current Inventory.");
+			lists.SetToolTip(this.lstOutput, "What Types of Things are Around You.");
+			lists.SetToolTip(this.lstInventory, "What You Currently Have In Your Inventory.");
+
+			#endregion
+
 			//Instantiation of the grid object
 			//mapCells = new Grid();
 			mapCells = new Grid(16);
@@ -391,6 +465,7 @@ namespace Thief_Escape
 
 			//Output surrounding cell types in text output
 			OutputAroundPlayer(true);
+			this.Focus( );
 		}
 
 		//-----------------------------------------------------------------------------------------------------
@@ -426,6 +501,7 @@ namespace Thief_Escape
 
 			//Output surrounding cells
 			OutputAroundPlayer(true);
+			this.Focus( );
 		}
 
 		//-----------------------------------------------------------------------------------------------------
@@ -461,6 +537,7 @@ namespace Thief_Escape
 
 			//Output surrounding cells
 			OutputAroundPlayer(true);
+			this.Focus( );
 		}
 
 		//-----------------------------------------------------------------------------------------------------
@@ -496,6 +573,7 @@ namespace Thief_Escape
 
 			//Output surrounding cells
 			OutputAroundPlayer(true);
+			this.Focus( );
 		}
 
 		//-----------------------------------------------------------------------------------------------------
@@ -997,6 +1075,7 @@ namespace Thief_Escape
 				lstDialog.SelectedIndex = lstDialog.Items.Count - 1;
 				lstDialog.SelectedIndex = -1;
 			}
+			grpMovement.Focus( );
 		}
 
 		private void PickedUpKeyMapCellChange( int x, int y)
@@ -1052,6 +1131,7 @@ namespace Thief_Escape
 			else
 				MessageBox.Show("You don't have any Keys", "Can't Unlock Door");
 
+			grpMovement.Focus( );
 		}
 
 		private void RemoveKey( )
@@ -1378,89 +1458,8 @@ namespace Thief_Escape
 			this.Close( );
 		}
 
-		private void FormGame_KeyDown(object sender, KeyEventArgs e)
-		{
-			WhenKeyIsPressed(e);
-		}
 
 		# endregion
-		
-
-		#region [ Menu Buttons Hover ]
-
-		private void PrimaryMouseLeaveEvent(object sender, EventArgs e)
-		{
-			lblMenuHover.Text = "";
-		}
-
-		private void btnLoadGame_MouseHover(object sender, EventArgs e)
-		{
-			lblMenuHover.Text = "This feature is not yet implemented.";
-		}
-
-
-		private void btnSaveGame_MouseHover(object sender, EventArgs e)
-		{
-			lblMenuHover.Text = "This feature is not yet implemented.";
-		}
-
-
-		private void btnMainMenu_MouseHover(object sender, EventArgs e)
-		{
-			lblMenuHover.Text = "Return to Main Menu.";
-		}
-
-		private void btnUseKey_MouseHover(object sender, EventArgs e)
-		{
-			lblMenuHover.Text = "Use a Key to Unlock a Door.";
-		}
-
-		private void btnPickupKey_MouseHover(object sender, EventArgs e)
-		{
-			lblMenuHover.Text = "Picks up a Key, Adds to Inventory.";
-		}
-
-		private void btnMoveNorth_MouseHover(object sender, EventArgs e)
-		{
-			lblMenuHover.Text = "Moves Thief Up One Cell.";
-
-		}
-
-		private void btnMoveWest_MouseHover(object sender, EventArgs e)
-		{
-			lblMenuHover.Text = "Moves Thief Left One Cell.";
-		}
-
-		private void btnMoveEast_MouseHover(object sender, EventArgs e)
-		{
-			lblMenuHover.Text = "Moves Thief Right One Cell.";
-		}
-
-		private void btnMoveSouth_MouseHover(object sender, EventArgs e)
-		{
-			lblMenuHover.Text = "Moves Thief Down One Cell.";
-		}
-
-		private void grdconMap_MouseHover(object sender, EventArgs e)
-		{
-			lblMenuHover.Text = "Displays Possition and Imidiate Surroundings.";
-		}
-
-		private void lstDialog_MouseHover(object sender, EventArgs e)
-		{
-			lblMenuHover.Text = "Dialog History.";
-		}
-
-		private void lstOutput_MouseHover(object sender, EventArgs e)
-		{
-			lblMenuHover.Text = "Description of What's Around You.";
-		}
-
-		private void lstInventory_MouseHover(object sender, EventArgs e)
-		{
-			lblMenuHover.Text = "The Items Currrently In Your Inventory.";
-		}
-		#endregion
 		
 
 		#region [ Creation of Image Map]
@@ -1634,7 +1633,109 @@ namespace Thief_Escape
 		#region [ Stock Events ]
 		private void PrimaryKeyDownEvent(object sender, KeyEventArgs e)
 		{
-			WhenKeyIsPressed(e);
+			switch(e.KeyCode)
+			{
+				case Keys.Left:
+					btnMoveWest.PerformClick( );
+					break;
+				case Keys.Right:
+					btnMoveEast.PerformClick( );
+					break;
+				case Keys.Up:
+					btnMoveNorth.PerformClick( );
+					break;
+				case Keys.Down:
+					btnMoveSouth.PerformClick( );
+					break;
+
+				case Keys.W:
+					btnMoveNorth.PerformClick( );
+					break;
+				case Keys.A:
+					btnMoveWest.PerformClick( );
+					break;
+				case Keys.S:
+					btnMoveSouth.PerformClick( );
+					break;
+				case Keys.D:
+					btnMoveEast.PerformClick( );
+					break;
+
+				case Keys.K:
+					btnUseKey.PerformClick( );
+					break;
+				case Keys.P:
+					btnPickupKey.PerformClick( );
+					break;
+
+
+				case Keys.NumPad0:
+					break;
+				case Keys.NumPad1:
+					break;
+				case Keys.NumPad2:
+					btnMoveSouth.PerformClick( );
+					break;
+				case Keys.NumPad3:
+					break;
+				case Keys.NumPad4:
+					btnMoveWest.PerformClick( );
+					break;
+				case Keys.NumPad5:
+					break;
+				case Keys.NumPad6:
+					btnMoveEast.PerformClick( );
+					break;
+				case Keys.NumPad7:
+					break;
+				case Keys.NumPad8:
+					btnMoveNorth.PerformClick( );
+					break;
+				case Keys.NumPad9:
+					break;
+
+				case Keys.Enter:
+					break;
+				case Keys.Escape:
+					Application.Exit( );
+					break;
+
+				case Keys.F1:
+					break;
+				case Keys.F10:
+					break;
+				case Keys.F11:
+					break;
+				case Keys.F12:
+					break;
+				case Keys.F2:
+					break;
+				case Keys.F3:
+					break;
+				case Keys.F4:
+					break;
+				case Keys.F5:
+					break;
+				case Keys.F6:
+					break;
+				case Keys.F7:
+					break;
+				case Keys.F8:
+					break;
+				case Keys.F9:
+					break;
+
+				case Keys.PageDown:
+					break;
+				case Keys.PageUp:
+					break;
+
+				case Keys.Tab:
+					break;
+
+				default:
+					break;
+			}
 		}
 		#endregion
 
