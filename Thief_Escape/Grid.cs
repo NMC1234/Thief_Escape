@@ -54,7 +54,6 @@ namespace Thief_Escape
 		public int MapSize
 		{
 			get { return _mapSize; }
-			set { }
 		}
 
 		//Use this property to get asigned starting cell x value
@@ -62,7 +61,6 @@ namespace Thief_Escape
 		public int WhatIsStartingCellX
 		{
 			get { return _startingCellX; }
-			set { }
 		}
 
 		//Use this property to get asigned starting cell y value
@@ -70,7 +68,6 @@ namespace Thief_Escape
 		public int WhatIsStartingCellY
 		{
 			get { return _startingCellY; }
-			set { }
 		}
 
 		#endregion

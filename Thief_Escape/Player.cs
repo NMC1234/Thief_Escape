@@ -35,7 +35,6 @@ namespace Thief_Escape
 		public int CurrentCellX
 		{
 			get { return _currentCellX; }
-			set { }
 		}
 
 		//public property to pull current cell y
@@ -43,7 +42,6 @@ namespace Thief_Escape
 		public int CurrentCellY
 		{
 			get { return _currentCellY; }
-			set { }
 		}
 
 		//Players Name

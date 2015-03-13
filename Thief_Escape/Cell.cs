@@ -159,7 +159,6 @@ namespace Thief_Escape
 		public Item GetItem
 		{
 			get { return _item; }
-			set { }
 		}
 
 		//-----------------------------------------------------------------------------------------------------
@@ -167,7 +166,6 @@ namespace Thief_Escape
 		public ItemType WhatIsItemType
 		{
 			get { return _itemType; }
-			set { }
 		}
 
 
@@ -175,7 +173,6 @@ namespace Thief_Escape
 		{
 			get { return _cell; }
 			//no external set must be set through ceate methods
-			set { }
 		}
 
 		//-----------------------------------------------------------------------------------------------------
@@ -183,7 +180,6 @@ namespace Thief_Escape
 		{
 			get { return _wall; }
 			//No external set must call create methode to set type
-			set { }
 		}
 
 		//-----------------------------------------------------------------------------------------------------
@@ -191,7 +187,6 @@ namespace Thief_Escape
 		{
 			get { return _floor; }
 			//No external set must call create methode to set type
-			set { }
 		}
 
 		//-----------------------------------------------------------------------------------------------------
@@ -207,7 +202,6 @@ namespace Thief_Escape
 		{
 			get { return _stairs; }
 			//no external set must call ceate stairs method
-			set { }
 		}
 
 		//-----------------------------------------------------------------------------------------------------
@@ -215,14 +209,12 @@ namespace Thief_Escape
 		{
 			get { return _keyType; }
 			//no external set must be set through ceate methods
-			set { }
 		}
 
 		//-----------------------------------------------------------------------------------------------------
 		public KittenType WhatIsKittenType
 		{
 			get { return _kittenType; }
-			set { }
 		}
 
 		//-----------------------------------------------------------------------------------------------------
@@ -230,28 +222,25 @@ namespace Thief_Escape
 		{
 			get { return _startingCell; }
 			//no external set must call create kitten method
-			set { }
+			set { _startingCell = value; }
 		}
 
 		//-----------------------------------------------------------------------------------------------------
 		public bool IsBejeweledKitten
 		{
 			get { return _isBejeweledKitten; }
-			set { }
 		}
 
 		//-----------------------------------------------------------------------------------------------------
 		public bool IsKey
 		{
 			get { return _isKey; }
-			set { }
 		}
 
 		//-----------------------------------------------------------------------------------------------------
 		public bool HasItem
 		{
 			get { return _hasItem; }
-			set { }
 		}
 
 		//-----------------------------------------------------------------------------------------------------
