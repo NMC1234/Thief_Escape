@@ -85,6 +85,41 @@ namespace Theif_Escape
 
         }
 
+        //  Arrow-Key Press handler
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            //  Switch on Key press -- This can be used for other keys, currently only handles arrow keys.
+            switch (keyData)
+            {
+                    //  Move west
+                case Keys.Left:
+                    btnMoveWest.PerformClick();
+                    break;
+
+                    //  Move east
+                case Keys.Right:
+                    btnMoveEast.PerformClick();
+                    break;
+
+                    //  Move north
+                case Keys.Up:
+                    btnMoveNorth.PerformClick();
+                    break;
+
+                    //  Move south
+                case Keys.Down:
+                    btnMoveSouth.PerformClick();
+                    break;
+
+                    //  Do nothing
+                default:
+                    break;
+
+            }
+            //  No idea what this does, compiler error if removed.
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
         //  Form Loaded
         private void FrmGame_Load(object sender, EventArgs e)
         {
